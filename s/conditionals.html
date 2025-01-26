@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,10 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-image: url(../img/fondo3.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
             margin: 0;
             padding: 20px;
             background-color: #f0f8ff;
@@ -14,7 +19,7 @@
 
         h1 {
             text-align: center;
-            color: #4a90e2;
+            color: #a6c4e7;
         }
 
         .exercise {
@@ -81,39 +86,52 @@
         }
     </style>
 </head>
+
 <body>
     <h1>Conditionals</h1>
+    <form autocomplete="off">
+        <div class="exercise">
+            <h2>Complete the sentences:</h2>
+            <ol>
+                <li>I don't know the answer. If I <input type="text" placeholder="Answer here" id="q1"> (know) the
+                    answer, I'd tell you.</li>
+                <li>I have a car. I couldn't travel very much if I <input type="text" placeholder="Answer here" id="q2">
+                    (not/have) a car.</li>
+                <li>I don't want to go out. If I <input type="text" placeholder="Answer here" id="q3"> (want) to go out,
+                    I'd go.</li>
+                <li>We don't have a key. If we <input type="text" placeholder="Answer here" id="q4"> (have) a key, we
+                    could get into the house.</li>
+                <li>I'm not hungry. If I <input type="text" placeholder="Answer here" id="q5"> (be) hungry, I would eat
+                    something.</li>
+                <li>She enjoys her work. She wouldn't do it if she <input type="text" placeholder="Answer here" id="q6">
+                    (not/enjoy) it.</li>
+            </ol>
+        </div>
 
-    <div class="exercise">
-        <h2>Complete the sentences:</h2>
-        <ol>
-            <li>I don't know the answer. If I <input type="text" placeholder="Answer here" id="q1"> (know) the answer, I'd tell you.</li>
-            <li>I have a car. I couldn't travel very much if I <input type="text" placeholder="Answer here" id="q2"> (not/have) a car.</li>
-            <li>I don't want to go out. If I <input type="text" placeholder="Answer here" id="q3"> (want) to go out, I'd go.</li>
-            <li>We don't have a key. If we <input type="text" placeholder="Answer here" id="q4"> (have) a key, we could get into the house.</li>
-            <li>I'm not hungry. If I <input type="text" placeholder="Answer here" id="q5"> (be) hungry, I would eat something.</li>
-            <li>She enjoys her work. She wouldn't do it if she <input type="text" placeholder="Answer here" id="q6"> (not/enjoy) it.</li>
-        </ol>
-    </div>
+        <div class="exercise">
+            <h2>Put the verb in the correct form:</h2>
+            <ol>
+                <li>If he <input type="text" placeholder="Answer here" id="q7"> (have) the money, he would buy a fast
+                    car.</li>
+                <li>Jane likes living in a city. She <input type="text" placeholder="Answer here" id="q8"> (not/be)
+                    happy if she lived in the country.</li>
+                <li>If I wanted to learn Italian, I <input type="text" placeholder="Answer here" id="q9"> (go) to Italy.
+                </li>
+                <li>What would you do if you <input type="text" placeholder="Answer here" id="q10"> (win) a lot of
+                    money?</li>
+            </ol>
+        </div>
 
-    <div class="exercise">
-        <h2>Put the verb in the correct form:</h2>
-        <ol>
-            <li>If he <input type="text" placeholder="Answer here" id="q7"> (have) the money, he would buy a fast car.</li>
-            <li>Jane likes living in a city. She <input type="text" placeholder="Answer here" id="q8"> (not/be) happy if she lived in the country.</li>
-            <li>If I wanted to learn Italian, I <input type="text" placeholder="Answer here" id="q9"> (go) to Italy.</li>
-            <li>What would you do if you <input type="text" placeholder="Answer here" id="q10"> (win) a lot of money?</li>
-        </ol>
-    </div>
-
-    <div class="exercise">
-        <h2>Complete the sentences. Choose from the box:</h2>
-        <ol>
-            <li>I'd buy that jacket if it <input type="text" placeholder="Answer here" id="q11"> (be/a bit cheaper).</li>
-            <li>If there was a good film on TV tonight, I <input type="text" placeholder="Answer here" id="q12"> (watch) it.</li>
-        </ol>
-    </div>
-
+        <div class="exercise">
+            <h2>Complete the sentences. Choose from the box:</h2>
+            <ol>
+                <li>I'd buy that jacket if it <input type="text" placeholder="Answer here" id="q11"> (be/a bit cheaper).
+                </li>
+                <li>If there was a good film on TV tonight, I <input type="text" placeholder="Answer here" id="q12">
+                    (watch) it.</li>
+            </ol>
+        </div>
+    </form>
     <button class="submit-btn" onclick="checkAnswers()">Submit Answers</button>
     <button class="submit-btn" onclick="window.location.href='../index.html'">Return to Home</button>
 
@@ -158,4 +176,5 @@
         }
     </script>
 </body>
+
 </html>
