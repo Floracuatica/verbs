@@ -130,6 +130,39 @@
             background-color: #0056b3;
         }
 
+        .answer-buttons {
+            display: flex;
+            justify-content: center;
+            /* Centra los botones */
+            gap: 10px;
+            /* Espacio uniforme entre los botones */
+            margin-top: 20px;
+            /* Espaciado superior */
+        }
+
+        .answer-buttons button {
+            min-width: 150px;
+            /* Ancho uniforme para los botones */
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+
         .carousel-item img {
             height: 200px;
             object-fit: cover;
@@ -242,27 +275,30 @@
     </div>
     <h1>Plural Nouns Exercises</h1>
     <p class="instruction">Fill in the blanks with the correct plural form of the given word.</p>
+    <form autocomplete="off">
+        <div class="exercise" id="exercise1">
+            <div class="question">These (person) <input type="text" id="q1" placeholder="Plural"></div>
+            <div class="question">The (woman) over there want to meet the manager. <input type="text" id="q2"
+                    placeholder="Plural"></div>
+            <div class="question">My (child) hate eating pasta. <input type="text" id="q3" placeholder="Plural"></div>
+            <div class="question">I am ill. My (foot) hurt. <input type="text" id="q4" placeholder="Plural"></div>
+            <div class="question">Muslims sacrifice (sheep) in a religious celebration called Eid Al Adha. <input
+                    type="text" id="q5" placeholder="Plural"></div>
+        </div>
 
-    <div class="exercise" id="exercise1">
-        <div class="question">These (person) <input type="text" id="q1" placeholder="Plural"></div>
-        <div class="question">The (woman) over there want to meet the manager. <input type="text" id="q2"
-                placeholder="Plural"></div>
-        <div class="question">My (child) hate eating pasta. <input type="text" id="q3" placeholder="Plural"></div>
-        <div class="question">I am ill. My (foot) hurt. <input type="text" id="q4" placeholder="Plural"></div>
-        <div class="question">Muslims sacrifice (sheep) in a religious celebration called Eid Al Adha. <input
-                type="text" id="q5" placeholder="Plural"></div>
+        <div class="exercise" id="exercise2">
+            <h2>Write down the correct form of the plural:</h2>
+            <div class="question">city - <input type="text" id="q6" placeholder="Plural"></div>
+            <div class="question">house - <input type="text" id="q7" placeholder="Plural"></div>
+            <div class="question">boy - <input type="text" id="q8" placeholder="Plural"></div>
+            <div class="question">family - <input type="text" id="q9" placeholder="Plural"></div>
+            <div class="question">life - <input type="text" id="q10" placeholder="Plural"></div>
+        </div>
+    </form>
+    <div class="answer-buttons">
+        <button class="btn btn-danger" onclick="eraseAnswers()">Erase</button>
+        <button class="btn btn-primary" onclick="checkAnswers()">Submit Answers</button>
     </div>
-
-    <div class="exercise" id="exercise2">
-        <h2>Write down the correct form of the plural:</h2>
-        <div class="question">city - <input type="text" id="q6" placeholder="Plural"></div>
-        <div class="question">house - <input type="text" id="q7" placeholder="Plural"></div>
-        <div class="question">boy - <input type="text" id="q8" placeholder="Plural"></div>
-        <div class="question">family - <input type="text" id="q9" placeholder="Plural"></div>
-        <div class="question">life - <input type="text" id="q10" placeholder="Plural"></div>
-    </div>
-
-    <button class="submit-btn" onclick="checkAnswers()">Submit Answers</button>
 
     <div id="results"></div>
 
@@ -291,6 +327,22 @@
             q9: "families",
             q10: "lives"
         };
+
+        function eraseAnswers() {
+            // Selecciona todos los inputs dentro de .exercise
+            const inputs = document.querySelectorAll('.exercise input');
+            // Limpia cada input
+            inputs.forEach(input => {
+                input.value = ''; // Borra el contenido
+                input.classList.remove('is-valid', 'is-invalid'); // Limpia las clases de validación
+            });
+
+            // Borra el contenido del área de resultados si existe
+            const feedback = document.getElementById('results');
+            if (feedback) {
+                feedback.innerHTML = ''; // Limpia los resultados
+            }
+        }
 
         function checkAnswers() {
             let resultsDiv = document.getElementById('results');
