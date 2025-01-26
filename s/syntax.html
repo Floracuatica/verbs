@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>English Syntax Practice</title>
+  <!-- Adding Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-image: url('../img/fondo.avif');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .structure {
+      margin-bottom: 30px;
+    }
+    .example {
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body class="container">
+  <h1 class="text-center my-4">English Syntax Practice</h1>
+
+  <!-- Structure 1 -->
+  <div class="structure">
+    <p class="example">1. <strong>Sujeto + Verbo (S + V)</strong></p>
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <label for="subject1" class="form-label">Subject:</label>
+        <select id="subject1" class="form-select" onchange="updateVerbs('subject1', 'verb1')">
+          <option value="plural">Birds</option>
+          <option value="singular">She</option>
+          <option value="plural">They</option>
+          <option value="singular">He</option>
+          <option value="plural">We</option>
+          <option value="plural">Dogs</option>
+          <option value="singular">The teacher</option>
+          <option value="singular">John</option>
+        </select>
+      </div>
+      <div class="col-md-4">
+        <label for="verb1" class="form-label">Verb:</label>
+        <select id="verb1" class="form-select">
+          <option data-type="plural">fly</option>
+          <option data-type="singular">flies</option>
+          <option data-type="plural">run</option>
+          <option data-type="singular">runs</option>
+          <option data-type="plural">jump</option>
+          <option data-type="singular">jumps</option>
+          <option data-type="plural">read</option>
+          <option data-type="singular">reads</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Structure 2 -->
+  <div class="structure">
+    <p class="example">2. <strong>Sujeto + Verbo + Objeto (S + V + O)</strong></p>
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <label for="subject2" class="form-label">Subject:</label>
+        <select id="subject2" class="form-select" onchange="updateVerbs('subject2', 'verb2')">
+          <option value="plural">Birds</option>
+          <option value="singular">She</option>
+          <option value="plural">They</option>
+          <option value="singular">He</option>
+          <option value="plural">We</option>
+          <option value="plural">Dogs</option>
+          <option value="singular">The teacher</option>
+          <option value="singular">John</option>
+        </select>
+      </div>
+      <div class="col-md-4">
+        <label for="verb2" class="form-label">Verb:</label>
+        <select id="verb2" class="form-select">
+          <option data-type="plural">read</option>
+          <option data-type="singular">reads</option>
+          <option data-type="plural">eat</option>
+          <option data-type="singular">eats</option>
+          <option data-type="plural">write</option>
+          <option data-type="singular">writes</option>
+        </select>
+      </div>
+      <div class="col-md-4">
+        <label for="object2" class="form-label">Object:</label>
+        <select id="object2" class="form-select">
+          <option>a book</option>
+          <option>the ball</option>
+          <option>an apple</option>
+          <option>the table</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Structure 3 -->
+  <div class="structure">
+    <p class="example">3. <strong>Sujeto + Verbo + Adverbio (S + V + Adv)</strong></p>
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <label for="subject3" class="form-label">Subject:</label>
+        <select id="subject3" class="form-select" onchange="updateVerbs('subject3', 'verb3')">
+          <option value="plural">Birds</option>
+          <option value="singular">She</option>
+          <option value="plural">They</option>
+          <option value="singular">He</option>
+          <option value="plural">We</option>
+          <option value="plural">Dogs</option>
+          <option value="singular">The teacher</option>
+          <option value="singular">John</option>
+        </select>
+      </div>
+      <div class="col-md-4">
+        <label for="verb3" class="form-label">Verb:</label>
+        <select id="verb3" class="form-select">
+          <option data-type="plural">run</option>
+          <option data-type="singular">runs</option>
+          <option data-type="plural">speak</option>
+          <option data-type="singular">speaks</option>
+        </select>
+      </div>
+      <div class="col-md-4">
+        <label for="adverb3" class="form-label">Adverb:</label>
+        <select id="adverb3" class="form-select">
+          <option>quickly</option>
+          <option>slowly</option>
+          <option>happily</option>
+          <option>silently</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Structure 4 -->
+  <div class="structure">
+    <p class="example">4. <strong>Sujeto + Verbo + Complemento (S + V + C)</strong></p>
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <label for="subject4" class="form-label">Subject:</label>
+        <select id="subject4" class="form-select" onchange="updateVerbs('subject4', 'verb4')">
+          <option value="plural">The cakes</option>
+          <option value="singular">The soup</option>
+          <option value="singular">The teacher</option>
+          <option value="singular">He</option>
+        </select>
+      </div>
+      <div class="col-md-4">
+        <label for="verb4" class="form-label">Verb:</label>
+        <select id="verb4" class="form-select">
+          <option data-type="singular">is</option>
+          <option data-type="plural">are</option>
+        </select>
+      </div>
+      <div class="col-md-4">
+        <label for="complement4" class="form-label">Complement:</label>
+        <select id="complement4" class="form-select">
+          <option>delicious</option>
+          <option>hot</option>
+          <option>ready</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Structure 5 -->
+  <div class="structure">
+    <p class="example">5. <strong>Sujeto + Verbo + Objeto Indirecto + Objeto Directo (S + V + Oi + Od)</strong></p>
+    <div class="row mb-3">
+      <div class="col-md-3">
+        <label for="subject5" class="form-label">Subject:</label>
+        <select id="subject5" class="form-select" onchange="updateVerbs('subject5', 'verb5')">
+          <option value="singular">She</option>
+          <option value="singular">He</option>
+          <option value="plural">They</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label for="verb5" class="form-label">Verb:</label>
+        <select id="verb5" class="form-select">
+          <option data-type="singular">gives</option>
+          <option data-type="plural">give</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label for="indirect5" class="form-label">Indirect Object:</label>
+        <select id="indirect5" class="form-select">
+          <option>me</option>
+          <option>you</option>
+          <option>them</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label for="direct5" class="form-label">Direct Object:</label>
+        <select id="direct5" class="form-select">
+          <option>a gift</option>
+          <option>some help</option>
+          <option>an apple</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-secondary mt-3 ms-2" onclick="window.location.href='../index.html'">Return to Home</button>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function updateVerbs(subjectId, verbId) {
+      const subject = document.getElementById(subjectId);
+      const verb = document.getElementById(verbId);
+      const subjectType = subject.options[subject.selectedIndex].value;
+
+      for (let i = 0; i < verb.options.length; i++) {
+        const verbType = verb.options[i].getAttribute('data-type');
+        if (verbType === subjectType) {
+          verb.options[i].style.display = 'block';
+        } else {
+          verb.options[i].style.display = 'none';
+        }
+      }
+
+      // Set the first visible option as selected
+      for (let i = 0; i < verb.options.length; i++) {
+        if (verb.options[i].style.display === 'block') {
+          verb.selectedIndex = i;
+          break;
+        }
+      }
+    }
+  </script>
+</body>
+</html>

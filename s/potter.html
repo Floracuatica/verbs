@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practicing the Past</title>
+  <!-- Adding Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-image: url('../img/fondo.webp');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .structure {
+      margin-bottom: 30px;
+    }
+    .example {
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+    .story {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+    .feedback {
+      display: none;
+      margin-top: 10px;
+    }
+    .correct {
+      color: green;
+      font-weight: bold;
+    }
+    .incorrect {
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body class="container">
+  <h1 class="text-center my-4">Practicing the past</h1>
+
+  <!-- Scene 1: Harry Receives His Letter -->
+  <div class="story">
+    <h2 class="text-center">Harry Receives His Letter</h2>
+    <p>Harry had always <input type="text" class="form-control d-inline w-auto" placeholder="(live)"> (live) in the cupboard under the stairs. Suddenly, he <input type="text" class="form-control d-inline w-auto" placeholder="(hear)"> (hear) the sound of an owl. It <input type="text" class="form-control d-inline w-auto" placeholder="(bring)"> (bring) a letter addressed to him. Harry <input type="text" class="form-control d-inline w-auto" placeholder="(open)"> (open) the letter and <input type="text" class="form-control d-inline w-auto" placeholder="(read)"> (read) that he was invited to Hogwarts School of Witchcraft and Wizardry.</p>
+    <button class="btn btn-primary mt-3" onclick="checkAnswers('scene1')">Submit</button>
+    <button class="btn btn-danger mt-3 ms-2" onclick="eraseAnswers('scene1')">Erase</button>
+    <div id="feedback-scene1" class="feedback"></div>
+  </div>
+
+  <!-- Scene 2: Meeting Hagrid -->
+  <div class="story">
+    <h2 class="text-center">Meeting Hagrid</h2>
+    <p>When Harry <input type="text" class="form-control d-inline w-auto" placeholder="(meet)"> (meet) Hagrid for the first time, he <input type="text" class="form-control d-inline w-auto" placeholder="(be)"> (be) shocked. Hagrid <input type="text" class="form-control d-inline w-auto" placeholder="(tell)"> (tell) him that he was a wizard. Harry <input type="text" class="form-control d-inline w-auto" placeholder="(not/believe)"> (not believe) it at first, but Hagrid <input type="text" class="form-control d-inline w-auto" placeholder="(show)"> (show) him proof by giving him a letter from Hogwarts.</p>
+    <button class="btn btn-primary mt-3" onclick="checkAnswers('scene2')">Submit</button>
+    <button class="btn btn-danger mt-3 ms-2" onclick="eraseAnswers('scene2')">Erase</button>
+    <div id="feedback-scene2" class="feedback"></div>
+  </div>
+
+  <!-- Scene 3: Diagon Alley -->
+  <div class="story">
+    <h2 class="text-center">Diagon Alley</h2>
+    <p>Hagrid <input type="text" class="form-control d-inline w-auto" placeholder="(take)"> (take) Harry to Diagon Alley. Harry <input type="text" class="form-control d-inline w-auto" placeholder="(see)"> (see) magical shops and wizards everywhere. He <input type="text" class="form-control d-inline w-auto" placeholder="(buy)"> (buy) his wand from Ollivanders and <input type="text" class="form-control d-inline w-auto" placeholder="(feel)"> (feel) amazed by the experience. He <input type="text" class="form-control d-inline w-auto" placeholder="(realize)"> (realize) that his life was about to change forever.</p>
+    <button class="btn btn-primary mt-3" onclick="checkAnswers('scene3')">Submit</button>
+    <button class="btn btn-danger mt-3 ms-2" onclick="eraseAnswers('scene3')">Erase</button>
+    <div id="feedback-scene3" class="feedback"></div>
+  </div>
+
+  <!-- Scene 4: The Sorting Hat Ceremony -->
+  <div class="story">
+    <h2 class="text-center">The Sorting Hat Ceremony</h2>
+    <p>During the Sorting Hat ceremony, Harry <input type="text" class="form-control d-inline w-auto" placeholder="(sit)"> (sit) nervously on the stool. The hat <input type="text" class="form-control d-inline w-auto" placeholder="(whisper)"> (whisper) in his ear, "Hmm, difficult. Very difficult." It <input type="text" class="form-control d-inline w-auto" placeholder="(decide)"> (decide) to put him in Gryffindor. Harry <input type="text" class="form-control d-inline w-auto" placeholder="(join)"> (join) his new housemates, feeling both relieved and excited.</p>
+    <button class="btn btn-primary mt-3" onclick="checkAnswers('scene4')">Submit</button>
+    <button class="btn btn-danger mt-3 ms-2" onclick="eraseAnswers('scene4')">Erase</button>
+    <div id="feedback-scene4" class="feedback"></div>
+  </div>
+
+  <script>
+    const answers = {
+      scene1: ["lived", "heard", "brought", "opened", "read"],
+      scene2: ["met", "was", "told", "did not believe", "showed"],
+      scene3: ["took", "saw", "bought", "felt", "realized"],
+      scene4: ["sat", "whispered", "decided", "joined"]
+    };
+
+    function eraseAnswers(scene) {
+      const inputs = document.querySelectorAll(`.story:nth-of-type(${scene.replace('scene', '')}) input`);
+      const feedback = document.getElementById(`feedback-${scene}`);
+      inputs.forEach(input => {
+        input.value = '';
+        input.classList.remove('is-valid', 'is-invalid');
+      });
+      feedback.style.display = 'none';
+      feedback.innerHTML = '';
+    }
+
+    function checkAnswers(scene) {
+      const sceneAnswers = answers[scene];
+      const inputs = document.querySelectorAll(`.story:nth-of-type(${scene.replace('scene', '')}) input`);
+      const feedback = document.getElementById(`feedback-${scene}`);
+      feedback.innerHTML = '';
+      let allCorrect = true;
+
+      inputs.forEach((input, index) => {
+        const userAnswer = input.value.trim().toLowerCase();
+        const correctAnswer = sceneAnswers[index];
+
+        if (userAnswer === correctAnswer) {
+          input.classList.add('is-valid');
+          input.classList.remove('is-invalid');
+          feedback.innerHTML += `<p class='correct'>Correct: "${userAnswer}"</p>`;
+        } else {
+          input.classList.add('is-invalid');
+          input.classList.remove('is-valid');
+          feedback.innerHTML += `<p class='incorrect'>Incorrect: "${userAnswer}" (Correct: "${correctAnswer}")</p>`;
+          allCorrect = false;
+        }
+      });
+
+      feedback.style.display = 'block';
+      if (allCorrect) {
+        feedback.innerHTML = '<p class="correct">Congratulations! All answers are correct.</p>';
+      }
+    }
+  </script>
+ <button class="btn btn-secondary mt-3 ms-2" onclick="window.location.href='../index.html'">Return to Home</button>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

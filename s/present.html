@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Present Tenses Practice</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-image: url('../img/fondo.avif');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        h1 {
+            text-align: center;
+            color: #343a40;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .exercise {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+        }
+
+        .exercise h2 {
+            font-size: 1.2rem;
+            color: #495057;
+            margin-bottom: 10px;
+        }
+
+        .exercise ol {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .exercise li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .exercise li input[type="text"] {
+            margin-left: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            padding: 5px;
+            width: 120px;
+        }
+
+        .submit-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .results {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .results p {
+            font-size: 1rem;
+            color: #28a745;
+        }
+
+        .results .wrong {
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <h1>Present Tenses Practice</h1>
+
+    <div class="exercise">
+        <h2>5.1 Write these verbs with -s or -es:</h2>
+        <ol>
+            <li>(read) She <input type="text" placeholder="Answer here" id="q1">.</li>
+            <li>(think) He <input type="text" placeholder="Answer here" id="q2">.</li>
+            <li>(fly) It <input type="text" placeholder="Answer here" id="q3">.</li>
+            <li>(dance) She <input type="text" placeholder="Answer here" id="q4">.</li>
+            <li>(have) She <input type="text" placeholder="Answer here" id="q5">.</li>
+            <li>(finish) It <input type="text" placeholder="Answer here" id="q6">.</li>
+        </ol>
+    </div>
+
+    <div class="exercise">
+        <h2>5.2 Complete the sentences about the people in the pictures:</h2>
+        <ol>
+            <li>He <input type="text" placeholder="Answer here" id="q7"> the piano.</li>
+            <li>They <input type="text" placeholder="Answer here" id="q8"> in a very big house.</li>
+            <li>They <input type="text" placeholder="Answer here" id="q9"> a lot of fruit.</li>
+            <li>She <input type="text" placeholder="Answer here" id="q10"> tennis.</li>
+            <li>They <input type="text" placeholder="Answer here" id="q11"> to the cinema a lot.</li>
+            <li>She <input type="text" placeholder="Answer here" id="q12"> seven hours a night.</li>
+        </ol>
+    </div>
+
+    <div class="exercise">
+        <h2>5.3 Complete the sentences. Use: boil, close, cost, like, teach, etc.</h2>
+        <ol>
+            <li>Maria <input type="text" placeholder="Answer here" id="q13"> four languages.</li>
+            <li>The shops in the city centre usually <input type="text" placeholder="Answer here" id="q14"> at 9 o'clock in the morning.</li>
+            <li>The City Museum <input type="text" placeholder="Answer here" id="q15"> at 5 o'clock in the evening.</li>
+            <li>Tina is a teacher. She <input type="text" placeholder="Answer here" id="q16"> mathematics to young children.</li>
+            <li>My job is very interesting. I <input type="text" placeholder="Answer here" id="q17"> a lot of people.</li>
+            <li>Peter's car is always dirty. He never <input type="text" placeholder="Answer here" id="q18"> it.</li>
+        </ol>
+    </div>
+
+    <button class="submit-btn" onclick="checkAnswers()">Submit Answers</button>
+
+    <div class="results" id="results"></div>
+
+    <button class="submit-btn" onclick="window.location.href='../index.html'">Return to Home</button>
+
+    <script>
+        const answers = {
+            q1: "reads",
+            q2: "thinks",
+            q3: "flies",
+            q4: "dances",
+            q5: "has",
+            q6: "finishes",
+            q7: "plays",
+            q8: "live",
+            q9: "eat",
+            q10: "plays",
+            q11: "go",
+            q12: "sleeps",
+            q13: "speaks",
+            q14: "close",
+            q15: "closes",
+            q16: "teaches",
+            q17: "meet",
+            q18: "washes"
+        };
+
+        function checkAnswers() {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '';
+            let correct = 0;
+            let total = Object.keys(answers).length;
+
+            for (const [key, value] of Object.entries(answers)) {
+                const userAnswer = document.getElementById(key).value.trim().toLowerCase();
+                if (userAnswer === value) {
+                    resultsDiv.innerHTML += `<p>${key}: Correct! ✓</p>`;
+                    correct++;
+                } else {
+                    resultsDiv.innerHTML += `<p class='wrong'>${key}: Incorrect! The correct answer is "${value}".</p>`;
+                }
+            }
+
+            resultsDiv.innerHTML += `<p>You got ${correct} out of ${total} correct.</p>`;
+        }
+    </script>
+</body>
+</html>
+

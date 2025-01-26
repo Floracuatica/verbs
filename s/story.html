@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>English Practice</title>
+  <!-- Adding Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-image: url('../img/confeti.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .structure {
+      margin-bottom: 30px;
+    }
+    .example {
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+    .story {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+    .feedback {
+      display: none;
+      margin-top: 10px;
+    }
+    .correct {
+      color: green;
+      font-weight: bold;
+    }
+    .incorrect {
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body class="container">
+  <h1 class="text-center my-4">English Practice</h1>
+
+  <div class="text-center mb-3">
+    <audio id="storyAudio" src="../turtleandhare.m4a"></audio>
+    <button class="btn btn-info" onclick="document.getElementById('storyAudio').play()">▶️ Play</button>
+    <button class="btn btn-warning" onclick="document.getElementById('storyAudio').pause()">⏸ Pause</button>
+    <button class="btn btn-danger" onclick="document.getElementById('storyAudio').currentTime = 0; document.getElementById('storyAudio').pause()">⏹ Stop</button>
+  </div>
+
+  <div class="story">
+    <h2 class="text-center">The Turtle and the Hare</h2>
+    <p>One day, a hare <input type="text" class="form-control d-inline w-auto" placeholder="(challenge)"> (challenge) a turtle to a race. The hare was very confident and <input type="text" class="form-control d-inline w-auto" placeholder="(run)"> (run) very fast at the start, leaving the turtle far behind.</p>
+    <p>The turtle <input type="text" class="form-control d-inline w-auto" placeholder="(keep)"> (keep) moving steadily and slowly. Meanwhile, the hare <input type="text" class="form-control d-inline w-auto" placeholder="(decide)"> (decide) to take a nap, thinking he had plenty of time to win.</p>
+    <p>When the hare <input type="text" class="form-control d-inline w-auto" placeholder="(wake up)"> (wake up), he <input type="text" class="form-control d-inline w-auto" placeholder="(see)"> (see) the turtle close to the finish line. The hare <input type="text" class="form-control d-inline w-auto" placeholder="(run)"> (run) as fast as he could, but the turtle <input type="text" class="form-control d-inline w-auto" placeholder="(cross)"> (cross) the finish line first.</p>
+    <p>The turtle <input type="text" class="form-control d-inline w-auto" placeholder="(win)"> (win) the race, proving that slow and steady always <input type="text" class="form-control d-inline w-auto" placeholder="(win)"> (win) the race.</p>
+    <button class="btn btn-primary mt-3" onclick="checkAnswers()">Submit</button>
+    <button class="btn btn-danger mt-3 ms-2" onclick="eraseAnswers()">Erase</button>
+    <button class="btn btn-secondary mt-3 ms-2" onclick="window.location.href='../index.html'">Return to Home</button>
+    <div id="feedback" class="feedback"></div>
+  </div>
+
+  <script>
+    function eraseAnswers() {
+      const inputs = document.querySelectorAll('.story input');
+      const feedback = document.getElementById('feedback');
+      inputs.forEach(input => {
+        input.value = '';
+        input.classList.remove('is-valid', 'is-invalid');
+      });
+      feedback.style.display = 'none';
+      feedback.innerHTML = '';
+    }
+
+    function checkAnswers() {
+      const answers = [
+        "challenged",
+        "ran",
+        "kept",
+        "decided",
+        "woke up",
+        "saw",
+        "ran",
+        "crossed",
+        "won",
+        "wins"
+      ];
+
+      const inputs = document.querySelectorAll('.story input');
+      const feedback = document.getElementById('feedback');
+      feedback.innerHTML = '';
+      let allCorrect = true;
+
+      inputs.forEach((input, index) => {
+        const userAnswer = input.value.trim().toLowerCase();
+        const correctAnswer = answers[index];
+
+        if (userAnswer === correctAnswer) {
+          input.classList.add('is-valid');
+          input.classList.remove('is-invalid');
+          feedback.innerHTML += `<p class='correct'>Correct: "${userAnswer}"</p>`;
+        } else {
+          input.classList.add('is-invalid');
+          input.classList.remove('is-valid');
+          feedback.innerHTML += `<p class='incorrect'>Incorrect: "${userAnswer}" (Correct: "${correctAnswer}")</p>`;
+          allCorrect = false;
+        }
+      });
+
+      feedback.style.display = 'block';
+      if (allCorrect) {
+        feedback.innerHTML = '<p class="correct">Congratulations! All answers are correct.</p>';
+      }
+    }
+  </script>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
