@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -87,45 +88,51 @@
         }
     </style>
 </head>
+
 <body>
     <h1>Present Tenses Practice</h1>
+    <form autocomplete="off">
+        <div class="exercise">
+            <h2>Write these verbs with -s or -es:</h2>
+            <ol>
+                <li>(read) She <input type="text" placeholder="Answer here" id="q1">.</li>
+                <li>(think) He <input type="text" placeholder="Answer here" id="q2">.</li>
+                <li>(fly) It <input type="text" placeholder="Answer here" id="q3">.</li>
+                <li>(dance) She <input type="text" placeholder="Answer here" id="q4">.</li>
+                <li>(have) She <input type="text" placeholder="Answer here" id="q5">.</li>
+                <li>(finish) It <input type="text" placeholder="Answer here" id="q6">.</li>
+            </ol>
+        </div>
 
-    <div class="exercise">
-        <h2>5.1 Write these verbs with -s or -es:</h2>
-        <ol>
-            <li>(read) She <input type="text" placeholder="Answer here" id="q1">.</li>
-            <li>(think) He <input type="text" placeholder="Answer here" id="q2">.</li>
-            <li>(fly) It <input type="text" placeholder="Answer here" id="q3">.</li>
-            <li>(dance) She <input type="text" placeholder="Answer here" id="q4">.</li>
-            <li>(have) She <input type="text" placeholder="Answer here" id="q5">.</li>
-            <li>(finish) It <input type="text" placeholder="Answer here" id="q6">.</li>
-        </ol>
-    </div>
+        <div class="exercise">
+            <h2>Complete the sentences about the people:</h2>
+            <ol>
+                <li>He <input type="text" placeholder="Answer here" id="q7"> the piano.</li>
+                <li>They <input type="text" placeholder="Answer here" id="q8"> in a very big house.</li>
+                <li>They <input type="text" placeholder="Answer here" id="q9"> a lot of fruit.</li>
+                <li>She <input type="text" placeholder="Answer here" id="q10"> tennis.</li>
+                <li>They <input type="text" placeholder="Answer here" id="q11"> to the cinema a lot.</li>
+                <li>She <input type="text" placeholder="Answer here" id="q12"> seven hours a night.</li>
+            </ol>
+        </div>
 
-    <div class="exercise">
-        <h2>5.2 Complete the sentences about the people in the pictures:</h2>
-        <ol>
-            <li>He <input type="text" placeholder="Answer here" id="q7"> the piano.</li>
-            <li>They <input type="text" placeholder="Answer here" id="q8"> in a very big house.</li>
-            <li>They <input type="text" placeholder="Answer here" id="q9"> a lot of fruit.</li>
-            <li>She <input type="text" placeholder="Answer here" id="q10"> tennis.</li>
-            <li>They <input type="text" placeholder="Answer here" id="q11"> to the cinema a lot.</li>
-            <li>She <input type="text" placeholder="Answer here" id="q12"> seven hours a night.</li>
-        </ol>
-    </div>
-
-    <div class="exercise">
-        <h2>5.3 Complete the sentences. Use: boil, close, cost, like, teach, etc.</h2>
-        <ol>
-            <li>Maria <input type="text" placeholder="Answer here" id="q13"> four languages.</li>
-            <li>The shops in the city centre usually <input type="text" placeholder="Answer here" id="q14"> at 9 o'clock in the morning.</li>
-            <li>The City Museum <input type="text" placeholder="Answer here" id="q15"> at 5 o'clock in the evening.</li>
-            <li>Tina is a teacher. She <input type="text" placeholder="Answer here" id="q16"> mathematics to young children.</li>
-            <li>My job is very interesting. I <input type="text" placeholder="Answer here" id="q17"> a lot of people.</li>
-            <li>Peter's car is always dirty. He never <input type="text" placeholder="Answer here" id="q18"> it.</li>
-        </ol>
-    </div>
-
+        <div class="exercise">
+            <h2>Complete the sentences accordingly.</h2>
+            <ol>
+                <li>Maria <input type="text" placeholder="Answer here" id="q13"> four languages.</li>
+                <li>The shops in the city centre usually <input type="text" placeholder="Answer here" id="q14"> at 9
+                    o'clock in the morning.</li>
+                <li>The City Museum <input type="text" placeholder="Answer here" id="q15"> at 5 o'clock in the evening.
+                </li>
+                <li>Tina is a teacher. She <input type="text" placeholder="Answer here" id="q16"> mathematics to young
+                    children.</li>
+                <li>My job is very interesting. I <input type="text" placeholder="Answer here" id="q17"> a lot of
+                    people.</li>
+                <li>Peter's car is always dirty. He never <input type="text" placeholder="Answer here" id="q18"> it.
+                </li>
+            </ol>
+        </div>
+    </form>
     <button class="submit-btn" onclick="checkAnswers()">Submit Answers</button>
 
     <div class="results" id="results"></div>
@@ -147,8 +154,8 @@
             q11: "go",
             q12: "sleeps",
             q13: "speaks",
-            q14: "close",
-            q15: "closes",
+            q14: "open",
+            q15: "close",
             q16: "teaches",
             q17: "meet",
             q18: "washes"
@@ -174,5 +181,5 @@
         }
     </script>
 </body>
-</html>
 
+</html>
