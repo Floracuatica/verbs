@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -87,52 +88,55 @@
         }
     </style>
 </head>
+
 <body>
     <h1>What Are You Doing Tomorrow?</h1>
+    <form autocomplete="off">
+        <div class="exercise">
+            <h2>Look at the clues. What are these people doing next Friday?</h2>
+            <ol>
+                <li>Andrew <input type="text" placeholder="Answer here" id="q1"> (play/tennis).</li>
+                <li>Richard <input type="text" placeholder="Answer here" id="q2"> (go/cinema).</li>
+                <li>Rachel <input type="text" placeholder="Answer here" id="q3"> (have/lunch).</li>
+                <li>Karen <input type="text" placeholder="Answer here" id="q4"> lunch with Will (have/lunch).</li>
+                <li>Sue and Tom <input type="text" placeholder="Answer here" id="q5"> (go/party).</li>
+            </ol>
+        </div>
 
-    <div class="exercise">
-        <h2>25.1 Look at the pictures. What are these people doing next Friday?</h2>
-        <ol>
-            <li>Andrew <input type="text" placeholder="Answer here" id="q1"> (play/tennis).</li>
-            <li>Richard <input type="text" placeholder="Answer here" id="q2"> (go/cinema).</li>
-            <li>Rachel <input type="text" placeholder="Answer here" id="q3"> (have/lunch).</li>
-            <li>Karen <input type="text" placeholder="Answer here" id="q4"> lunch with Will (have/lunch).</li>
-            <li>Sue and Tom <input type="text" placeholder="Answer here" id="q5"> (go/party).</li>
-        </ol>
-    </div>
+        <div class="exercise">
+            <h2>Write questions. All the sentences are future.</h2>
+            <ol>
+                <li>(you / go out / tonight?) <input type="text" placeholder="Answer here" id="q6">.</li>
+                <li>(you / work / next week?) <input type="text" placeholder="Answer here" id="q7">.</li>
+                <li>(what / you / do / tomorrow evening?) <input type="text" placeholder="Answer here" id="q8">.</li>
+                <li>(what time / your friends / come?) <input type="text" placeholder="Answer here" id="q9">.</li>
+                <li>(when / Lisa / go / on holiday?) <input type="text" placeholder="Answer here" id="q10">.</li>
+            </ol>
+        </div>
 
-    <div class="exercise">
-        <h2>25.2 Write questions. All the sentences are future.</h2>
-        <ol>
-            <li>(you / go out / tonight?) <input type="text" placeholder="Answer here" id="q6">.</li>
-            <li>(you / work / next week?) <input type="text" placeholder="Answer here" id="q7">.</li>
-            <li>(what / you / do / tomorrow evening?) <input type="text" placeholder="Answer here" id="q8">.</li>
-            <li>(what time / your friends / come?) <input type="text" placeholder="Answer here" id="q9">.</li>
-            <li>(when / Lisa / go / on holiday?) <input type="text" placeholder="Answer here" id="q10">.</li>
-        </ol>
-    </div>
+        <div class="exercise">
+            <h2>Write sentences about yourself. What are you doing in the next few days?</h2>
+            <ol>
+                <li>I <input type="text" placeholder="Answer here" id="q11">.</li>
+                <li>I <input type="text" placeholder="Answer here" id="q12">.</li>
+                <li>I <input type="text" placeholder="Answer here" id="q13">.</li>
+                <li>I <input type="text" placeholder="Answer here" id="q14">.</li>
+                <li>I <input type="text" placeholder="Answer here" id="q15">.</li>
+            </ol>
+        </div>
 
-    <div class="exercise">
-        <h2>25.3 Write sentences about yourself. What are you doing in the next few days?</h2>
-        <ol>
-            <li>I <input type="text" placeholder="Answer here" id="q11">.</li>
-            <li>I <input type="text" placeholder="Answer here" id="q12">.</li>
-            <li>I <input type="text" placeholder="Answer here" id="q13">.</li>
-            <li>I <input type="text" placeholder="Answer here" id="q14">.</li>
-            <li>I <input type="text" placeholder="Answer here" id="q15">.</li>
-        </ol>
-    </div>
-
-    <div class="exercise">
-        <h2>25.4 Put the verb in the present continuous or present simple.</h2>
-        <ol>
-            <li>Are you <input type="text" placeholder="Answer here" id="q16"> (go) out tonight? No, I’m too tired.</li>
-            <li>We <input type="text" placeholder="Answer here" id="q17"> (go) to a concert tonight. It <input type="text" placeholder="Answer here" id="q18"> (start) at 7.30.</li>
-            <li>Oh, that’s nice. Where <input type="text" placeholder="Answer here" id="q19"> (they/go)?</li>
-            <li>The last bus <input type="text" placeholder="Answer here" id="q20"> (leave) at midnight.</li>
-        </ol>
-    </div>
-
+        <div class="exercise">
+            <h2>Put the verb in the present continuous or present simple.</h2>
+            <ol>
+                <li>Are you <input type="text" placeholder="Answer here" id="q16"> (go) out tonight? No, I’m too tired.
+                </li>
+                <li>We <input type="text" placeholder="Answer here" id="q17"> (go) to a concert tonight. It <input
+                        type="text" placeholder="Answer here" id="q18"> (start) at 7.30.</li>
+                <li>Oh, that’s nice. Where <input type="text" placeholder="Answer here" id="q19"> (they/go)?</li>
+                <li>The last bus <input type="text" placeholder="Answer here" id="q20"> (leave) at midnight.</li>
+            </ol>
+        </div>
+    </form>
     <button class="submit-btn" onclick="checkAnswers()">Submit Answers</button>
 
     <div class="results" id="results"></div>
@@ -183,4 +187,5 @@
         }
     </script>
 </body>
+
 </html>
