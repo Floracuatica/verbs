@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temario Completo</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding: 20px;
+            background-image: url('../img/theme.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .buttons button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4896eb;
+            color: white;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+
+        .buttons button:hover {
+            background-color: #0056b3;
+        }
+
+        .temario-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .accordion-button {
+            background-color: #1881f1;
+            color: #fff;
+        }
+
+        .accordion-button:not(.collapsed) {
+            background-color: #89b0da;
+        }
+
+        .seccion {
+            display: none;
+            /* Ocultar secciones por defecto */
+        }
+
+        .activo {
+            display: block;
+            /* Mostrar solo la sección activa */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="temario-header">
+            <h1 class="display-4">Temario Completo</h1>
+            <p class="lead">Haz clic en un tema para explorar sus capítulos</p>
+        </div>
+
+        <div class="accordion" id="temarioAccordion">
+
+            <!-- Present Section -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingPresent">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapsePresent" aria-expanded="true" aria-controls="collapsePresent">
+                        Present
+                    </button>
+                </h2>
+                <div id="collapsePresent" class="accordion-collapse collapse show" aria-labelledby="headingPresent"
+                    data-bs-parent="#temarioAccordion">
+                    <div class="accordion-body">
+                        <ul>
+                            <li>1. am/is/are</li>
+                            <li>2. am/is/are (questions)</li>
+                            <li>3. I am doing (present continuous)</li>
+                            <li>4. are you doing? (present continuous questions)</li>
+                            <li>5. I do/work/like etc. (present simple)</li>
+                            <li>6. I don't... (present simple negative)</li>
+                            <li>7. Do you...? (present simple questions)</li>
+                            <li>8. I am doing (present continuous) and I do (present simple)</li>
+                            <li>9. I have ... and I've got...</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Past Section -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingPast">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapsePast" aria-expanded="false" aria-controls="collapsePast">
+                        Past
+                    </button>
+                </h2>
+                <div id="collapsePast" class="accordion-collapse collapse" aria-labelledby="headingPast"
+                    data-bs-parent="#temarioAccordion">
+                    <div class="accordion-body">
+                        <ul>
+                            <li>10. was/were</li>
+                            <li>11. worked/got/went etc (past simple)</li>
+                            <li>12. I didn't... Did you...? (past simple negative and questions)</li>
+                            <li>13. I was doing (past continuous)</li>
+                            <li>14. I was doing (past continuous) and I did (past simple)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Present Perfect Section -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingPresentPerfect">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapsePresentPerfect" aria-expanded="false"
+                        aria-controls="collapsePresentPerfect">
+                        Present Perfect
+                    </button>
+                </h2>
+                <div id="collapsePresentPerfect" class="accordion-collapse collapse"
+                    aria-labelledby="headingPresentPerfect" data-bs-parent="#temarioAccordion">
+                    <div class="accordion-body">
+                        <ul>
+                            <li>15. I have done (present perfect 1)</li>
+                            <li>16. I've just... I've already... I haven't... yet (present perfect 2)</li>
+                            <li>17. Have you ever...? (present perfect 3)</li>
+                            <li>18. How long have you...? (present perfect 4)</li>
+                            <li>19. for since ago</li>
+                            <li>20. I have done (present perfect) and I did (past)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Passive Section -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingPassive">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapsePassive" aria-expanded="false" aria-controls="collapsePassive">
+                        Passive
+                    </button>
+                </h2>
+                <div id="collapsePassive" class="accordion-collapse collapse" aria-labelledby="headingPassive"
+                    data-bs-parent="#temarioAccordion">
+                    <div class="accordion-body">
+                        <ul>
+                            <li>21. is done was done (passive 1)</li>
+                            <li>22. is being done has been done (passive 2)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Verb Forms Section -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingVerbForms">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseVerbForms" aria-expanded="false" aria-controls="collapseVerbForms">
+                        Verb Forms
+                    </button>
+                </h2>
+                <div id="collapseVerbForms" class="accordion-collapse collapse" aria-labelledby="headingVerbForms"
+                    data-bs-parent="#temarioAccordion">
+                    <div class="accordion-body">
+                        <ul>
+                            <li>23. be/have/do in present and past tenses</li>
+                            <li>24. Regular and irregular verbs</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Future Section -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFuture">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseFuture" aria-expanded="false" aria-controls="collapseFuture">
+                        Future
+                    </button>
+                </h2>
+                <div id="collapseFuture" class="accordion-collapse collapse" aria-labelledby="headingFuture"
+                    data-bs-parent="#temarioAccordion">
+                    <div class="accordion-body">
+                        <ul>
+                            <li>25. What are you doing tomorrow?</li>
+                            <li>26. I'm going to ...</li>
+                            <li>27. will/shall 1</li>
+                            <li>28. will/shall 2</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modals, imperative etc. -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingModals">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseModals" aria-expanded="false" aria-controls="collapseModals">
+                        Modals, Imperative, etc.
+                    </button>
+                </h2>
+                <div id="collapseModals" class="accordion-collapse collapse" aria-labelledby="headingModals"
+                    data-bs-parent="#temarioAccordion">
+                    <div class="accordion-body">
+                        <ul>
+                            <li>29. might</li>
+                            <li>30. can and could</li>
+                            <li>31. must mustn't don't need to</li>
+                            <li>32. should</li>
+                            <li>33. I have to ...</li>
+                            <li>34. Would you like ... ? I'd like ...</li>
+                            <li>35. Do this! Don't do that! Let's do this!</li>
+                            <li>36. I used to ...</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- There and It -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThereAndIt">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseThereAndIt" aria-expanded="false" aria-controls="collapseThereAndIt">
+                        There and It
+                    </button>
+                </h2>
+                <div id="collapseThereAndIt" class="accordion-collapse collapse" aria-labelledby="headingThereAndIt"
+                    data-bs-parent="#temarioAccordion">
+                    <div class="accordion-body">
+                        <ul>
+                            <li>37. there is there are</li>
+                            <li>38. there was/were there has/have been there will be</li>
+                            <li>39. It...</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Auxiliary Verbs -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingAuxiliaryVerbs">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseAuxiliaryVerbs" aria-expanded="false"
+                        aria-controls="collapseAuxiliaryVerbs">
+                        Auxiliary Verbs
+                    </button>
+                </h2>
+                <div id="collapseAuxiliaryVerbs" class="accordion-collapse collapse"
+                    aria-labelledby="headingAuxiliaryVerbs" data-bs-parent="#temarioAccordion">
+                    <div class="accordion-body">
+                        <ul>
+                            <li>40. I am, I don't etc</li>
+                            <li>41. Have you? Are you? Don't you? etc</li>
+                            <li>42. too/either so am I / neither do I etc</li>
+                            <li>43. isn't, haven't, don't etc (negatives)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Questions -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingQuestions">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseQuestions" aria-expanded="false" aria-controls="collapseQuestions">
+                        Questions
+                    </button>
+                </h2>
+                <div id="collapseQuestions" class="accordion-collapse collapse" aria-labelledby="headingQuestions"
+                    data-bs-parent="#temarioAccordion">
+                    <div class="accordion-body">
+                        <ul>
+                            <li>44. is it ... ? have you ... ? do they ... ? etc (questions 1)</li>
+                            <li>45. Who saw you? Who did you see? (questions 2)</li>
+                            <li>46. Who is she talking to? What is it like? (questions 3)</li>
+                            <li>47. What...? Which ... ? How ... ? (questions 4)</li>
+                            <li>48. How long does it take ... ?</li>
+                            <li>49. Do you know where ... ? I don't know what... etc</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reported Speech -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingReportedSpeech">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseReportedSpeech" aria-expanded="false"
+                        aria-controls="collapseReportedSpeech">
+                        Reported Speech
+                    </button>
+                </h2>
+                <div id="collapseReportedSpeech" class="accordion-collapse collapse"
+                    aria-labelledby="headingReportedSpeech" data-bs-parent="#temarioAccordion">
+                    <div class="accordion-body">
+                        <ul>
+                            <li>50. She said that... He told me that...</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- -ing and to -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingIngAndTo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseIngAndTo" aria-expanded="false" aria-controls="collapseIngAndTo">
+                        -ing and to
+                    </button>
+                </h2>
+                <div id="collapseIngAndTo" class="accordion-collapse collapse" aria-labelledby="headingIngAndTo"
+                    data-bs-parent="#temarioAccordion">
+                    <div class="accordion-body">
+                        <ul>
+                            <li>51. work/working go/going do/doing</li>
+                            <li>52. to ... (I want to do) and -ing (I enjoy doing)</li>
+                            <li>53. I want you to ... I told you to ...</li>
+                            <li>54. I went to the shop to ...</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Go, get, do, make and have -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingCoGetDoMakeHave">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseCoGetDoMakeHave" aria-expanded="false"
+                        aria-controls="collapseCoGetDoMakeHave">
+                        Go, Get, Do, Make, and Have
+                    </button>
+                </h2>
+                <div id="collapseCoGetDoMakeHave" class="accordion-collapse collapse"
+                    aria-labelledby="headingCoGetDoMakeHave" data-bs-parent="#temarioAccordion">
+                    <div class="accordion-body">
+                        <ul>
+                            <li>55. go to ... go on ... go for... go -ing</li>
+                            <li>56. get</li>
+                            <li>57. do and make</li>
+                            <li>58. have</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pronouns and Possessives -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingPronounsAndPossessives">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapsePronounsAndPossessives" aria-expanded="false"
+                        aria-controls="collapsePronounsAndPossessives">
+                        Pronouns and Possessives
+                    </button>
+                </h2>
+                <div id="collapsePronounsAndPossessives" class="accordion-collapse collapse"
+                    aria-labelledby="headingPronounsAndPossessives" data-bs-parent="#temarioAccordion">
+                    <div class="accordion-body">
+                        <ul>
+                            <li>59. I/me he/him they/them etc</li>
+                            <li>60. my/his/their etc</li>
+                            <li>61. Whose is this? It's mine/yours/hers etc</li>
+                            <li>62. I/me/my/mine</li>
+                            <li>63. myself/yourself/themselves etc.</li>
+                            <li>64. -'s (Kate's camera / my brother's car etc.)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Countables and Uncountables -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingCountablesUncountables">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseCountablesUncountables" aria-expanded="false"
+                        aria-controls="collapseCountablesUncountables">
+                        Countables and Uncountables
+                    </button>
+                </h2>
+                <div id="collapseCountablesUncountables" class="accordion-collapse collapse"
+                    aria-labelledby="headingCountablesUncountables" data-bs-parent="#temarioAccordion">
+                    <div class="accordion-body">
+                        <ul>
+                            <li>65. a/an ...</li>
+                            <li>66. train(s) bus(es) (singular and plural)</li>
+                            <li>67. a bottle / some water (countable/uncountable 1)</li>
+                            <li>68. a cake / some cake / some cakes (countable/uncountable 2)</li>
+                            <li>69. a/an and the</li>
+                            <li>70. the...</li>
+                            <li>71. go to work go home go to the cinema</li>
+                            <li>72. I like music I hate exams</li>
+                            <li>73. the ... (names of places)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Conjunctions and Clauses -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingConjunctionsClauses">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseConjunctionsClauses" aria-expanded="false"
+                        aria-controls="collapseConjunctionsClauses">
+                        Conjunctions and Clauses
+                    </button>
+                </h2>
+                <div id="collapseConjunctionsClauses" class="accordion-collapse collapse"
+                    aria-labelledby="headingConjunctionsClauses" data-bs-parent="#temarioAccordion">
+                    <div class="accordion-body">
+                        <ul>
+                            <li>97. and but or so because</li>
+                            <li>98. When ...</li>
+                            <li>99. If we go... If you see ... etc</li>
+                            <li>100. If I had... If we went... etc</li>
+                            <li>101. a person who ... a thing that/which ... (relative clauses 1)</li>
+                            <li>102. the people we met the hotel you stayed at (relative clauses 2)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Prepositions -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingPrepositions">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapsePrepositions" aria-expanded="false"
+                        aria-controls="collapsePrepositions">
+                        Prepositions
+                    </button>
+                </h2>
+                <div id="collapsePrepositions" class="accordion-collapse collapse" aria-labelledby="headingPrepositions"
+                    data-bs-parent="#temarioAccordion">
+                    <div class="accordion-body">
+                        <ul>
+                            <li>103. at 8 o'clock on Monday in April</li>
+                            <li>104. from ... to until since for</li>
+                            <li>105. before after during while</li>
+                            <li>106. in at on (places 1)</li>
+                            <li>107. in at on (places 2)</li>
+                            <li>108. to in at (places 3)</li>
+                            <li>109. under behind, opposite etc</li>
+                            <li>110. up, over, through etc</li>
+                            <li>111. on at by with about</li>
+                            <li>112. afraid of..., good at... etc of/at/for etc (prepositions) + -ing</li>
+                            <li>113. listen to..., look at... etc (verb + preposition)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phrasal Verbs -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingPhrasalVerbs">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapsePhrasalVerbs" aria-expanded="false"
+                        aria-controls="collapsePhrasalVerbs">
+                        Phrasal Verbs
+                    </button>
+                </h2>
+                <div id="collapsePhrasalVerbs" class="accordion-collapse collapse" aria-labelledby="headingPhrasalVerbs"
+                    data-bs-parent="#temarioAccordion">
+                    <div class="accordion-body">
+                        <ul>
+                            <li>114. go in, fall off, run away etc (phrasal verbs 1)</li>
+                            <li>115. put on your shoes put your shoes on (phrasal verbs 2)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <div class="buttons">
+        <button onclick="window.location.href='../index.html'">Return to Home</button>
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
