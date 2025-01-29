@@ -64,17 +64,39 @@
         scene.add(circle2);
         scene.add(circle3);
 
-        // Crear líneas de energía giratorias
-        const lineMaterial = new THREE.LineBasicMaterial({ color: 0xffffff });
-        const lineGeometry = new THREE.BufferGeometry();
-        const linePoints = [
-            new THREE.Vector3(-10, 0, 0),
-            new THREE.Vector3(0, 20, 0),
-            new THREE.Vector3(10, 0, 0)
-        ];
-        lineGeometry.setFromPoints(linePoints);
-        const energyLine = new THREE.Line(lineGeometry, lineMaterial);
-        scene.add(energyLine);
+        // Crear la silueta de Hekate con geometría
+        function createHekateSilhouette() {
+            const silhouette = new THREE.Group();
+
+            // Cabeza
+            const headGeometry = new THREE.CircleGeometry(3, 32);
+            const headMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide });
+            const head = new THREE.Mesh(headGeometry, headMaterial);
+            head.position.set(0, 10, 0);
+            silhouette.add(head);
+
+            // Cuerpo
+            const bodyGeometry = new THREE.CylinderGeometry(1.5, 3, 10, 32);
+            const bodyMaterial = new THREE.MeshBasicMaterial({ color: 0x8a2be2 });
+            const body = new THREE.Mesh(bodyGeometry, bodyMaterial);
+            body.position.set(0, 0, 0);
+            silhouette.add(body);
+
+            // Llaves
+            const keyGeometry = new THREE.BoxGeometry(0.5, 5, 0.5);
+            const keyMaterial = new THREE.MeshBasicMaterial({ color: 0xffd700 });
+            const key1 = new THREE.Mesh(keyGeometry, keyMaterial);
+            const key2 = new THREE.Mesh(keyGeometry, keyMaterial);
+            key1.position.set(-3, -5, 0);
+            key2.position.set(3, -5, 0);
+            silhouette.add(key1);
+            silhouette.add(key2);
+
+            return silhouette;
+        }
+
+        const hekateSilhouette = createHekateSilhouette();
+        scene.add(hekateSilhouette);
 
         // Animación
         function animate() {
@@ -90,9 +112,8 @@
             circle2.scale.set(pulse, pulse, pulse);
             circle3.scale.set(pulse, pulse, pulse);
 
-            // Rotación de la línea de energía
-            energyLine.rotation.x += 0.02;
-            energyLine.rotation.y += 0.015;
+            // Animación de la silueta
+            hekateSilhouette.rotation.y += 0.01;
 
             controls.update();
             renderer.render(scene, camera);
