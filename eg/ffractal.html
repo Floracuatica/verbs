@@ -53,10 +53,12 @@
             [-5, -5, 5], [5, -5, 5], [-5, 5, 5], [5, 5, 5]
         ];
 
+        const smallCubes = [];
         positions.forEach(pos => {
             const cube = createCube(cubeSize, 0x00ffcc);
             cube.position.set(...pos);
             group.add(cube);
+            smallCubes.push(cube); // Guardar referencia a los cubos pequeños
         });
 
         // Conectar los cubos con líneas
@@ -94,6 +96,12 @@
             group.rotation.y += 0.01;
             group.rotation.z += 0.005;
 
+            // Rotación individual de los cubos pequeños
+            smallCubes.forEach(cube => {
+                cube.rotation.x += 0.02;
+                cube.rotation.y += 0.03;
+            });
+
             controls.update();
             renderer.render(scene, camera);
         }
@@ -108,4 +116,3 @@
     </script>
 </body>
 </html>
-
