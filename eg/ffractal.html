@@ -36,6 +36,18 @@
         pointLight.position.set(20, 20, 20);
         scene.add(pointLight);
 
+        // Crear líneas para conectar los puntos
+        function createConnectingLines(group) {
+            const points = [];
+            group.children.forEach(child => points.push(child.position.clone()));
+            points.push(points[0]); // Conectar el último punto al primero
+
+            const lineGeometry = new THREE.BufferGeometry().setFromPoints(points);
+            const lineMaterial = new THREE.LineBasicMaterial({ color: 0xffffff });
+            const line = new THREE.Line(lineGeometry, lineMaterial);
+            return line;
+        }
+
         // Función para crear figuras en patrones circulares
         function createCirclePattern(radius, count, shape, color) {
             const group = new THREE.Group();
@@ -67,6 +79,12 @@
         scene.add(ring1);
         scene.add(ring2);
 
+        // Crear y agregar líneas conectando los puntos
+        const lines1 = createConnectingLines(ring1);
+        const lines2 = createConnectingLines(ring2);
+        scene.add(lines1);
+        scene.add(lines2);
+
         // Animación
         function animate() {
             requestAnimationFrame(animate);
@@ -74,10 +92,13 @@
             // Rotaciones para crear el efecto fractal
             ring1.rotation.z += 0.01;
             ring2.rotation.z -= 0.005;
+            lines1.rotation.z += 0.01;
+            lines2.rotation.z -= 0.005;
 
             // Escalado opcional para generar pulsaciones suaves
             const scaleFactor = Math.sin(Date.now() * 0.001) * 0.1 + 1;
             ring1.scale.set(scaleFactor, scaleFactor, scaleFactor);
+            lines1.scale.set(scaleFactor, scaleFactor, scaleFactor);
 
             controls.update();
             renderer.render(scene, camera);
