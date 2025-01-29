@@ -78,6 +78,17 @@
             border-radius: 10px;
             display: none;
         }
+
+        #backgroundFrame {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            z-index: -1;
+            pointer-events: none;
+        }
     </style>
     <script>
         function toggleImage() {
@@ -86,31 +97,55 @@
         }
 
         function checkAnswers() {
-            let answers = {
-                "q1_1": "she's", "q1_2": "they're", "q1_3": "it isn't", "q1_4": "that's", "q1_5": "I'm not", "q1_6": "you're not",
-                "q2_1": "is", "q2_2": "am", "q2_3": "is", "q2_4": "are", "q2_5": "is",
-                "q3_1": "He is", "q3_2": "I am",
+    let answers = {
+        "q1_1": ["she's"], 
+        "q1_2": ["they're"], 
+        "q1_3": ["it isn't", "it's not"],  // Ambas respuestas son válidas
+        "q1_4": ["that's"], 
+        "q1_5": ["I'm not"], 
+        "q1_6": ["you're not", "you aren't"], // Permitir ambas respuestas
+        "q2_1": ["is"], 
+        "q2_2": ["am"], 
+        "q2_3": ["is"], 
+        "q2_4": ["are"], 
+        "q2_5": ["is"],
+        "q3_1": ["He is", "He's"],
+        "q3_2": ["I am", "I'm"],
+        "q5_1": ["are"],
+        "q5_2": ["is"],
+        "q5_3": ["is"],
+        "q6_1": ["It is hot today", "It's hot today", "It is not hot today", "It isn't hot today"],
+        "q6_2": ["It is windy today", "It's windy today", "It is not windy today", "It isn't windy today"],
+        "q7_1": ["I am tired", "I'm tired"],
+        "q7_2": ["I am not tired", "I'm not tired"],
+    };
 
-            };
+    let resultHTML = "<h3>Answers:</h3>";
+    for (let key in answers) {
+        let userAnswer = document.getElementById(key).value.trim().toLowerCase();
+        let correctAnswers = answers[key].map(ans => ans.toLowerCase()); // Convertimos todas las respuestas a minúsculas
+        
+        let isCorrect = correctAnswers.includes(userAnswer); // Verifica si la respuesta del usuario está en el array
+        let color = isCorrect ? "lightgreen" : "lightcoral";
+        let correctDisplay = correctAnswers.join(" / "); // Mostrar todas las respuestas posibles
 
-            let resultHTML = "<h3>Answers:</h3>";
-            for (let key in answers) {
-                let userAnswer = document.getElementById(key).value.trim();
-                let correctAnswer = answers[key];
-                let color = userAnswer.toLowerCase() === correctAnswer.toLowerCase() ? "lightgreen" : "lightcoral";
-                resultHTML += `<p style='background-color: ${color}; padding: 5px; border-radius: 5px;'>${userAnswer} (Correct: ${correctAnswer})</p>`;
-            }
-            document.getElementById("answers").innerHTML = resultHTML;
-            document.getElementById("answers").style.display = "block";
-        }
+        resultHTML += `<p style='background-color: ${color}; padding: 5px; border-radius: 5px;'>
+            ${userAnswer} (Correct: ${correctDisplay})
+        </p>`;
+    }
+    
+    document.getElementById("answers").innerHTML = resultHTML;
+    document.getElementById("answers").style.display = "block";
+}
     </script>
 </head>
 
 <body>
+    <iframe src="../eg/rombi.html" id="backgroundFrame"></iframe>
     <h1>Exercises</h1>
     <form onsubmit="event.preventDefault(); checkAnswers();" autocomplete="off">
         <div class="image-container">
-            <button type="button" onclick="toggleImage()">Show Image</button>
+            <button type="button" onclick="toggleImage()">Show/Hide Image</button>
         </div>
         <h2>1.1 Write the short form</h2>
         <p>1. she is <input type="text" id="q1_1"></p>
@@ -131,11 +166,11 @@
         <p>2. I'm not hungry, but <input type="text" id="q3_2"> thirsty.</p>
 
         <h2>1.5 Write sentences accordingly</h2>
-        <p>1. <input type="text" id="q5_1"></p>
-        <p>2. <input type="text" id="q5_2"></p>
-        <p>3. <input type="text" id="q5_3"></p>
+        <p>1. Andy and Sally <input type="text" id="q5_1"> very excited</p>
+        <p>2. It <input type="text" id="q5_2"> snowing</p>
+        <p>3. Summer <input type="text" id="q5_3"> coming soon</p>
 
-        <h2>1.6 Write true sentences</h2>
+        <h2>1.6 Write true whole sentences</h2>
         <p>1. (It / hot today) <input type="text" id="q6_1"></p>
         <p>2. (It / windy today) <input type="text" id="q6_2"></p>
 
@@ -144,10 +179,11 @@
         <button type="submit">Submit</button>
     </form>
     <div id="answers"></div>
-    <br>
+    <br><br>
     <button onclick="window.location.href='../s/grammar.html'">Back to Grammar</button>
     <div id="fullImage" onclick="toggleImage()">
         <img src="../img/capi1.jpg" alt="Full Screen Image">
     </div>
 </body>
+
 </html>
