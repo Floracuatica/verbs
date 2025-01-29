@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rubik Kawaii en 3D</title>
+  <style>
+    body { 
+      margin: 0; 
+      overflow: hidden; 
+      background: linear-gradient(to bottom, #ffb6c1, #f8c8dc, #e6b8d2); 
+    }
+    canvas { display: block; }
+  </style>
+</head>
+<body>
+
+  <script src="https://unpkg.com/three@0.155.0/build/three.min.js"></script>
+  <script>
+    console.log("Three.js cargado correctamente:", THREE);
+
+    // 1. Crear la escena, cámara y renderizador
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    // 2. Cargar la textura kawaii
+    const textureLoader = new THREE.TextureLoader();
+    const kawaiiTexture = textureLoader.load('../img/texture.jpg');
+
+    // 3. Crear muchos cubos con la textura
+    const cubes = [];
+    const cubeCount = 50; 
+
+    for (let i = 0; i < cubeCount; i++) {
+        const size = Math.random() * 2 + 1; 
+        const geometry = new THREE.BoxGeometry(size, size, size);
+        const material = new THREE.MeshStandardMaterial({ map: kawaiiTexture });
+
+        const cube = new THREE.Mesh(geometry, material);
+
+        // Posiciones aleatorias en el espacio
+        cube.position.set(
+            (Math.random() - 0.5) * 20, 
+            (Math.random() - 0.5) * 15, 
+            (Math.random() - 0.5) * 20
+        );
+
+        scene.add(cube);
+        cubes.push(cube);
+    }
+
+    // 4. Posicionar la cámara
+    camera.position.z = 15;
+
+    // 5. Añadir luz ambiental
+    const light = new THREE.AmbientLight(0xffffff, 1.5);
+    scene.add(light);
+
+    // 6. Animación
+    function animate() {
+        requestAnimationFrame(animate);
+
+        // Hacer que los cubos roten lentamente
+        cubes.forEach(cube => {
+            cube.rotation.x += 0.01; 
+            cube.rotation.y += 0.01; 
+            cube.rotation.z += 0.005;
+        });
+
+        renderer.render(scene, camera);
+    }
+
+    animate();
+  </script>
+</body>
+</html>
