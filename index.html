@@ -18,6 +18,26 @@
             margin: 0;
             padding: 20px;
         }
+        .title-container {
+            text-align: center;
+            background: linear-gradient(145deg, #9b5de5, #6a0572);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .title-container h2 {
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .title-container p {
+            font-size: 16px;
+            margin-top: 5px;
+            font-style: italic;
+        }
 
         h1 {
             text-align: center;
@@ -208,6 +228,7 @@
                 font-size: 1rem;
             }
         }
+        
     </style>
 </head>
 
@@ -399,11 +420,22 @@
             showingPast = false;
             document.getElementById('verb').textContent = verbs[currentIndex].present;
         }
-    </script><br>
+        </script><br>
     <a href="s/grammar.html" style="text-decoration: none;">
-    <div style="background-color: red; color: yellow; text-align: center; padding: 50px; font-size: 36px; font-family: Arial, sans-serif;">
-        English Grammar Beginner's
-    </div></a>
+        <div
+            style="background-color: red; color: yellow; text-align: center; padding: 50px; font-size: 36px; font-family: Arial, sans-serif;">
+            English Grammar Beginner's
+        </div>
+    </a><br><br>
+    <div class="title-container">
+        <h2>🎶 Practica tu escucha con canciones 🎧</h2>
+        <p>Completa la letra mientras escuchas la música y mejora tu comprensión del inglés.</p>
+    </div>
+
+    <iframe src="https://es.lyricstraining.com/en/play/jemaine-clement/shiny/gt7I4Vm2Bt#b7c" width="100%"
+        height="600px" style="border:none;">
+    </iframe>
+
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
