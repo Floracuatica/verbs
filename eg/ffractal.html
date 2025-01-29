@@ -74,8 +74,8 @@
         }
 
         // Crear anillos de figuras
-        const ring1 = createCirclePattern(5, 6, 'sphere', 0xff69b4);
-        const ring2 = createCirclePattern(10, 12, 'triangle', 0x8a2be2);
+        const ring1 = createCirclePattern(8, 24, 'sphere', 0xff69b4);
+        const ring2 = createCirclePattern(16, 36, 'triangle', 0x8a2be2);
         scene.add(ring1);
         scene.add(ring2);
 
@@ -89,14 +89,14 @@
         function animate() {
             requestAnimationFrame(animate);
             
-            // Rotaciones para crear el efecto fractal
-            ring1.rotation.z += 0.01;
-            ring2.rotation.z -= 0.005;
-            lines1.rotation.z += 0.01;
-            lines2.rotation.z -= 0.005;
+            // Rotaciones para crear el efecto fractal (rotación contraria a las manecillas del reloj)
+            ring1.rotation.z -= 0.01;
+            ring2.rotation.z += 0.008;
+            lines1.rotation.z -= 0.01;
+            lines2.rotation.z += 0.008;
 
             // Escalado opcional para generar pulsaciones suaves
-            const scaleFactor = Math.sin(Date.now() * 0.001) * 0.1 + 1;
+            const scaleFactor = Math.sin(Date.now() * 0.001) * 0.05 + 1;
             ring1.scale.set(scaleFactor, scaleFactor, scaleFactor);
             lines1.scale.set(scaleFactor, scaleFactor, scaleFactor);
 
