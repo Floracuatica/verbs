@@ -6,12 +6,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exercises</title>
     <style>
+        #content {
+            position: relative;
+            z-index: 1;
+            /* 🔥 Asegura que esté por encima del canvas */
+            background: rgba(255, 255, 255, 0.9);
+            /* Fondo semitransparente para mayor visibilidad */
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            /* 🔥 Envía el canvas al fondo */
+            position: fixed;
+            /* 🔥 Se mantiene en la ventana mientras haces scroll */
+            width: 100%;
+            height: 100%;
+            /* 🔥 Mantiene los cubos en el fondo */
+            display: block;
+        }
+
         body {
+            overflow: auto;
+            /* 🔥 Permite desplazamiento si es necesario */
             font-family: Arial, sans-serif;
             background-color: #f0f8ff;
             text-align: center;
             margin: 0;
             padding: 20px;
+            background: linear-gradient(to bottom, #ffb6c1, #f8c8dc, #e6b8d2);
         }
 
         h1 {
@@ -97,92 +125,98 @@
         }
 
         function checkAnswers() {
-    let answers = {
-        "q1_1": ["she's"], 
-        "q1_2": ["they're"], 
-        "q1_3": ["it isn't", "it's not"],  // Ambas respuestas son válidas
-        "q1_4": ["that's"], 
-        "q1_5": ["I'm not"], 
-        "q1_6": ["you're not", "you aren't"], // Permitir ambas respuestas
-        "q2_1": ["is"], 
-        "q2_2": ["am"], 
-        "q2_3": ["is"], 
-        "q2_4": ["are"], 
-        "q2_5": ["is"],
-        "q3_1": ["He is", "He's"],
-        "q3_2": ["I am", "I'm"],
-        "q5_1": ["are"],
-        "q5_2": ["is"],
-        "q5_3": ["is"],
-        "q6_1": ["It is hot today", "It's hot today", "It is not hot today", "It isn't hot today"],
-        "q6_2": ["It is windy today", "It's windy today", "It is not windy today", "It isn't windy today"],
-        "q7_1": ["I am tired", "I'm tired"],
-        "q7_2": ["I am not tired", "I'm not tired"],
-    };
+            let answers = {
+                "q1_1": ["she's"],
+                "q1_2": ["they're"],
+                "q1_3": ["it isn't", "it's not"],  // Ambas respuestas son válidas
+                "q1_4": ["that's"],
+                "q1_5": ["I'm not"],
+                "q1_6": ["you're not", "you aren't"], // Permitir ambas respuestas
+                "q2_1": ["is"],
+                "q2_2": ["am"],
+                "q2_3": ["is"],
+                "q2_4": ["are"],
+                "q2_5": ["is"],
+                "q3_1": ["He is", "He's"],
+                "q3_2": ["I am", "I'm"],
+                "q5_1": ["are"],
+                "q5_2": ["is"],
+                "q5_3": ["is"],
+                "q6_1": ["It is hot today", "It's hot today", "It is not hot today", "It isn't hot today"],
+                "q6_2": ["It is windy today", "It's windy today", "It is not windy today", "It isn't windy today"],
+                "q7_1": ["I am tired", "I'm tired"],
+                "q7_2": ["I am not tired", "I'm not tired"],
+            };
 
-    let resultHTML = "<h3>Answers:</h3>";
-    for (let key in answers) {
-        let userAnswer = document.getElementById(key).value.trim().toLowerCase();
-        let correctAnswers = answers[key].map(ans => ans.toLowerCase()); // Convertimos todas las respuestas a minúsculas
-        
-        let isCorrect = correctAnswers.includes(userAnswer); // Verifica si la respuesta del usuario está en el array
-        let color = isCorrect ? "lightgreen" : "lightcoral";
-        let correctDisplay = correctAnswers.join(" / "); // Mostrar todas las respuestas posibles
+            let resultHTML = "<h3>Answers:</h3>";
+            for (let key in answers) {
+                let userAnswer = document.getElementById(key).value.trim().toLowerCase();
+                let correctAnswers = answers[key].map(ans => ans.toLowerCase()); // Convertimos todas las respuestas a minúsculas
 
-        resultHTML += `<p style='background-color: ${color}; padding: 5px; border-radius: 5px;'>
+                let isCorrect = correctAnswers.includes(userAnswer); // Verifica si la respuesta del usuario está en el array
+                let color = isCorrect ? "lightgreen" : "lightcoral";
+                let correctDisplay = correctAnswers.join(" / "); // Mostrar todas las respuestas posibles
+
+                resultHTML += `<p style='background-color: ${color}; padding: 5px; border-radius: 5px;'>
             ${userAnswer} (Correct: ${correctDisplay})
         </p>`;
-    }
-    
-    document.getElementById("answers").innerHTML = resultHTML;
-    document.getElementById("answers").style.display = "block";
-}
+            }
+
+            document.getElementById("answers").innerHTML = resultHTML;
+            document.getElementById("answers").style.display = "block";
+        }
     </script>
 </head>
 
 <body>
-    <iframe src="../eg/rombi.html" id="backgroundFrame"></iframe>
-    <h1>Exercises</h1>
-    <form onsubmit="event.preventDefault(); checkAnswers();" autocomplete="off">
-        <div class="image-container">
-            <button type="button" onclick="toggleImage()">Show/Hide Image</button>
+    <!-- Cargar Three.js -->
+    <script src="https://unpkg.com/three@0.155.0/build/three.min.js"></script>
+
+    <!-- Cargar el script separado -->
+    <script src="../js/paint-capi1.js"></script>
+    <div id="content">
+        <h1>Exercises</h1>
+        <form onsubmit="event.preventDefault(); checkAnswers();" autocomplete="off">
+            <div class="image-container">
+                <button type="button" onclick="toggleImage()">Show/Hide Image</button>
+            </div>
+            <h2>1.1 Write the short form</h2>
+            <p>1. she is <input type="text" id="q1_1"></p>
+            <p>2. they are <input type="text" id="q1_2"></p>
+            <p>3. it is not <input type="text" id="q1_3"></p>
+            <p>4. that is <input type="text" id="q1_4"></p>
+            <p>5. I am not <input type="text" id="q1_5"></p>
+            <p>6. you are not <input type="text" id="q1_6"></p>
+            <h2>1.2 Write am, is or are</h2>
+            <p>1. The weather <input type="text" id="q2_1"> nice today.</p>
+            <p>2. I <input type="text" id="q2_2"> not rich.</p>
+            <p>3. This bag <input type="text" id="q2_3"> heavy.</p>
+            <p>4. These bags <input type="text" id="q2_4"> heavy.</p>
+            <p>5. Look! There <input type="text" id="q2_5"> Helen.</p>
+
+            <h2>1.3 Complete the sentences</h2>
+            <p>1. Steve is ill. <input type="text" id="q3_1"> in bed.</p>
+            <p>2. I'm not hungry, but <input type="text" id="q3_2"> thirsty.</p>
+
+            <h2>1.5 Write sentences accordingly</h2>
+            <p>1. Andy and Sally <input type="text" id="q5_1"> very excited</p>
+            <p>2. It <input type="text" id="q5_2"> snowing</p>
+            <p>3. Summer <input type="text" id="q5_3"> coming soon</p>
+
+            <h2>1.6 Write true whole sentences</h2>
+            <p>1. (It / hot today) <input type="text" id="q6_1"></p>
+            <p>2. (It / windy today) <input type="text" id="q6_2"></p>
+
+            <h2>Write true sentences using I'm / I'm not.</h2>
+            <p>1. (tired) <input type="text" id="q7_1"> or <input type="text" id="q7_2"></p>
+            <button type="submit">Submit</button>
+        </form>
+        <div id="answers"></div>
+        <br><br>
+        <button onclick="window.location.href='../s/grammar.html'">Back to Grammar</button>
+        <div id="fullImage" onclick="toggleImage()">
+            <img src="../img/capi1.jpg" alt="Full Screen Image">
         </div>
-        <h2>1.1 Write the short form</h2>
-        <p>1. she is <input type="text" id="q1_1"></p>
-        <p>2. they are <input type="text" id="q1_2"></p>
-        <p>3. it is not <input type="text" id="q1_3"></p>
-        <p>4. that is <input type="text" id="q1_4"></p>
-        <p>5. I am not <input type="text" id="q1_5"></p>
-        <p>6. you are not <input type="text" id="q1_6"></p>
-        <h2>1.2 Write am, is or are</h2>
-        <p>1. The weather <input type="text" id="q2_1"> nice today.</p>
-        <p>2. I <input type="text" id="q2_2"> not rich.</p>
-        <p>3. This bag <input type="text" id="q2_3"> heavy.</p>
-        <p>4. These bags <input type="text" id="q2_4"> heavy.</p>
-        <p>5. Look! There <input type="text" id="q2_5"> Helen.</p>
-
-        <h2>1.3 Complete the sentences</h2>
-        <p>1. Steve is ill. <input type="text" id="q3_1"> in bed.</p>
-        <p>2. I'm not hungry, but <input type="text" id="q3_2"> thirsty.</p>
-
-        <h2>1.5 Write sentences accordingly</h2>
-        <p>1. Andy and Sally <input type="text" id="q5_1"> very excited</p>
-        <p>2. It <input type="text" id="q5_2"> snowing</p>
-        <p>3. Summer <input type="text" id="q5_3"> coming soon</p>
-
-        <h2>1.6 Write true whole sentences</h2>
-        <p>1. (It / hot today) <input type="text" id="q6_1"></p>
-        <p>2. (It / windy today) <input type="text" id="q6_2"></p>
-
-        <h2>Write true sentences using I'm / I'm not.</h2>
-        <p>1. (tired) <input type="text" id="q7_1"> or <input type="text" id="q7_2"></p>
-        <button type="submit">Submit</button>
-    </form>
-    <div id="answers"></div>
-    <br><br>
-    <button onclick="window.location.href='../s/grammar.html'">Back to Grammar</button>
-    <div id="fullImage" onclick="toggleImage()">
-        <img src="../img/capi1.jpg" alt="Full Screen Image">
     </div>
 </body>
 
