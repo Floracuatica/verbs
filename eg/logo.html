@@ -8,7 +8,7 @@
 </head>
 <body style="margin: 0; background: black;">
     <script>
-       // Escena, cámara y renderizador
+     // Escena, cámara y renderizador
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer();
@@ -28,10 +28,10 @@ camera.lookAt(0, 0, 0);
 // Alinear la esfera con el eje de frente
 sphere.rotation.x = Math.PI / 2;
 
-// Animación para girar la esfera como un remolino correctamente
+// Animación para que los ejes queden fijos y solo rote la malla
 function animate() {
     requestAnimationFrame(animate);
-    sphere.rotation.x += 0.002; // Rotación lenta en el eje X para efecto de remolino
+    sphere.geometry.rotateZ(0.002); // Rotación lenta de la malla sin mover el eje principal
     renderer.render(scene, camera);
 }
 animate();
