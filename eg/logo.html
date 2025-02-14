@@ -26,7 +26,12 @@
         camera.lookAt(0, 0, 0); // Asegura que la cámara mire directamente al centro
 
         // Alinear la esfera con el eje para que se vea completamente de frente
-        sphere.rotation.x = Math.PI / 3; // Rota la esfera para alinear los ejes
+        sphere.rotation.x = Math.PI / 2; // Rota la esfera para alinear los ejes
+
+        // Variables para la animación hipnótica
+        let angle = 0;
+        let direction = 1;
+        const speed = 0.01;
 
         // Animación de oscilación en el eje Z
         function animate() {
@@ -34,16 +39,12 @@
 
             // Oscilación tipo manecillas del reloj
             angle += speed * direction;
-            if (Math.abs(angle) > Math.PI / 6) direction *= 1; // Movimiento controlado
+            if (Math.abs(angle) > Math.PI / 6) direction *= -1; // Movimiento controlado
 
             sphere.rotation.z = angle; // Rotación en Z para simular el efecto hipnótico
 
             renderer.render(scene, camera);
         }
-        // Variables para la animación hipnótica
-        let angle = 0;
-        let direction = 1;
-        const speed = 1.01;
 
         animate();
 
