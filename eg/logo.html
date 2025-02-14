@@ -28,11 +28,10 @@ camera.lookAt(0, 0, 0);
 // Alinear la esfera con el eje de frente
 sphere.rotation.x = Math.PI / 2;
 
-// Animación para rotar la esfera como un remolino
+// Animación para girar la esfera como un remolino correctamente
 function animate() {
     requestAnimationFrame(animate);
-    sphere.rotation.y += 0.002; // Rotación lenta y fluida en el eje Y
-    sphere.rotation.z += 0.002; // Rotación en Z para efecto de remolino
+    sphere.rotation.x += 0.002; // Rotación lenta en el eje X para efecto de remolino
     renderer.render(scene, camera);
 }
 animate();
