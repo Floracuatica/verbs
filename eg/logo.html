@@ -8,36 +8,40 @@
 </head>
 <body style="margin: 0; background: black;">
     <script>
-        // Escena, cámara y renderizador
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        document.body.appendChild(renderer.domElement);
+       // Escena, cámara y renderizador
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer();
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
 
-        // Crear geometría de esfera con malla wireframe
-        const geometry = new THREE.SphereGeometry(5, 32, 32);
-        const material = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true });
-        const sphere = new THREE.Mesh(geometry, material);
-        scene.add(sphere);
+// Crear geometría de esfera con malla wireframe
+const geometry = new THREE.SphereGeometry(5, 32, 32);
+const material = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true });
+const sphere = new THREE.Mesh(geometry, material);
+scene.add(sphere);
 
-        // Posicionar la cámara mirando al centro
-        camera.position.z = 10;
-        camera.lookAt(0, 0, 0);
+// Posicionar la cámara mirando al centro
+camera.position.z = 10;
+camera.lookAt(0, 0, 0);
 
-        // Alinear la esfera con el eje de frente
-        sphere.rotation.x = Math.PI / 2;
+// Alinear la esfera con el eje de frente
+sphere.rotation.x = Math.PI / 2;
 
-        // Renderizar la escena sin animación
-        renderer.render(scene, camera);
+// Animación para rotar la esfera como un segundero sin mover el eje
+function animate() {
+    requestAnimationFrame(animate);
+    sphere.rotation.z += 0.005; // Rotación lenta en el eje Z
+    renderer.render(scene, camera);
+}
+animate();
 
-        // Ajustar tamaño de la ventana
-        window.addEventListener('resize', () => {
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.render(scene, camera);
-        });
+// Ajustar tamaño de la ventana
+window.addEventListener('resize', () => {
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+});
     </script>
 </body>
 </html>
