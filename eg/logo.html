@@ -16,7 +16,7 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
 // Crear geometría de esfera con malla wireframe
-const geometry = new THREE.SphereGeometry(5, 32, 32);
+const geometry = new THREE.SphereGeometry(5, 64, 64);
 const material = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true });
 const sphere = new THREE.Mesh(geometry, material);
 scene.add(sphere);
@@ -28,10 +28,11 @@ camera.lookAt(0, 0, 0);
 // Alinear la esfera con el eje de frente
 sphere.rotation.x = Math.PI / 2;
 
-// Animación para rotar la esfera como un segundero sin mover el eje
+// Animación para rotar la esfera como un remolino
 function animate() {
     requestAnimationFrame(animate);
-    sphere.rotation.z += 0.005; // Rotación lenta en el eje Z
+    sphere.rotation.y += 0.002; // Rotación lenta y fluida en el eje Y
+    sphere.rotation.z += 0.002; // Rotación en Z para efecto de remolino
     renderer.render(scene, camera);
 }
 animate();
@@ -42,6 +43,7 @@ window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
 });
+
     </script>
 </body>
 </html>
