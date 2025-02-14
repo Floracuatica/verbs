@@ -1,48 +1,61 @@
-// Escena, cámara y renderizador
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-const renderer = new THREE.WebGLRenderer();
-renderer.setSize(window.innerWidth, window.innerHeight);
-document.body.appendChild(renderer.domElement);
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esfera Hipnótica</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body style="margin: 0; background: black;">
+    <script>
+        // Escena, cámara y renderizador
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
 
-// Crear geometría de esfera con malla wireframe
-const geometry = new THREE.SphereGeometry(5, 32, 32);
-const material = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true });
-const sphere = new THREE.Mesh(geometry, material);
-scene.add(sphere);
+        // Crear geometría de esfera con malla wireframe
+        const geometry = new THREE.SphereGeometry(5, 32, 32);
+        const material = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true });
+        const sphere = new THREE.Mesh(geometry, material);
+        scene.add(sphere);
 
-// Posicionar la cámara
-camera.position.z = 10;
+        // Posicionar la cámara
+        camera.position.z = 10;
 
-// Variables para la animación hipnótica
-let angleX = 0;
-let angleY = 0;
-let directionX = 1;
-let directionY = 1;
-const speed = 0.01;
+        // Variables para la animación hipnótica
+        let angleX = 0;
+        let angleY = 0;
+        let directionX = 1;
+        let directionY = 1;
+        const speed = 0.01;
 
-// Animación
-function animate() {
-    requestAnimationFrame(animate);
-    
-    // Movimiento oscilatorio en X e Y
-    angleX += speed * directionX;
-    angleY += speed * directionY;
-    
-    if (Math.abs(angleX) > Math.PI / 6) directionX *= -1;
-    if (Math.abs(angleY) > Math.PI / 6) directionY *= -1;
-    
-    sphere.rotation.x = angleX;
-    sphere.rotation.y = angleY;
-    
-    renderer.render(scene, camera);
-}
+        // Animación
+        function animate() {
+            requestAnimationFrame(animate);
 
-animate();
+            // Movimiento oscilatorio en X e Y
+            angleX += speed * directionX;
+            angleY += speed * directionY;
 
-// Ajustar tamaño de la ventana
-window.addEventListener('resize', () => {
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-});
+            if (Math.abs(angleX) > Math.PI / 6) directionX *= -1;
+            if (Math.abs(angleY) > Math.PI / 6) directionY *= -1;
+
+            sphere.rotation.x = angleX;
+            sphere.rotation.y = angleY;
+
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        // Ajustar tamaño de la ventana
+        window.addEventListener('resize', () => {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+        });
+    </script>
+</body>
+</html>
