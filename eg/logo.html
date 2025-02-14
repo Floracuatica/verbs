@@ -1,59 +1,30 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Esfera Hipnótica</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-</head>
-<body style="margin: 0; background: black;">
-    <script>
-        // Escena, cámara y renderizador
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        document.body.appendChild(renderer.domElement);
+// Escena, cámara y renderizador
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer();
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
 
-        // Crear geometría de esfera con malla wireframe
-        const geometry = new THREE.SphereGeometry(5, 64, 64);
-        const material = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true });
-        const sphere = new THREE.Mesh(geometry, material);
-        scene.add(sphere);
+// Crear geometría de esfera con malla wireframe
+const geometry = new THREE.SphereGeometry(5, 32, 32);
+const material = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true });
+const sphere = new THREE.Mesh(geometry, material);
+scene.add(sphere);
 
-        // Posicionar la cámara perfectamente alineada con el eje Z
-        camera.position.set(0, 0, 10);
-        camera.lookAt(0, 0, 0); // Asegura que la cámara mire directamente al centro
+// Posicionar la cámara mirando al centro
+camera.position.z = 10;
+camera.lookAt(0, 0, 0);
 
-        // Alinear la esfera con el eje para que se vea completamente de frente
-        sphere.rotation.x = Math.PI / 2; // Rota la esfera para alinear los ejes
+// Alinear la esfera con el eje de frente
+sphere.rotation.x = Math.PI / 2;
 
-        // Variables para la animación hipnótica
-        let angle = 0;
-        let direction = 1;
-        const speed = 0.01;
+// Renderizar la escena sin animación
+renderer.render(scene, camera);
 
-        // Animación de oscilación en el eje Z
-        function animate() {
-            requestAnimationFrame(animate);
-
-            // Oscilación tipo manecillas del reloj
-            angle += speed * direction;
-            if (Math.abs(angle) > Math.PI / 6) direction *= -1; // Movimiento controlado
-
-            sphere.rotation.z = angle; // Rotación en Z para simular el efecto hipnótico
-
-            renderer.render(scene, camera);
-        }
-
-        animate();
-
-        // Ajustar tamaño de la ventana
-        window.addEventListener('resize', () => {
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-        });
-    </script>
-</body>
-</html>
+// Ajustar tamaño de la ventana
+window.addEventListener('resize', () => {
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.render(scene, camera);
+});
