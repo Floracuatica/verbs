@@ -16,7 +16,7 @@
         document.body.appendChild(renderer.domElement);
 
         // Crear geometría de esfera con malla wireframe
-        const geometry = new THREE.SphereGeometry(5, 32, 32);
+        const geometry = new THREE.SphereGeometry(5, 64, 64);
         const material = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true });
         const sphere = new THREE.Mesh(geometry, material);
         scene.add(sphere);
@@ -24,26 +24,23 @@
         // Posicionar la cámara
         camera.position.z = 10;
 
+        // Alinear la esfera con el eje de frente
+        sphere.rotation.x = Math.PI / 2; // Alinea la malla para que los ejes se vean mejor
+
         // Variables para la animación hipnótica
-        let angleX = 0;
-        let angleY = 0;
-        let directionX = 1;
-        let directionY = 1;
-        const speed = 0.01;
+        let angle = 0;
+        let direction = 1;
+        const speed = 0.02;
 
         // Animación
         function animate() {
             requestAnimationFrame(animate);
 
-            // Movimiento oscilatorio en X e Y
-            angleX += speed * directionX;
-            angleY += speed * directionY;
+            // Oscilación suave tipo manecillas del reloj
+            angle += speed * direction;
+            if (Math.abs(angle) > Math.PI / 8) direction *= -1; // Controla el rango de oscilación
 
-            if (Math.abs(angleX) > Math.PI / 6) directionX *= -1;
-            if (Math.abs(angleY) > Math.PI / 6) directionY *= -1;
-
-            sphere.rotation.x = angleX;
-            sphere.rotation.y = angleY;
+            sphere.rotation.y = angle;
 
             renderer.render(scene, camera);
         }
