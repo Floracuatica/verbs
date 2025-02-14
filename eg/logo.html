@@ -8,7 +8,7 @@
 </head>
 <body style="margin: 0; background: black;">
     <script>
-     // Escena, cámara y renderizador
+    // Escena, cámara y renderizador
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer();
@@ -28,10 +28,10 @@ camera.lookAt(0, 0, 0);
 // Alinear la esfera con el eje de frente
 sphere.rotation.x = Math.PI / 2;
 
-// Animación para que los ejes queden fijos y solo rote la malla
+// Animación para que solo rote la malla y no se desplace
 function animate() {
     requestAnimationFrame(animate);
-    sphere.geometry.rotateZ(0.002); // Rotación lenta de la malla sin mover el eje principal
+    sphere.rotation.z += 0.002; // Rotación lenta sobre el eje Z sin desplazar la esfera
     renderer.render(scene, camera);
 }
 animate();
@@ -42,7 +42,6 @@ window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
 });
-
     </script>
 </body>
 </html>
