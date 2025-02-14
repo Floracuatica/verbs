@@ -8,7 +8,7 @@
 </head>
 <body style="margin: 0; background: black;">
     <script>
-    // Escena, cámara y renderizador
+   // Escena, cámara y renderizador
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer();
@@ -28,13 +28,29 @@ camera.lookAt(0, 0, 0);
 // Alinear la esfera con el eje de frente
 sphere.rotation.x = Math.PI / 2;
 
+// Variable para controlar la animación
+let isRotating = true;
+
 // Animación para que la malla rote sin mover el eje
 function animate() {
     requestAnimationFrame(animate);
-    sphere.rotateZ(0.002); // Rotación interna sin mover el objeto en el espacio
+    if (isRotating) {
+        sphere.rotateZ(0.002); // Rotación interna sin mover el objeto en el espacio
+    }
     renderer.render(scene, camera);
 }
 animate();
+
+// Evento para alternar la rotación al hacer clic
+window.addEventListener('click', () => {
+    isRotating = !isRotating;
+});
+
+// Evento para acercar la cámara al hacer doble clic
+window.addEventListener('dblclick', () => {
+    camera.position.z = camera.position.z === 10 ? 2 : 10;
+    camera.lookAt(0, 0, 0);
+});
 
 // Ajustar tamaño de la ventana
 window.addEventListener('resize', () => {
