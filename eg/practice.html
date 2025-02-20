@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Let's make sentences - Present Simple</title>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Banderín Interactivo - Presente Simple</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                text-align: center;
+                font-size: 24px;
+            }
+
+            .banderin {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+                margin-top: 20px;
+            }
+
+            .cuadro {
+                padding: 20px;
+                background-color: lightblue;
+                border: 3px solid #333;
+                border-radius: 8px;
+                cursor: pointer;
+                font-size: 24px;
+            }
+
+            .oracion {
+                margin-top: 20px;
+                font-size: 32px;
+                font-weight: bold;
+                background-color: yellow;
+                padding: 15px;
+                border-radius: 10px;
+                display: inline-block;
+            }
+
+            button {
+                font-size: 24px;
+                padding: 10px 20px;
+                margin-top: 10px;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+
+<body>
+    <h2>Banderín Interactivo - Presente Simple</h2>
+    <p>Haz clic en las palabras para formar una oración en presente simple.</p>
+
+    <div class="banderin">
+        <div class="cuadro" onclick="agregarPalabra(this)">Do</div>
+        <div class="cuadro" onclick="agregarPalabra(this)">Does</div>
+        <div class="cuadro" onclick="agregarPalabra(this)">I</div>
+        <div class="cuadro" onclick="agregarPalabra(this)">You</div>
+        <div class="cuadro" onclick="agregarPalabra(this)">He</div>
+        <div class="cuadro" onclick="agregarPalabra(this)">She</div>
+        <div class="cuadro" onclick="agregarPalabra(this)">It</div>
+        <div class="cuadro" onclick="agregarPalabra(this)">We</div>
+        <div class="cuadro" onclick="agregarPalabra(this)">are</div>
+        <div class="cuadro" onclick="agregarPalabra(this)">They</div>
+        <div class="cuadro" onclick="agregarPalabra(this)">want</div>
+        <div class="cuadro" onclick="agregarPalabra(this)">need</div>
+        <div class="cuadro" onclick="agregarPalabra(this)">wish</div>
+        <div class="cuadro" onclick="agregarPalabra(this)">get</div>
+        <div class="cuadro" onclick="agregarPalabra(this)">friend</div>
+        <div class="cuadro" onclick="agregarPalabra(this)">am</div>
+        <div class="cuadro" onclick="agregarPalabra(this)">a</div>
+        <div class="cuadro" onclick="agregarPalabra(this)">ice cream</div>
+        <div class="cuadro" onclick="agregarPalabra(this)">you</div>
+        <div class="cuadro" onclick="agregarPalabra(this)">wishes</div>
+        <div class="cuadro" onclick="agregarPalabra(this)">reads</div>
+        <div class="cuadro" onclick="agregarPalabra(this)">shower</div>
+        <div class="cuadro" onclick="agregarPalabra(this)">everyday</div>
+        <div class="cuadro" onclick="agregarPalabra(this)">sometimes</div>
+        <div class="cuadro" onclick="agregarPalabra(this)">have</div>
+        <div class="cuadro" onclick="agregarPalabra(this)">because</div>
+        <div class="cuadro" onclick="agregarPalabra(this)">buy</div>
+        <div class="cuadro" onclick="agregarPalabra(this)">is</div>
+        <div class="cuadro" onclick="agregarPalabra(this)">to</div>
+        <div class="cuadro" onclick="agregarPalabra(this)">read a book</div>
+        <div class="cuadro" onclick="agregarPalabra(this)">buy a car</div>
+        <div class="cuadro" onclick="agregarPalabra(this)">travel</div>
+        <div class="cuadro" onclick="agregarPalabra(this)">thinks</div>
+        <div class="cuadro" onclick="agregarPalabra(this)">and</div>
+        <div class="cuadro" onclick="agregarPalabra(this)">wants</div>
+        <div class="cuadro" onclick="agregarPalabra(this)">What</div>
+    </div>
+<br><br>
+    <p class="oracion" id="oracion"></p>
+    <button onclick="limpiarOracion()">Borrar oración</button>
+
+    <script>
+        function agregarPalabra(elemento) {
+            let oracion = document.getElementById("oracion");
+            oracion.textContent += " " + elemento.textContent;
+        }
+        function limpiarOracion() {
+            document.getElementById("oracion").textContent = "";
+        }
+    </script>
+    <br><br><br>
+    <a href="../index.html" class="boton-regresar">⬅️ Regresar al Inicio</a>
+</body>
+
+</html>
