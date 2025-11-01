@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Working Dogs - Reading Comprehension</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #FF6B9D 0%, #FFA06B 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            gap: 20px;
+        }
+
+        .header-text {
+            flex: 1;
+        }
+
+        .main-title {
+            color: #d2691e;
+            font-size: 2em;
+            font-weight: normal;
+            margin-bottom: 5px;
+        }
+
+        .main-title .paw {
+            font-size: 1.2em;
+        }
+
+        h1 {
+            font-family: 'Fredoka One', cursive;
+            color: #333;
+            font-size: 3em;
+            margin: 0;
+        }
+
+        .subtitle {
+            color: #555;
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-top: 10px;
+        }
+
+        .subtitle strong {
+            color: #333;
+        }
+
+        .dog-image {
+            width: 250px;
+            height: 180px;
+            border: 3px solid #333;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .dog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .image-caption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        .section {
+            margin: 40px 0;
+        }
+
+        .section-title {
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 5px solid #FF6B9D;
+        }
+
+        .section-title h2 {
+            color: #333;
+            font-size: 1.3em;
+            margin: 0;
+        }
+
+        .section-title strong {
+            color: #FF6B9D;
+        }
+
+        .reading-text {
+            background: #f9f9f9;
+            padding: 25px;
+            border-radius: 10px;
+            line-height: 1.8;
+            font-size: 1.1em;
+            color: #333;
+            border: 2px solid #e0e0e0;
+        }
+
+        .organizer {
+            background: #fff;
+            border: 3px solid #333;
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 20px;
+        }
+
+        .main-idea-section {
+            background: #f0f0f0;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+
+        .main-idea-section label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+            font-size: 1.1em;
+        }
+
+        .main-idea-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            font-family: 'Quicksand', sans-serif;
+            background: white;
+            min-height: 60px;
+        }
+
+        .main-idea-input:focus {
+            outline: none;
+            border-color: #FF6B9D;
+        }
+
+        .supporting-section {
+            margin-top: 25px;
+        }
+
+        .supporting-section > label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #333;
+            font-size: 1.1em;
+        }
+
+        .supporting-item {
+            display: flex;
+            align-items: start;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            border: 2px solid #e0e0e0;
+        }
+
+        .supporting-number {
+            font-weight: bold;
+            color: #FF6B9D;
+            font-size: 1.2em;
+            min-width: 30px;
+        }
+
+        .supporting-input {
+            flex: 1;
+        }
+
+        .supporting-input select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            font-family: 'Quicksand', sans-serif;
+            background: white;
+            cursor: pointer;
+        }
+
+        .supporting-input select:focus {
+            outline: none;
+            border-color: #FF6B9D;
+        }
+
+        .choices-box {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .choices-box h3 {
+            color: #856404;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .choice-item {
+            padding: 10px;
+            margin: 8px 0;
+            background: white;
+            border-radius: 5px;
+            border-left: 4px solid #ffc107;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        .choice-label {
+            font-weight: bold;
+            color: #856404;
+            margin-right: 5px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-check {
+            background: #4ECDC4;
+            color: white;
+        }
+
+        .btn-check:hover {
+            background: #44A08D;
+            transform: translateY(-2px);
+        }
+
+        .btn-reset {
+            background: #f44336;
+            color: white;
+        }
+
+        .btn-reset:hover {
+            background: #c62828;
+            transform: translateY(-2px);
+        }
+
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 1.2em;
+            font-weight: bold;
+            display: none;
+        }
+
+        .result.show {
+            display: block;
+        }
+
+        .result.success {
+            background: #d4edda;
+            color: #155724;
+            border: 2px solid #c3e6cb;
+        }
+
+        .result.partial {
+            background: #fff3cd;
+            color: #856404;
+            border: 2px solid #ffc107;
+        }
+
+        .correct {
+            border-color: #28a745 !important;
+            background: #d4edda !important;
+        }
+
+        .incorrect {
+            border-color: #dc3545 !important;
+            background: #f8d7da !important;
+        }
+
+        /* Back button */
+        .back-button {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            font-size: 1.1em;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .back-button:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .dog-image {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .back-button {
+                bottom: 20px;
+                left: 20px;
+                padding: 12px 20px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-text">
+                <div class="main-title">MAIN IDEA: <span class="paw">🐾</span></div>
+                <h1>Working Dogs</h1>
+                <div class="subtitle">
+                    The <strong>main idea</strong> of a text tells what the text is mostly about. 
+                    <strong>Supporting details</strong> are the sentences that support the main idea.
+                </div>
+            </div>
+            <div>
+                <div class="dog-image">
+                    <img src="https://images.unsplash.com/photo-1576201836106-db1758fd1c97?w=500&q=80" alt="Avalanche rescue dog">
+                </div>
+                <div class="image-caption">An avalanche rescue dog in training.</div>
+            </div>
+        </div>
+
+        <!-- Part 1: Reading -->
+        <div class="section">
+            <div class="section-title">
+                <h2><strong>Part 1:</strong> Read the paragraph below.</h2>
+            </div>
+            <div class="reading-text">
+                Working dogs are animals that have a job. These animals are trained to help people. 
+                They protect people and make life easier. Some dogs work with police officers. They help 
+                them find criminals or weapons. Other dogs also help find people. They are called search 
+                and rescue dogs. They are trained to find missing people when there is a disaster, like a 
+                flood, avalanche, or tornado. Other dogs act as eyes for people with visual impairments. 
+                Some dogs act as ears for people with hearing impairments. Service dogs can also be helpers 
+                for people who are physically challenged. Dogs become working dogs when they are specially 
+                trained to help and protect people.
+            </div>
+        </div>
+
+        <!-- Part 2: Graphic Organizer -->
+        <div class="section">
+            <div class="section-title">
+                <h2><strong>Part 2:</strong> Complete the graphic organizer by choosing the best main idea and supporting details from the sentences below. Some choices will not be used.</h2>
+            </div>
+
+            <div class="choices-box">
+                <h3>📋 Available Choices:</h3>
+                <div class="choice-item">
+                    <span class="choice-label">a.</span> A police dog assists police in finding criminals and weapons.
+                </div>
+                <div class="choice-item">
+                    <span class="choice-label">b.</span> Working dogs must be trained.
+                </div>
+                <div class="choice-item">
+                    <span class="choice-label">c.</span> A dog can help people with visual impairments by acting as their eyes.
+                </div>
+                <div class="choice-item">
+                    <span class="choice-label">d.</span> Working dogs are trained dogs that help people.
+                </div>
+                <div class="choice-item">
+                    <span class="choice-label">e.</span> Some dogs help people with hearing impairments by acting as their ears.
+                </div>
+                <div class="choice-item">
+                    <span class="choice-label">f.</span> A dog should be fed and loved if it is going to be helpful.
+                </div>
+            </div>
+
+            <div class="organizer">
+                <!-- Main Idea -->
+                <div class="main-idea-section">
+                    <label for="main-idea">Main Idea:</label>
+                    <select id="main-idea" class="main-idea-input">
+                        <option value="">-- Select the main idea --</option>
+                        <option value="a">a. A police dog assists police in finding criminals and weapons.</option>
+                        <option value="b">b. Working dogs must be trained.</option>
+                        <option value="c">c. A dog can help people with visual impairments by acting as their eyes.</option>
+                        <option value="d">d. Working dogs are trained dogs that help people.</option>
+                        <option value="e">e. Some dogs help people with hearing impairments by acting as their ears.</option>
+                        <option value="f">f. A dog should be fed and loved if it is going to be helpful.</option>
+                    </select>
+                </div>
+
+                <!-- Supporting Ideas -->
+                <div class="supporting-section">
+                    <label>Supporting Ideas:</label>
+                    
+                    <div class="supporting-item" id="support-1">
+                        <div class="supporting-number">1.</div>
+                        <div class="supporting-input">
+                            <select id="support-1-select">
+                                <option value="">-- Select supporting detail --</option>
+                                <option value="a">a. A police dog assists police in finding criminals and weapons.</option>
+                                <option value="b">b. Working dogs must be trained.</option>
+                                <option value="c">c. A dog can help people with visual impairments by acting as their eyes.</option>
+                                <option value="d">d. Working dogs are trained dogs that help people.</option>
+                                <option value="e">e. Some dogs help people with hearing impairments by acting as their ears.</option>
+                                <option value="f">f. A dog should be fed and loved if it is going to be helpful.</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="supporting-item" id="support-2">
+                        <div class="supporting-number">2.</div>
+                        <div class="supporting-input">
+                            <select id="support-2-select">
+                                <option value="">-- Select supporting detail --</option>
+                                <option value="a">a. A police dog assists police in finding criminals and weapons.</option>
+                                <option value="b">b. Working dogs must be trained.</option>
+                                <option value="c">c. A dog can help people with visual impairments by acting as their eyes.</option>
+                                <option value="d">d. Working dogs are trained dogs that help people.</option>
+                                <option value="e">e. Some dogs help people with hearing impairments by acting as their ears.</option>
+                                <option value="f">f. A dog should be fed and loved if it is going to be helpful.</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="supporting-item" id="support-3">
+                        <div class="supporting-number">3.</div>
+                        <div class="supporting-input">
+                            <select id="support-3-select">
+                                <option value="">-- Select supporting detail --</option>
+                                <option value="a">a. A police dog assists police in finding criminals and weapons.</option>
+                                <option value="b">b. Working dogs must be trained.</option>
+                                <option value="c">c. A dog can help people with visual impairments by acting as their eyes.</option>
+                                <option value="d">d. Working dogs are trained dogs that help people.</option>
+                                <option value="e">e. Some dogs help people with hearing impairments by acting as their ears.</option>
+                                <option value="f">f. A dog should be fed and loved if it is going to be helpful.</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button class="btn btn-reset" onclick="resetForm()">🔄 Reset</button>
+                <button class="btn btn-check" onclick="checkAnswers()">✓ Check Answers</button>
+            </div>
+
+            <div id="result" class="result"></div>
+        </div>
+    </div>
+
+    <a href="/" class="back-button">
+        <span style="font-size: 1.2em;">←</span>
+        <span>Back to Home</span>
+    </a>
+
+    <script>
+        // Correct answers
+        const correctAnswers = {
+            mainIdea: 'd',
+            supporting: ['a', 'c', 'e'] // Can be in any order
+        };
+
+        function checkAnswers() {
+            let correct = 0;
+            let total = 4; // 1 main idea + 3 supporting details
+
+            // Check main idea
+            const mainIdea = document.getElementById('main-idea');
+            const mainIdeaValue = mainIdea.value;
+            
+            if (mainIdeaValue === correctAnswers.mainIdea) {
+                mainIdea.parentElement.classList.add('correct');
+                mainIdea.parentElement.classList.remove('incorrect');
+                correct++;
+            } else {
+                mainIdea.parentElement.classList.add('incorrect');
+                mainIdea.parentElement.classList.remove('correct');
+            }
+
+            // Check supporting details
+            const support1 = document.getElementById('support-1-select').value;
+            const support2 = document.getElementById('support-2-select').value;
+            const support3 = document.getElementById('support-3-select').value;
+            
+            const userSupporting = [support1, support2, support3].filter(v => v !== '');
+            
+            // Check each supporting detail
+            [support1, support2, support3].forEach((value, index) => {
+                const supportItem = document.getElementById(`support-${index + 1}`);
+                if (value && correctAnswers.supporting.includes(value)) {
+                    supportItem.classList.add('correct');
+                    supportItem.classList.remove('incorrect');
+                    correct++;
+                } else if (value) {
+                    supportItem.classList.add('incorrect');
+                    supportItem.classList.remove('correct');
+                }
+            });
+
+            // Show result
+            const resultDiv = document.getElementById('result');
+            resultDiv.classList.add('show');
+
+            if (correct === total) {
+                resultDiv.className = 'result show success';
+                resultDiv.innerHTML = '🎉 Perfect! You identified the main idea and all supporting details correctly!';
+            } else {
+                resultDiv.className = 'result show partial';
+                resultDiv.innerHTML = `📝 You got ${correct} out of ${total} correct.<br><br>
+                    <strong>Hint:</strong> The main idea should be "d" (Working dogs are trained dogs that help people).<br>
+                    The supporting details should be "a", "c", and "e" (in any order).`;
+            }
+
+            // Scroll to result
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function resetForm() {
+            // Reset all selects
+            document.getElementById('main-idea').value = '';
+            document.getElementById('support-1-select').value = '';
+            document.getElementById('support-2-select').value = '';
+            document.getElementById('support-3-select').value = '';
+
+            // Remove all feedback classes
+            document.querySelectorAll('.correct, .incorrect').forEach(el => {
+                el.classList.remove('correct', 'incorrect');
+            });
+
+            // Hide result
+            document.getElementById('result').classList.remove('show');
+        }
+    </script>
+</body>
+</html>
