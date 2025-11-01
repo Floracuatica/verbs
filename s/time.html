@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning to Tell Time</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            color: #2c7a9e;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        .section {
+            margin: 40px 0;
+        }
+
+        .section-title {
+            color: #2c7a9e;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #2c7a9e;
+        }
+
+        .instructions {
+            color: #555;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+
+        .clocks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+
+        .clock-item {
+            text-align: center;
+        }
+
+        .clock {
+            width: 150px;
+            height: 150px;
+            border: 4px solid #2c7a9e;
+            border-radius: 50%;
+            position: relative;
+            margin: 0 auto 15px;
+            background: white;
+            cursor: pointer;
+        }
+
+        .clock-number {
+            position: absolute;
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .clock-center {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #333;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+        }
+
+        .clock-hand {
+            position: absolute;
+            background: #333;
+            transform-origin: bottom center;
+            left: 50%;
+            border-radius: 10px;
+        }
+
+        .hour-hand {
+            width: 4px;
+            height: 40px;
+            background: #333;
+            bottom: 50%;
+            margin-left: -2px;
+        }
+
+        .minute-hand {
+            width: 3px;
+            height: 55px;
+            background: #e74c3c;
+            bottom: 50%;
+            margin-left: -1.5px;
+        }
+
+        .time-input {
+            width: 120px;
+            padding: 10px;
+            font-size: 1.2em;
+            text-align: center;
+            border: 2px solid #2c7a9e;
+            border-radius: 10px;
+            outline: none;
+        }
+
+        .time-input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
+        }
+
+        .time-display {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #2c7a9e;
+            margin-top: 10px;
+        }
+
+        .check-button {
+            background: #2c7a9e;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            border-radius: 10px;
+            cursor: pointer;
+            display: block;
+            margin: 30px auto;
+            transition: all 0.3s;
+        }
+
+        .check-button:hover {
+            background: #667eea;
+            transform: scale(1.05);
+        }
+
+        .result {
+            text-align: center;
+            font-size: 1.3em;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+
+        .result.hidden {
+            display: none;
+        }
+
+        .result.success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .result.partial {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .interactive-note {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            color: #1565c0;
+            text-align: center;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🕐 LEARNING TO TELL TIME 🕐</h1>
+        
+        <!-- PARTE 1 -->
+        <div class="section">
+            <div class="section-title">Part 1: Write the time under each clock</div>
+            <p class="instructions">Write the time in 12-hour format (example: 9:15). The first one has been done for you.</p>
+            
+            <div class="clocks-grid" id="part1-grid"></div>
+        </div>
+
+        <!-- PARTE 2 -->
+        <div class="section">
+            <div class="section-title">Part 2: Draw the hands on each clock to match the time below</div>
+            <p class="instructions">Click on each clock hand and drag to draw the hands. The first one has been done for you.</p>
+            <div class="interactive-note">
+                💡 Tip: Click on the SHORT hand (black) to move the hours, and on the LONG hand (red) to move the minutes. Drag each one where you want!
+            </div>
+            
+            <div class="clocks-grid" id="part2-grid"></div>
+        </div>
+
+        <button class="check-button" onclick="checkAnswers()">✓ Check Answers</button>
+        <div id="result" class="result hidden"></div>
+    </div>
+
+    <script>
+        // Datos de las horas para la Parte 1
+        const part1Times = [
+            { hour: 9, minute: 15 },
+            { hour: 12, minute: 0 },
+            { hour: 1, minute: 30 },
+            { hour: 1, minute: 15 },
+            { hour: 10, minute: 30 },
+            { hour: 10, minute: 15 },
+            { hour: 3, minute: 0 },
+            { hour: 1, minute: 45 }
+        ];
+
+        // Datos de las horas para la Parte 2
+        const part2Times = [
+            { time: '9:45', hour: 9, minute: 45 },
+            { time: '12:15', hour: 12, minute: 15 },
+            { time: '3:30', hour: 3, minute: 30 },
+            { time: '7:00', hour: 7, minute: 0 },
+            { time: '10:15', hour: 10, minute: 15 },
+            { time: '6:00', hour: 6, minute: 0 },
+            { time: '5:15', hour: 5, minute: 15 },
+            { time: '11:00', hour: 11, minute: 0 }
+        ];
+
+        let userAnswersPart2 = [];
+
+        // Crear relojes para Parte 1
+        function createPart1Clocks() {
+            const grid = document.getElementById('part1-grid');
+            
+            part1Times.forEach((time, index) => {
+                const item = document.createElement('div');
+                item.className = 'clock-item';
+                
+                const clock = createClock(time.hour, time.minute);
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.className = 'time-input';
+                input.placeholder = '__:__';
+                input.dataset.index = index;
+                
+                if (index === 0) {
+                    input.value = '9:15';
+                    input.disabled = true;
+                    input.style.background = '#e8f5e9';
+                }
+                
+                item.appendChild(clock);
+                item.appendChild(input);
+                grid.appendChild(item);
+            });
+        }
+
+        // Crear relojes para Parte 2
+        function createPart2Clocks() {
+            const grid = document.getElementById('part2-grid');
+            
+            part2Times.forEach((timeData, index) => {
+                const item = document.createElement('div');
+                item.className = 'clock-item';
+                
+                const clock = document.createElement('div');
+                clock.className = 'clock';
+                clock.dataset.index = index;
+                
+                // Números del reloj
+                for (let i = 1; i <= 12; i++) {
+                    const num = document.createElement('div');
+                    num.className = 'clock-number';
+                    num.textContent = i;
+                    const angle = (i * 30 - 90) * Math.PI / 180;
+                    const x = 75 + 55 * Math.cos(angle);
+                    const y = 75 + 55 * Math.sin(angle);
+                    num.style.left = (x - 7) + 'px';
+                    num.style.top = (y - 10) + 'px';
+                    clock.appendChild(num);
+                }
+                
+                // Centro
+                const center = document.createElement('div');
+                center.className = 'clock-center';
+                clock.appendChild(center);
+                
+                // Manecillas
+                const hourHand = document.createElement('div');
+                hourHand.className = 'clock-hand hour-hand';
+                hourHand.id = `hour-${index}`;
+                hourHand.style.cursor = 'pointer';
+                clock.appendChild(hourHand);
+                
+                const minuteHand = document.createElement('div');
+                minuteHand.className = 'clock-hand minute-hand';
+                minuteHand.id = `minute-${index}`;
+                minuteHand.style.cursor = 'pointer';
+                clock.appendChild(minuteHand);
+                
+                // Configurar primer reloj
+                if (index === 0) {
+                    setClockTime(hourHand, minuteHand, timeData.hour, timeData.minute);
+                    clock.style.opacity = '0.7';
+                } else {
+                    userAnswersPart2[index] = { hour: 12, minute: 0 };
+                    
+                    // Hacer las manecillas arrastrables
+                    hourHand.addEventListener('mousedown', (e) => {
+                        e.stopPropagation();
+                        startDragging(e, index, 'hour');
+                    });
+                    
+                    minuteHand.addEventListener('mousedown', (e) => {
+                        e.stopPropagation();
+                        startDragging(e, index, 'minute');
+                    });
+                }
+                
+                const timeDisplay = document.createElement('div');
+                timeDisplay.className = 'time-display';
+                timeDisplay.textContent = timeData.time;
+                
+                item.appendChild(clock);
+                item.appendChild(timeDisplay);
+                grid.appendChild(item);
+            });
+        }
+
+        function createClock(hour, minute) {
+            const clock = document.createElement('div');
+            clock.className = 'clock';
+            
+            // Números del reloj
+            for (let i = 1; i <= 12; i++) {
+                const num = document.createElement('div');
+                num.className = 'clock-number';
+                num.textContent = i;
+                const angle = (i * 30 - 90) * Math.PI / 180;
+                const x = 75 + 55 * Math.cos(angle);
+                const y = 75 + 55 * Math.sin(angle);
+                num.style.left = (x - 7) + 'px';
+                num.style.top = (y - 10) + 'px';
+                clock.appendChild(num);
+            }
+            
+            // Centro
+            const center = document.createElement('div');
+            center.className = 'clock-center';
+            clock.appendChild(center);
+            
+            // Manecillas
+            const hourHand = document.createElement('div');
+            hourHand.className = 'clock-hand hour-hand';
+            clock.appendChild(hourHand);
+            
+            const minuteHand = document.createElement('div');
+            minuteHand.className = 'clock-hand minute-hand';
+            clock.appendChild(minuteHand);
+            
+            setClockTime(hourHand, minuteHand, hour, minute);
+            
+            return clock;
+        }
+
+        function setClockTime(hourHand, minuteHand, hour, minute) {
+            const hourAngle = (hour % 12) * 30 + minute * 0.5;
+            const minuteAngle = minute * 6;
+            
+            hourHand.style.transform = `rotate(${hourAngle}deg)`;
+            minuteHand.style.transform = `rotate(${minuteAngle}deg)`;
+        }
+
+        let isDragging = false;
+        let currentClockIndex = -1;
+        let draggingHand = null; // 'hour' o 'minute'
+
+        function startDragging(e, index, handType) {
+            isDragging = true;
+            currentClockIndex = index;
+            draggingHand = handType;
+            updateClockHands(e);
+        }
+
+        document.addEventListener('mousemove', (e) => {
+            if (isDragging) {
+                updateClockHands(e);
+            }
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+            currentClockIndex = -1;
+            draggingHand = null;
+        });
+
+        function updateClockHands(e) {
+            if (currentClockIndex < 0) return;
+            
+            const clock = document.querySelector(`#part2-grid .clock[data-index="${currentClockIndex}"]`);
+            const rect = clock.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            
+            const angle = Math.atan2(e.clientY - centerY, e.clientX - centerX);
+            let degrees = angle * 180 / Math.PI + 90;
+            if (degrees < 0) degrees += 360;
+            
+            const hourHand = document.getElementById(`hour-${currentClockIndex}`);
+            const minuteHand = document.getElementById(`minute-${currentClockIndex}`);
+            
+            // Obtener valores actuales
+            let currentHour = userAnswersPart2[currentClockIndex]?.hour || 12;
+            let currentMinute = userAnswersPart2[currentClockIndex]?.minute || 0;
+            
+            if (draggingHand === 'minute') {
+                // Calcular minutos (cada 6 grados = 1 minuto)
+                currentMinute = Math.round(degrees / 6) % 60;
+            } else if (draggingHand === 'hour') {
+                // Calcular horas (cada 30 grados = 1 hora)
+                currentHour = Math.round(degrees / 30) % 12;
+                if (currentHour === 0) currentHour = 12;
+            }
+            
+            setClockTime(hourHand, minuteHand, currentHour, currentMinute);
+            userAnswersPart2[currentClockIndex] = { hour: currentHour, minute: currentMinute };
+        }
+
+        function checkAnswers() {
+            let correctPart1 = 0;
+            let correctPart2 = 0;
+            
+            // Verificar Parte 1
+            const inputs = document.querySelectorAll('#part1-grid .time-input:not([disabled])');
+            inputs.forEach((input, index) => {
+                const actualIndex = parseInt(input.dataset.index);
+                const correct = part1Times[actualIndex];
+                const userAnswer = input.value.trim();
+                const correctAnswer = `${correct.hour}:${correct.minute.toString().padStart(2, '0')}`;
+                
+                if (userAnswer === correctAnswer) {
+                    correctPart1++;
+                    input.style.background = '#d4edda';
+                } else {
+                    input.style.background = '#f8d7da';
+                }
+            });
+            
+            // Verificar Parte 2
+            userAnswersPart2.forEach((answer, index) => {
+                if (index === 0) return; // Saltar el primero que está resuelto
+                
+                const correct = part2Times[index];
+                const hourMatch = Math.abs(answer.hour - correct.hour) <= 0;
+                const minuteMatch = Math.abs(answer.minute - correct.minute) <= 5;
+                
+                const clock = document.querySelector(`#part2-grid .clock[data-index="${index}"]`);
+                if (hourMatch && minuteMatch) {
+                    correctPart2++;
+                    clock.style.borderColor = '#28a745';
+                    clock.style.borderWidth = '5px';
+                } else {
+                    clock.style.borderColor = '#dc3545';
+                    clock.style.borderWidth = '5px';
+                }
+            });
+            
+            // Mostrar resultado
+            const result = document.getElementById('result');
+            result.classList.remove('hidden', 'success', 'partial');
+            
+            const totalCorrect = correctPart1 + correctPart2;
+            const totalQuestions = (inputs.length) + (part2Times.length - 1);
+            
+            if (totalCorrect === totalQuestions) {
+                result.className = 'result success';
+                result.textContent = `🎉 Perfect! ${totalCorrect}/${totalQuestions} correct. You're a time-telling expert!`;
+            } else {
+                result.className = 'result partial';
+                result.textContent = `📝 You have ${totalCorrect}/${totalQuestions} correct. Part 1: ${correctPart1}/${inputs.length} | Part 2: ${correctPart2}/${part2Times.length - 1}`;
+            }
+        }
+
+        // Inicializar
+        createPart1Clocks();
+        createPart2Clocks();
+    </script>
+</body>
+</html>
