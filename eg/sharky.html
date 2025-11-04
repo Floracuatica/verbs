@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find the Main Idea - Sharks</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border: 8px solid #00BCD4;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .reading-badge {
+            background: #E0F7FA;
+            color: #00838F;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-family: 'Fredoka One', cursive;
+            color: #00BCD4;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .instructions {
+            color: #00838F;
+            font-size: 1.1em;
+            line-height: 1.7;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #E0F7FA;
+            border-radius: 15px;
+            border-left: 5px solid #00BCD4;
+        }
+
+        .reading-section {
+            display: flex;
+            gap: 20px;
+            align-items: start;
+            margin-bottom: 30px;
+            padding: 25px;
+            background: #F5F5F5;
+            border-radius: 15px;
+        }
+
+        .shark-image {
+            flex-shrink: 0;
+            width: 200px;
+        }
+
+        .shark-image img {
+            width: 100%;
+            height: auto;
+        }
+
+        .reading-text {
+            flex: 1;
+            font-size: 1.1em;
+            line-height: 1.9;
+            color: #333;
+            text-align: justify;
+        }
+
+        .writing-section {
+            margin: 30px 0;
+        }
+
+        .writing-label {
+            font-family: 'Fredoka One', cursive;
+            color: #00BCD4;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .writing-input {
+            width: 100%;
+            padding: 15px;
+            border: 3px solid #00BCD4;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-family: 'Quicksand', sans-serif;
+            line-height: 1.6;
+            resize: vertical;
+            background: #FAFAFA;
+            transition: all 0.3s;
+        }
+
+        .writing-input:focus {
+            outline: none;
+            border-color: #00838F;
+            background: white;
+            box-shadow: 0 0 15px rgba(0, 188, 212, 0.2);
+        }
+
+        .writing-input.filled {
+            background: #E8F5E9;
+            border-color: #4CAF50;
+        }
+
+        textarea.writing-input {
+            min-height: 80px;
+        }
+
+        .help-text {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 8px;
+            font-style: italic;
+        }
+
+        .tips-box {
+            background: #FFF9C4;
+            border: 3px solid #FDD835;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+
+        .tips-box h3 {
+            color: #F57F17;
+            margin-bottom: 12px;
+            font-family: 'Fredoka One', cursive;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tips-box ul {
+            margin-left: 20px;
+            color: #F57F17;
+        }
+
+        .tips-box li {
+            margin: 8px 0;
+            line-height: 1.5;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.1em;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-hint {
+            background: #FDD835;
+            color: #333;
+        }
+
+        .btn-hint:hover {
+            background: #FBC02D;
+            transform: translateY(-2px);
+        }
+
+        .btn-clear {
+            background: #F44336;
+            color: white;
+        }
+
+        .btn-clear:hover {
+            background: #D32F2F;
+            transform: translateY(-2px);
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #00BCD4 0%, #00838F 100%);
+            color: white;
+            font-size: 1.2em;
+            padding: 18px 45px;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 188, 212, 0.4);
+        }
+
+        .result {
+            margin-top: 30px;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 1.1em;
+            line-height: 1.6;
+            display: none;
+        }
+
+        .result.show {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        .result.success {
+            background: #C8E6C9;
+            color: #1B5E20;
+            border: 3px solid #4CAF50;
+        }
+
+        .result.warning {
+            background: #FFF9C4;
+            color: #F57F17;
+            border: 3px solid #FDD835;
+        }
+
+        .result strong {
+            display: block;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .shark-icon {
+            font-size: 3em;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        /* Back button */
+        .back-button {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            font-size: 1.1em;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .back-button:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px;
+                border-width: 5px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .reading-section {
+                flex-direction: column;
+            }
+
+            .shark-image {
+                width: 100%;
+                max-width: 250px;
+                margin: 0 auto;
+            }
+
+            .reading-text {
+                font-size: 1em;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .back-button {
+                bottom: 20px;
+                left: 20px;
+                padding: 12px 20px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="reading-badge">Reading</div>
+        <h1>Find the Main Idea 🦈</h1>
+        
+        <div class="instructions">
+            Find the main idea in the paragraph below. Write the main idea in your own words in the space provided. Then, write a concluding sentence for this paragraph.
+        </div>
+
+        <!-- Reading Section -->
+        <div class="reading-section">
+            <div class="shark-image">
+                <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Shark body -->
+                    <ellipse cx="100" cy="70" rx="80" ry="25" fill="#6B7280"/>
+                    <!-- Shark head -->
+                    <ellipse cx="40" cy="70" rx="35" ry="22" fill="#6B7280"/>
+                    <!-- Dorsal fin -->
+                    <path d="M 100 45 L 110 25 L 115 45 Z" fill="#4B5563"/>
+                    <!-- Tail -->
+                    <path d="M 170 60 L 195 45 L 190 70 L 195 80 L 170 75 Z" fill="#4B5563"/>
+                    <!-- Pectoral fins -->
+                    <ellipse cx="70" cy="85" rx="25" ry="8" fill="#4B5563" transform="rotate(-20 70 85)"/>
+                    <ellipse cx="130" cy="85" rx="25" ry="8" fill="#4B5563" transform="rotate(20 130 85)"/>
+                    <!-- Eye -->
+                    <circle cx="45" cy="65" r="4" fill="#1F2937"/>
+                    <!-- Gills -->
+                    <line x1="65" y1="75" x2="70" y2="80" stroke="#4B5563" stroke-width="2"/>
+                    <line x1="72" y1="75" x2="77" y2="80" stroke="#4B5563" stroke-width="2"/>
+                    <line x1="79" y1="75" x2="84" y2="80" stroke="#4B5563" stroke-width="2"/>
+                    <!-- Teeth hint -->
+                    <path d="M 30 72 L 35 75 L 40 72 L 45 75 L 50 72" stroke="white" stroke-width="1.5" fill="none"/>
+                </svg>
+            </div>
+            <div class="reading-text">
+                You probably know sharks have very sharp teeth, but did you know they never run out of them? If a shark loses a tooth, another moves forward from within the shark's jaw, where it keeps a nearly unlimited supply of replacement teeth. This way, it's almost impossible for a shark to end up without a full set of teeth. This is a phenomenon unique to the shark. No other animal in the world has teeth quite like the shark's. A shark can go through as many as 20,000 teeth in its lifetime!
+            </div>
+        </div>
+
+        <!-- Tips Box -->
+        <div class="tips-box">
+            <h3>💡 Tips for Finding the Main Idea:</h3>
+            <ul>
+                <li><strong>Ask yourself:</strong> What is this paragraph mostly about?</li>
+                <li><strong>Look for:</strong> The most important fact that the whole paragraph explains</li>
+                <li><strong>Ignore:</strong> Small details - focus on the big picture!</li>
+                <li><strong>Use your own words</strong> - don't copy the text exactly</li>
+            </ul>
+        </div>
+
+        <!-- Main Idea Input -->
+        <div class="writing-section">
+            <label class="writing-label">Main idea:</label>
+            <textarea 
+                class="writing-input" 
+                id="main-idea" 
+                placeholder="Write the main idea in your own words..."
+                oninput="checkFilled()"
+            ></textarea>
+            <div class="help-text">💭 Hint: Think about what makes sharks' teeth special</div>
+        </div>
+
+        <!-- Concluding Sentence Input -->
+        <div class="writing-section">
+            <label class="writing-label">Concluding sentence:</label>
+            <textarea 
+                class="writing-input" 
+                id="concluding-sentence" 
+                placeholder="Write a sentence that wraps up the paragraph..."
+                oninput="checkFilled()"
+            ></textarea>
+            <div class="help-text">💭 Hint: A concluding sentence summarizes or restates the main idea</div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="button-group">
+            <button class="btn btn-hint" onclick="showHint()">💡 Need a Hint?</button>
+            <button class="btn btn-clear" onclick="clearAll()">🔄 Start Over</button>
+            <button class="btn btn-submit" onclick="submitAnswers()">✓ Check My Work</button>
+        </div>
+
+        <div id="result" class="result"></div>
+
+        <div class="shark-icon">🦈</div>
+    </div>
+
+    <a href="../index.html" class="back-button">
+        <span style="font-size: 1.2em;">←</span>
+        <span>Back to Home</span>
+    </a>
+
+    <script>
+        // Key concepts to look for in the main idea
+        const mainIdeaKeywords = [
+            'shark', 'teeth', 'replace', 'unlimited', 'never run out', 
+            'lose', 'new', 'supply', 'lifetime', 'unique', 'special'
+        ];
+
+        function checkFilled() {
+            const mainIdea = document.getElementById('main-idea');
+            const concluding = document.getElementById('concluding-sentence');
+
+            if (mainIdea.value.trim().length > 10) {
+                mainIdea.classList.add('filled');
+            } else {
+                mainIdea.classList.remove('filled');
+            }
+
+            if (concluding.value.trim().length > 10) {
+                concluding.classList.add('filled');
+            } else {
+                concluding.classList.remove('filled');
+            }
+        }
+
+        function showHint() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.className = 'result show warning';
+            resultDiv.innerHTML = `
+                <strong>💡 Helpful Hints:</strong>
+                <p><strong>Main Idea:</strong> Think about what's special about sharks' teeth compared to other animals. What can they do that's unique?</p>
+                <p><strong>Concluding Sentence:</strong> Restate the main point in a different way, or add a final thought about how amazing this fact is!</p>
+            `;
+            
+            setTimeout(() => {
+                resultDiv.classList.remove('show');
+            }, 8000);
+        }
+
+        function clearAll() {
+            document.getElementById('main-idea').value = '';
+            document.getElementById('concluding-sentence').value = '';
+            document.getElementById('result').classList.remove('show');
+            checkFilled();
+        }
+
+        function submitAnswers() {
+            const mainIdea = document.getElementById('main-idea').value.trim();
+            const concluding = document.getElementById('concluding-sentence').value.trim();
+            const resultDiv = document.getElementById('result');
+
+            // Check if both fields are filled
+            if (!mainIdea || !concluding) {
+                resultDiv.className = 'result show warning';
+                resultDiv.innerHTML = `
+                    <strong>⚠️ Not Complete Yet!</strong>
+                    <p>Please fill in both the main idea and the concluding sentence before checking your work.</p>
+                `;
+                resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                return;
+            }
+
+            // Check if answers are too short
+            if (mainIdea.split(/\s+/).length < 5 || concluding.split(/\s+/).length < 5) {
+                resultDiv.className = 'result show warning';
+                resultDiv.innerHTML = `
+                    <strong>📝 Try Adding More Detail!</strong>
+                    <p>Your answers are a bit short. Try to write complete sentences that fully express your thoughts.</p>
+                `;
+                resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                return;
+            }
+
+            // Check if main idea contains relevant keywords
+            const lowerMainIdea = mainIdea.toLowerCase();
+            const foundKeywords = mainIdeaKeywords.filter(keyword => 
+                lowerMainIdea.includes(keyword.toLowerCase())
+            );
+
+            const hasShark = lowerMainIdea.includes('shark');
+            const hasTeeth = lowerMainIdea.includes('teeth') || lowerMainIdea.includes('tooth');
+            const hasReplacement = lowerMainIdea.includes('replace') || 
+                                   lowerMainIdea.includes('new') || 
+                                   lowerMainIdea.includes('grow') ||
+                                   lowerMainIdea.includes('unlimited') ||
+                                   lowerMainIdea.includes('never run out') ||
+                                   lowerMainIdea.includes('lose');
+
+            if (hasShark && hasTeeth && hasReplacement) {
+                resultDiv.className = 'result show success';
+                resultDiv.innerHTML = `
+                    <strong>🎉 Excellent Work!</strong>
+                    <p>Your main idea captures the key point: sharks have a special ability to replace their teeth!</p>
+                    <p>Your concluding sentence wraps up the paragraph nicely.</p>
+                    <p><strong>Great job understanding the text! 🦈</strong></p>
+                `;
+            } else if (hasShark && hasTeeth) {
+                resultDiv.className = 'result show warning';
+                resultDiv.innerHTML = `
+                    <strong>👍 Good Start!</strong>
+                    <p>You mentioned sharks and teeth, but try to include the most important detail: <strong>what makes sharks' teeth special or unique?</strong></p>
+                    <p>Hint: Think about what happens when they lose a tooth!</p>
+                `;
+            } else {
+                resultDiv.className = 'result show warning';
+                resultDiv.innerHTML = `
+                    <strong>💭 Keep Thinking!</strong>
+                    <p>Remember to focus on what the paragraph is <strong>mostly about</strong>. What specific animal and body part is discussed?</p>
+                    <p>Read the paragraph again and look for the main topic!</p>
+                `;
+            }
+
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    </script>
+</body>
+</html>
