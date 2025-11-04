@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete the Mystery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #A18CD1 0%, #FBC2EB 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border: 8px solid #9B59B6;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 20px;
+        }
+
+        .header-left {
+            flex: 1;
+        }
+
+        .reading-badge {
+            background: #E8D5F2;
+            color: #9B59B6;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-family: 'Fredoka One', cursive;
+            color: #FF6B35;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+
+        .instructions {
+            color: #9B59B6;
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .story-section {
+            background: #f9f9f9;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .flower-decoration {
+            position: absolute;
+            right: 30px;
+            top: 30px;
+            font-size: 5em;
+            opacity: 0.3;
+        }
+
+        .story-text {
+            font-size: 1.1em;
+            line-height: 1.9;
+            color: #333;
+            user-select: none;
+        }
+
+        .story-text p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .highlightable {
+            cursor: pointer;
+            padding: 2px 4px;
+            border-radius: 3px;
+            transition: all 0.2s;
+        }
+
+        .highlightable:hover {
+            background: #FFF3CD;
+        }
+
+        .highlighted {
+            background: #FFEB3B;
+            font-weight: bold;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        .clue-counter {
+            background: #E8D5F2;
+            padding: 15px 25px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 20px 0;
+            font-size: 1.1em;
+            color: #9B59B6;
+            font-weight: bold;
+        }
+
+        .clue-counter .number {
+            font-size: 2em;
+            color: #FF6B35;
+        }
+
+        .writing-section {
+            margin-top: 40px;
+        }
+
+        .section-title {
+            font-family: 'Fredoka One', cursive;
+            color: #FF6B35;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .writing-area {
+            position: relative;
+        }
+
+        .textarea-wrapper {
+            position: relative;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 20px;
+            border: 3px solid #9B59B6;
+            border-radius: 15px;
+            font-size: 1.1em;
+            font-family: 'Quicksand', sans-serif;
+            line-height: 1.8;
+            resize: vertical;
+            background: #FAFAFA;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #FF6B35;
+            background: white;
+        }
+
+        .word-counter {
+            position: absolute;
+            bottom: 15px;
+            right: 20px;
+            background: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            color: #666;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            font-weight: bold;
+        }
+
+        .word-counter.good {
+            color: #28a745;
+        }
+
+        .tips-box {
+            background: #FFF3CD;
+            border: 2px solid #FFC107;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .tips-box h3 {
+            color: #856404;
+            margin-bottom: 10px;
+            font-family: 'Fredoka One', cursive;
+        }
+
+        .tips-box ul {
+            margin-left: 20px;
+            color: #856404;
+        }
+
+        .tips-box li {
+            margin: 8px 0;
+            line-height: 1.5;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.1em;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-hint {
+            background: #FFC107;
+            color: #333;
+        }
+
+        .btn-hint:hover {
+            background: #FFD54F;
+            transform: translateY(-2px);
+        }
+
+        .btn-clear {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-clear:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #9B59B6 0%, #FF6B35 100%);
+            color: white;
+            font-size: 1.2em;
+            padding: 18px 45px;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(155, 89, 182, 0.4);
+        }
+
+        .result {
+            margin-top: 30px;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 1.2em;
+            display: none;
+        }
+
+        .result.show {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        .result.success {
+            background: #d4edda;
+            color: #155724;
+            border: 3px solid #c3e6cb;
+        }
+
+        .result.warning {
+            background: #fff3cd;
+            color: #856404;
+            border: 3px solid #ffc107;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .mystery-icon {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3em;
+            background: white;
+            padding: 10px 20px;
+            border-radius: 50%;
+            border: 5px solid #9B59B6;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Back button */
+        .back-button {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            font-size: 1.1em;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .back-button:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px;
+                border-width: 5px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .flower-decoration {
+                display: none;
+            }
+
+            .story-text {
+                font-size: 1em;
+            }
+
+            textarea {
+                min-height: 150px;
+                font-size: 1em;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .back-button {
+                bottom: 20px;
+                left: 20px;
+                padding: 12px 20px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-left">
+                <div class="reading-badge">Reading & Writing</div>
+                <h1>Complete the Mystery 🔍</h1>
+                <p class="instructions">
+                    Read the two paragraphs below and decide what might happen next in the story. 
+                    <strong>Click on words or phrases</strong> that give you clues about the ending, 
+                    and then write a paragraph concluding the story.
+                </p>
+            </div>
+        </div>
+
+        <!-- Story Section -->
+        <div class="story-section">
+            <div class="flower-decoration">🌺</div>
+            <div class="story-text" id="story-text">
+                <p>
+                    It was Monday morning, and Zora had just walked into her classroom. She said hello to 
+                    her friends Zander and Zoe, who had just come into the coat room, where Zora was removing 
+                    her rain boots. It was nearly winter and the sky was cloudy and gray. As Zora changed 
+                    into her sneakers, she noticed that <span class="highlightable" data-clue="1">Boyd, who sat at a desk near hers, had mud on the soles of his boots</span>. 
+                    His boots were drying, the bell rang, and Zora made her way to her desk.
+                </p>
+                <p>
+                    Miss Rose, the teacher, stood up in front of the class. Though she usually wore a smile, this morning Miss Rose was 
+                    frowning. "This morning, <span class="highlightable" data-clue="2">someone walked through the flower garden at the 
+                    front of the school. There's a path of squashed flowers</span> right through the middle of the garden. I know it's tempting to take a short cut through the 
+                    flowers, but <span class="highlightable" data-clue="3">Principal Iris has announced many times that no one may walk 
+                    through the flowers</span>. If one of you is responsible, please speak up now. The principal tells me there 
+                    <span class="highlightable" data-clue="4">will be no recess today if we don't solve this mystery</span>."
+                </p>
+            </div>
+        </div>
+
+        <div class="clue-counter">
+            Clues Found: <span class="number" id="clue-count">0</span> / 4
+        </div>
+
+        <!-- Writing Section -->
+        <div class="writing-section">
+            <div class="section-title">
+                ✏️ Concluding paragraph:
+            </div>
+
+            <div class="tips-box">
+                <h3>💡 Writing Tips:</h3>
+                <ul>
+                    <li><strong>Who</strong> do you think walked through the garden? Use the clues!</li>
+                    <li><strong>Why</strong> did they do it? What was their reason?</li>
+                    <li><strong>What happens</strong> when the mystery is solved?</li>
+                    <li><strong>How</strong> do the characters feel at the end?</li>
+                    <li>Write at least <strong>50 words</strong> to tell a complete ending!</li>
+                </ul>
+            </div>
+
+            <div class="writing-area">
+                <div class="textarea-wrapper">
+                    <textarea 
+                        id="conclusion" 
+                        placeholder="Start writing your conclusion here... Who solved the mystery? What happened to Boyd? Did the class get their recess back?"
+                        oninput="updateWordCount()"
+                    ></textarea>
+                    <div class="word-counter" id="word-counter">0 words</div>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button class="btn btn-hint" onclick="showHints()">💡 Show Clues</button>
+                <button class="btn btn-clear" onclick="clearAll()">🔄 Start Over</button>
+                <button class="btn btn-submit" onclick="submitStory()">📝 Submit Story</button>
+            </div>
+
+            <div id="result" class="result"></div>
+        </div>
+
+        <div class="mystery-icon">🕵️</div>
+    </div>
+
+    <a href="../index.html" class="back-button">
+        <span style="font-size: 1.2em;">←</span>
+        <span>Back to Home</span>
+    </a>
+
+    <script>
+        let cluesFound = new Set();
+        const totalClues = 4;
+
+        // Initialize highlightable elements
+        document.querySelectorAll('.highlightable').forEach(element => {
+            element.addEventListener('click', function() {
+                const clueNum = this.getAttribute('data-clue');
+                
+                if (this.classList.contains('highlighted')) {
+                    this.classList.remove('highlighted');
+                    cluesFound.delete(clueNum);
+                } else {
+                    this.classList.add('highlighted');
+                    cluesFound.add(clueNum);
+                }
+                
+                updateClueCount();
+            });
+        });
+
+        function updateClueCount() {
+            document.getElementById('clue-count').textContent = cluesFound.size;
+        }
+
+        function updateWordCount() {
+            const text = document.getElementById('conclusion').value.trim();
+            const words = text.length > 0 ? text.split(/\s+/).length : 0;
+            const counter = document.getElementById('word-counter');
+            
+            counter.textContent = `${words} word${words !== 1 ? 's' : ''}`;
+            
+            if (words >= 50) {
+                counter.classList.add('good');
+            } else {
+                counter.classList.remove('good');
+            }
+        }
+
+        function showHints() {
+            // Highlight all clues automatically
+            document.querySelectorAll('.highlightable').forEach(element => {
+                element.classList.add('highlighted');
+                const clueNum = element.getAttribute('data-clue');
+                cluesFound.add(clueNum);
+            });
+            updateClueCount();
+
+            // Show hint message
+            const resultDiv = document.getElementById('result');
+            resultDiv.className = 'result show warning';
+            resultDiv.innerHTML = '💡 All clues are now highlighted in yellow! Look at the highlighted parts carefully to solve the mystery.';
+            
+            setTimeout(() => {
+                resultDiv.classList.remove('show');
+            }, 3000);
+        }
+
+        function clearAll() {
+            // Clear highlights
+            document.querySelectorAll('.highlighted').forEach(element => {
+                element.classList.remove('highlighted');
+            });
+            cluesFound.clear();
+            updateClueCount();
+
+            // Clear textarea
+            document.getElementById('conclusion').value = '';
+            updateWordCount();
+
+            // Clear result
+            document.getElementById('result').classList.remove('show');
+        }
+
+        function submitStory() {
+            const text = document.getElementById('conclusion').value.trim();
+            const words = text.length > 0 ? text.split(/\s+/).length : 0;
+            const resultDiv = document.getElementById('result');
+
+            // Check if they wrote something
+            if (words === 0) {
+                resultDiv.className = 'result show warning';
+                resultDiv.innerHTML = '⚠️ Please write your conclusion before submitting!';
+                resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                return;
+            }
+
+            // Check word count
+            if (words < 50) {
+                resultDiv.className = 'result show warning';
+                resultDiv.innerHTML = `📝 Good start! You wrote ${words} words. Try to write at least 50 words to tell a complete ending to the mystery.`;
+                resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                return;
+            }
+
+            // Check if they found clues
+            if (cluesFound.size === 0) {
+                resultDiv.className = 'result show warning';
+                resultDiv.innerHTML = `✅ Great job writing ${words} words! But did you find the clues? Try clicking on words in the story that give hints about who walked through the garden.`;
+                resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                return;
+            }
+
+            // Success!
+            let message = `🎉 Excellent work! You wrote ${words} words and found ${cluesFound.size} out of ${totalClues} clues!<br><br>`;
+            
+            if (cluesFound.size === totalClues) {
+                message += '🌟 <strong>Perfect detective work!</strong> You found all the clues and wrote a complete conclusion!';
+            } else {
+                message += `💪 <strong>Great story!</strong> Can you find the remaining ${totalClues - cluesFound.size} clue${totalClues - cluesFound.size > 1 ? 's' : ''} to be a master detective?`;
+            }
+
+            resultDiv.className = 'result show success';
+            resultDiv.innerHTML = message;
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // Initialize word counter
+        updateWordCount();
+    </script>
+</body>
+</html>
