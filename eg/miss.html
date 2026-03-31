@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>English Skills Worksheet</title>
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #dbe2ea;
+      --accent: #2563eb;
+      --accent-soft: #dbeafe;
+      --ok: #15803d;
+      --ok-bg: #dcfce7;
+      --bad: #b91c1c;
+      --bad-bg: #fee2e2;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+
+    body {
+      padding: 24px;
+    }
+
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      gap: 20px;
+    }
+
+    .hero, .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      padding: 28px;
+    }
+
+    h1, h2, h3 {
+      margin: 0 0 10px;
+      line-height: 1.2;
+    }
+
+    h1 { font-size: clamp(1.8rem, 2.8vw, 2.8rem); }
+    h2 { font-size: 1.35rem; }
+    h3 { font-size: 1.05rem; }
+
+    p { margin: 0; }
+
+    .subtitle {
+      color: var(--muted);
+      margin-top: 8px;
+      max-width: 75ch;
+    }
+
+    .note {
+      margin-top: 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: #1e3a8a;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    form {
+      display: grid;
+      gap: 20px;
+    }
+
+    .card {
+      padding: 22px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .list {
+      display: grid;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .row {
+      display: grid;
+      gap: 10px;
+      align-items: start;
+      padding: 12px 0;
+      border-bottom: 1px solid #edf2f7;
+    }
+
+    .row:last-child { border-bottom: none; }
+
+    .match-row {
+      grid-template-columns: minmax(220px, 300px) 1fr;
+    }
+
+    .jobs-box, .skills-box {
+      margin-top: 14px;
+      padding: 14px;
+      border: 1px dashed #bfd2ff;
+      border-radius: 16px;
+      background: #f8fbff;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .pill {
+      padding: 8px 12px;
+      background: white;
+      border: 1px solid #d6e4ff;
+      border-radius: 999px;
+      font-size: 0.95rem;
+    }
+
+    label span.qtext,
+    .question-text {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    select,
+    input[type="text"],
+    textarea {
+      width: 100%;
+      border: 1px solid #cbd5e1;
+      background: #fff;
+      color: var(--text);
+      border-radius: 14px;
+      padding: 12px 14px;
+      font: inherit;
+      outline: none;
+      transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+
+    select:focus,
+    input[type="text"]:focus,
+    textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .sentence {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      font-size: 1rem;
+    }
+
+    .inline-input {
+      width: 240px !important;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .choices {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .choice {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 10px 12px;
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+      background: #fcfcfd;
+    }
+
+    .choice input {
+      margin-top: 3px;
+    }
+
+    .reading {
+      margin-top: 14px;
+      padding: 18px;
+      border-radius: 18px;
+      background: #fafafa;
+      border: 1px solid #eceff3;
+      display: grid;
+      gap: 14px;
+    }
+
+    .reading p { color: #374151; }
+
+    .actions {
+      position: sticky;
+      bottom: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      padding: 14px;
+      background: rgba(246, 247, 251, 0.88);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+    }
+
+    button {
+      border: none;
+      border-radius: 999px;
+      padding: 13px 18px;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform .15s ease, opacity .2s ease;
+    }
+
+    button:hover { transform: translateY(-1px); }
+
+    .primary {
+      background: var(--accent);
+      color: white;
+    }
+
+    .secondary {
+      background: white;
+      color: var(--text);
+      border: 1px solid var(--line);
+    }
+
+    .result {
+      text-align: center;
+      padding: 16px;
+      border-radius: 18px;
+      font-weight: 700;
+      display: none;
+    }
+
+    .result.show { display: block; }
+    .result.ok { background: var(--ok-bg); color: var(--ok); }
+    .result.bad { background: var(--bad-bg); color: var(--bad); }
+
+    .feedback {
+      margin-top: 8px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      display: none;
+    }
+
+    .feedback.show { display: block; }
+    .feedback.ok { color: var(--ok); }
+    .feedback.bad { color: var(--bad); }
+
+    .muted { color: var(--muted); }
+
+    .small {
+      font-size: 0.92rem;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    @media (max-width: 850px) {
+      body { padding: 14px; }
+      .grid-2 { grid-template-columns: 1fr; }
+      .match-row { grid-template-columns: 1fr; }
+      .inline-input { width: 100% !important; }
+      .actions { bottom: 8px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <h1>English Skills Worksheet</h1>
+      <p class="subtitle">Versión interactiva de las páginas que subiste. Se puede leer, completar y revisar en el navegador. No usa guardado local ni base de datos, y al recargar o cerrar la pestaña las respuestas se borran.</p>
+      <div class="note">Autocomplete desactivado · sin guardado automático · borrado al recargar</div>
+    </section>
+
+    <form id="worksheet" autocomplete="off" novalidate>
+      <section class="card">
+        <h2>1. Match each skill with the correct definition.</h2>
+        <div class="grid-2">
+          <div>
+            <h3>Skills</h3>
+            <div class="list muted">
+              <div>a. Communication</div>
+              <div>b. Teamwork</div>
+              <div>c. Problem solving</div>
+              <div>d. Leadership</div>
+              <div>e. Creativity</div>
+              <div>f. Organization</div>
+              <div>g. Adaptability</div>
+              <div>h. Responsibility</div>
+              <div>i. Time management</div>
+              <div>j. Critical thinking</div>
+              <div>k. Working under pressure</div>
+            </div>
+          </div>
+          <div>
+            <h3>Definitions</h3>
+            <div class="list">
+              <div class="row match-row">
+                <label for="s1"><span class="qtext">The ability to stay calm and work effectively in stressful situations</span></label>
+                <div>
+                  <select id="s1" data-answer="Working under pressure" autocomplete="off">
+                    <option value="">Choose one</option>
+                    <option>Communication</option><option>Teamwork</option><option>Problem solving</option><option>Leadership</option><option>Creativity</option><option>Organization</option><option>Adaptability</option><option>Responsibility</option><option>Time management</option><option>Critical thinking</option><option>Working under pressure</option>
+                  </select>
+                  <div class="feedback" aria-live="polite"></div>
+                </div>
+              </div>
+              <div class="row match-row">
+                <label for="s2"><span class="qtext">Analyzing and evaluating ideas</span></label>
+                <div>
+                  <select id="s2" data-answer="Critical thinking" autocomplete="off">
+                    <option value="">Choose one</option>
+                    <option>Communication</option><option>Teamwork</option><option>Problem solving</option><option>Leadership</option><option>Creativity</option><option>Organization</option><option>Adaptability</option><option>Responsibility</option><option>Time management</option><option>Critical thinking</option><option>Working under pressure</option>
+                  </select>
+                  <div class="feedback"></div>
+                </div>
+              </div>
+              <div class="row match-row">
+                <label for="s3"><span class="qtext">Planning and managing tasks</span></label>
+                <div>
+                  <select id="s3" data-answer="Organization" autocomplete="off">
+                    <option value="">Choose one</option>
+                    <option>Communication</option><option>Teamwork</option><option>Problem solving</option><option>Leadership</option><option>Creativity</option><option>Organization</option><option>Adaptability</option><option>Responsibility</option><option>Time management</option><option>Critical thinking</option><option>Working under pressure</option>
+                  </select>
+                  <div class="feedback"></div>
+                </div>
+              </div>
+              <div class="row match-row">
+                <label for="s4"><span class="qtext">Using time effectively</span></label>
+                <div>
+                  <select id="s4" data-answer="Time management" autocomplete="off">
+                    <option value="">Choose one</option>
+                    <option>Communication</option><option>Teamwork</option><option>Problem solving</option><option>Leadership</option><option>Creativity</option><option>Organization</option><option>Adaptability</option><option>Responsibility</option><option>Time management</option><option>Critical thinking</option><option>Working under pressure</option>
+                  </select>
+                  <div class="feedback"></div>
+                </div>
+              </div>
+              <div class="row match-row">
+                <label for="s5"><span class="qtext">Expressing ideas clearly</span></label>
+                <div>
+                  <select id="s5" data-answer="Communication" autocomplete="off">
+                    <option value="">Choose one</option>
+                    <option>Communication</option><option>Teamwork</option><option>Problem solving</option><option>Leadership</option><option>Creativity</option><option>Organization</option><option>Adaptability</option><option>Responsibility</option><option>Time management</option><option>Critical thinking</option><option>Working under pressure</option>
+                  </select>
+                  <div class="feedback"></div>
+                </div>
+              </div>
+              <div class="row match-row">
+                <label for="s6"><span class="qtext">Working well with others</span></label>
+                <div>
+                  <select id="s6" data-answer="Teamwork" autocomplete="off">
+                    <option value="">Choose one</option>
+                    <option>Communication</option><option>Teamwork</option><option>Problem solving</option><option>Leadership</option><option>Creativity</option><option>Organization</option><option>Adaptability</option><option>Responsibility</option><option>Time management</option><option>Critical thinking</option><option>Working under pressure</option>
+                  </select>
+                  <div class="feedback"></div>
+                </div>
+              </div>
+              <div class="row match-row">
+                <label for="s7"><span class="qtext">Having new ideas</span></label>
+                <div>
+                  <select id="s7" data-answer="Creativity" autocomplete="off">
+                    <option value="">Choose one</option>
+                    <option>Communication</option><option>Teamwork</option><option>Problem solving</option><option>Leadership</option><option>Creativity</option><option>Organization</option><option>Adaptability</option><option>Responsibility</option><option>Time management</option><option>Critical thinking</option><option>Working under pressure</option>
+                  </select>
+                  <div class="feedback"></div>
+                </div>
+              </div>
+              <div class="row match-row">
+                <label for="s8"><span class="qtext">Finding solutions to problems</span></label>
+                <div>
+                  <select id="s8" data-answer="Problem solving" autocomplete="off">
+                    <option value="">Choose one</option>
+                    <option>Communication</option><option>Teamwork</option><option>Problem solving</option><option>Leadership</option><option>Creativity</option><option>Organization</option><option>Adaptability</option><option>Responsibility</option><option>Time management</option><option>Critical thinking</option><option>Working under pressure</option>
+                  </select>
+                  <div class="feedback"></div>
+                </div>
+              </div>
+              <div class="row match-row">
+                <label for="s9"><span class="qtext">Guiding or leading a group</span></label>
+                <div>
+                  <select id="s9" data-answer="Leadership" autocomplete="off">
+                    <option value="">Choose one</option>
+                    <option>Communication</option><option>Teamwork</option><option>Problem solving</option><option>Leadership</option><option>Creativity</option><option>Organization</option><option>Adaptability</option><option>Responsibility</option><option>Time management</option><option>Critical thinking</option><option>Working under pressure</option>
+                  </select>
+                  <div class="feedback"></div>
+                </div>
+              </div>
+              <div class="row match-row">
+                <label for="s10"><span class="qtext">Adjusting to new situations</span></label>
+                <div>
+                  <select id="s10" data-answer="Adaptability" autocomplete="off">
+                    <option value="">Choose one</option>
+                    <option>Communication</option><option>Teamwork</option><option>Problem solving</option><option>Leadership</option><option>Creativity</option><option>Organization</option><option>Adaptability</option><option>Responsibility</option><option>Time management</option><option>Critical thinking</option><option>Working under pressure</option>
+                  </select>
+                  <div class="feedback"></div>
+                </div>
+              </div>
+              <div class="row match-row">
+                <label for="s11"><span class="qtext">Being reliable and accountable</span></label>
+                <div>
+                  <select id="s11" data-answer="Responsibility" autocomplete="off">
+                    <option value="">Choose one</option>
+                    <option>Communication</option><option>Teamwork</option><option>Problem solving</option><option>Leadership</option><option>Creativity</option><option>Organization</option><option>Adaptability</option><option>Responsibility</option><option>Time management</option><option>Critical thinking</option><option>Working under pressure</option>
+                  </select>
+                  <div class="feedback"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>2. Match each contribution to society with the correct job from the box.</h2>
+        <div class="jobs-box" aria-label="Job options">
+          <span class="pill">Scientist</span>
+          <span class="pill">Farmer</span>
+          <span class="pill">Police officer</span>
+          <span class="pill">Teacher</span>
+          <span class="pill">Bus driver</span>
+          <span class="pill">Engineer</span>
+          <span class="pill">Doctor</span>
+          <span class="pill">Firefighter</span>
+        </div>
+        <div class="list">
+          <div class="row match-row">
+            <label for="j1"><span class="qtext">I educate students and prepare them for the future.</span></label>
+            <div>
+              <select id="j1" data-answer="Teacher" autocomplete="off">
+                <option value="">Choose one</option>
+                <option>Scientist</option><option>Farmer</option><option>Police officer</option><option>Teacher</option><option>Bus driver</option><option>Engineer</option><option>Doctor</option><option>Firefighter</option>
+              </select>
+              <div class="feedback"></div>
+            </div>
+          </div>
+          <div class="row match-row">
+            <label for="j2"><span class="qtext">I treat sick people and help save lives.</span></label>
+            <div>
+              <select id="j2" data-answer="Doctor" autocomplete="off">
+                <option value="">Choose one</option>
+                <option>Scientist</option><option>Farmer</option><option>Police officer</option><option>Teacher</option><option>Bus driver</option><option>Engineer</option><option>Doctor</option><option>Firefighter</option>
+              </select>
+              <div class="feedback"></div>
+            </div>
+          </div>
+          <div class="row match-row">
+            <label for="j3"><span class="qtext">I protect people from fires and emergencies.</span></label>
+            <div>
+              <select id="j3" data-answer="Firefighter" autocomplete="off">
+                <option value="">Choose one</option>
+                <option>Scientist</option><option>Farmer</option><option>Police officer</option><option>Teacher</option><option>Bus driver</option><option>Engineer</option><option>Doctor</option><option>Firefighter</option>
+              </select>
+              <div class="feedback"></div>
+            </div>
+          </div>
+          <div class="row match-row">
+            <label for="j4"><span class="qtext">I protect communities and help keep people safe.</span></label>
+            <div>
+              <select id="j4" data-answer="Police officer" autocomplete="off">
+                <option value="">Choose one</option>
+                <option>Scientist</option><option>Farmer</option><option>Police officer</option><option>Teacher</option><option>Bus driver</option><option>Engineer</option><option>Doctor</option><option>Firefighter</option>
+              </select>
+              <div class="feedback"></div>
+            </div>
+          </div>
+          <div class="row match-row">
+            <label for="j5"><span class="qtext">I produce food that people need to live.</span></label>
+            <div>
+              <select id="j5" data-answer="Farmer" autocomplete="off">
+                <option value="">Choose one</option>
+                <option>Scientist</option><option>Farmer</option><option>Police officer</option><option>Teacher</option><option>Bus driver</option><option>Engineer</option><option>Doctor</option><option>Firefighter</option>
+              </select>
+              <div class="feedback"></div>
+            </div>
+          </div>
+          <div class="row match-row">
+            <label for="j6"><span class="qtext">I design and build useful structures and technology.</span></label>
+            <div>
+              <select id="j6" data-answer="Engineer" autocomplete="off">
+                <option value="">Choose one</option>
+                <option>Scientist</option><option>Farmer</option><option>Police officer</option><option>Teacher</option><option>Bus driver</option><option>Engineer</option><option>Doctor</option><option>Firefighter</option>
+              </select>
+              <div class="feedback"></div>
+            </div>
+          </div>
+          <div class="row match-row">
+            <label for="j7"><span class="qtext">I help people travel safely around the city.</span></label>
+            <div>
+              <select id="j7" data-answer="Bus driver" autocomplete="off">
+                <option value="">Choose one</option>
+                <option>Scientist</option><option>Farmer</option><option>Police officer</option><option>Teacher</option><option>Bus driver</option><option>Engineer</option><option>Doctor</option><option>Firefighter</option>
+              </select>
+              <div class="feedback"></div>
+            </div>
+          </div>
+          <div class="row match-row">
+            <label for="j8"><span class="qtext">I discover new knowledge to improve people’s lives.</span></label>
+            <div>
+              <select id="j8" data-answer="Scientist" autocomplete="off">
+                <option value="">Choose one</option>
+                <option>Scientist</option><option>Farmer</option><option>Police officer</option><option>Teacher</option><option>Bus driver</option><option>Engineer</option><option>Doctor</option><option>Firefighter</option>
+              </select>
+              <div class="feedback"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>3. Complete the sentences using the hard skills in the box. Use each skill only once.</h2>
+        <div class="skills-box">
+          <span class="pill">programming</span>
+          <span class="pill">graphic design</span>
+          <span class="pill">driving</span>
+          <span class="pill">data analysis</span>
+          <span class="pill">using computers</span>
+          <span class="pill">mathematics</span>
+          <span class="pill">speaking English</span>
+          <span class="pill">video editing</span>
+        </div>
+        <div class="list">
+          <div class="row">
+            <label class="sentence">1. Software developers use
+              <input class="inline-input" type="text" data-answer="programming" autocomplete="new-password" spellcheck="false" />
+              to create applications and websites.
+            </label>
+            <div class="feedback"></div>
+          </div>
+          <div class="row">
+            <label class="sentence">2. Many transportation jobs require
+              <input class="inline-input" type="text" data-answer="driving" autocomplete="new-password" spellcheck="false" />
+              to operate vehicles safely.
+            </label>
+            <div class="feedback"></div>
+          </div>
+          <div class="row">
+            <label class="sentence">3. Scientists often use
+              <input class="inline-input" type="text" data-answer="data analysis" autocomplete="new-password" spellcheck="false" />
+              to study information and discover patterns in data.
+            </label>
+            <div class="feedback"></div>
+          </div>
+          <div class="row">
+            <label class="sentence">4. Designers use
+              <input class="inline-input" type="text" data-answer="graphic design" autocomplete="new-password" spellcheck="false" />
+              to create logos, images, and visual content.
+            </label>
+            <div class="feedback"></div>
+          </div>
+          <div class="row">
+            <label class="sentence">5. Engineers use
+              <input class="inline-input" type="text" data-answer="mathematics" autocomplete="new-password" spellcheck="false" />
+              to calculate measurements and solve technical problems.
+            </label>
+            <div class="feedback"></div>
+          </div>
+          <div class="row">
+            <label class="sentence">6. Office workers need
+              <input class="inline-input" type="text" data-answer="using computers" autocomplete="new-password" spellcheck="false" />
+              to write documents, send emails, and use digital tools.
+            </label>
+            <div class="feedback"></div>
+          </div>
+          <div class="row">
+            <label class="sentence">7. Many international jobs require
+              <input class="inline-input" type="text" data-answer="speaking English" autocomplete="new-password" spellcheck="false" />
+              to communicate with people from different countries.
+            </label>
+            <div class="feedback"></div>
+          </div>
+          <div class="row">
+            <label class="sentence">8. Content creators use
+              <input class="inline-input" type="text" data-answer="video editing" autocomplete="new-password" spellcheck="false" />
+              to produce videos for social media or online platforms.
+            </label>
+            <div class="feedback"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>4. Listening Activity. Listen to the audio and choose the correct answer.</h2>
+        <div class="list">
+          <div class="row">
+            <div class="question-text">4.1. According to the audio, what makes hard skills different from soft skills?</div>
+            <div class="choices" data-answer="b">
+              <label class="choice"><input type="radio" name="q41" value="a" autocomplete="off" /> a) Hard skills are mainly used in technical jobs, while soft skills are used in creative jobs.</label>
+              <label class="choice"><input type="radio" name="q41" value="b" autocomplete="off" /> b) Hard skills are specific abilities required to perform a job, while soft skills involve interacting with people.</label>
+              <label class="choice"><input type="radio" name="q41" value="c" autocomplete="off" /> c) Hard skills are easier to develop, while soft skills require formal education.</label>
+              <label class="choice"><input type="radio" name="q41" value="d" autocomplete="off" /> d) Hard skills are usually more important for success than soft skills.</label>
+            </div>
+            <div class="feedback"></div>
+          </div>
+          <div class="row">
+            <div class="question-text">4.2. According to the audio, how are hard skills usually learned?</div>
+            <div class="choices" data-answer="c">
+              <label class="choice"><input type="radio" name="q42" value="a" autocomplete="off" /> a) Through informal practice in everyday situations.</label>
+              <label class="choice"><input type="radio" name="q42" value="b" autocomplete="off" /> b) Through internships and specialized professional courses.</label>
+              <label class="choice"><input type="radio" name="q42" value="c" autocomplete="off" /> c) Through school, training, or previous work experience.</label>
+              <label class="choice"><input type="radio" name="q42" value="d" autocomplete="off" /> d) Mainly through natural talent and personal abilities.</label>
+            </div>
+            <div class="feedback"></div>
+          </div>
+          <div class="row">
+            <div class="question-text">4.3. Why are soft skills more difficult to develop?</div>
+            <div class="choices" data-answer="d">
+              <label class="choice"><input type="radio" name="q43" value="a" autocomplete="off" /> a) Because they are only required in leadership positions.</label>
+              <label class="choice"><input type="radio" name="q43" value="b" autocomplete="off" /> b) Because they are mainly taught through formal education.</label>
+              <label class="choice"><input type="radio" name="q43" value="c" autocomplete="off" /> c) Because they depend mostly on technical knowledge.</label>
+              <label class="choice"><input type="radio" name="q43" value="d" autocomplete="off" /> d) Because they require practice and interaction with other people over time.</label>
+            </div>
+            <div class="feedback"></div>
+          </div>
+          <div class="row">
+            <div class="question-text">4.4. According to the audio, how do employers usually evaluate soft skills?</div>
+            <div class="choices" data-answer="d">
+              <label class="choice"><input type="radio" name="q44" value="a" autocomplete="off" /> a) By reviewing academic grades and certifications.</label>
+              <label class="choice"><input type="radio" name="q44" value="b" autocomplete="off" /> b) Through written exams during the hiring process.</label>
+              <label class="choice"><input type="radio" name="q44" value="c" autocomplete="off" /> c) By reading resumes and cover letters carefully.</label>
+              <label class="choice"><input type="radio" name="q44" value="d" autocomplete="off" /> d) Through interviews or the first weeks of work.</label>
+            </div>
+            <div class="feedback"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>5. Read the text and answer the questions. Use complete sentences.</h2>
+        <div class="reading">
+          <h3>The Role of Scientists</h3>
+          <p>Scientists play an important role in modern society. Their main goal is to understand how the world works and to discover new knowledge. They study many different areas, such as medicine, technology, the environment, and space.</p>
+          <p>To answer their questions, scientists often carry out experiments and research. They collect information, analyze data, and test different ideas before reaching conclusions. Because of this, scientists need strong technical abilities, including mathematics, data analysis, and the use of computers.</p>
+          <p>However, scientific work does not depend only on technical knowledge. Scientists must also use important personal skills. For example, they need critical thinking to evaluate information and creativity to develop new ideas. Many scientists also work in teams, so communication and teamwork are very important.</p>
+          <p>The discoveries made by scientists can have a big impact on people's lives. Scientific research has helped develop new medicines, improve technology, and find solutions to environmental problems. For this reason, scientists make an important contribution to society by helping us better understand the world and by solving real-life problems.</p>
+        </div>
+        <div class="list">
+          <div class="row">
+            <label><span class="qtext">5.1. What is the main objective of scientists according to the text?</span>
+              <textarea data-answer-text="Scientists’ main objective is to understand how the world works and to discover new knowledge." autocomplete="new-password" spellcheck="false"></textarea>
+            </label>
+          </div>
+          <div class="row">
+            <label><span class="qtext">5.2. What activities do scientists usually do to find answers to their questions?</span>
+              <textarea data-answer-text="Scientists usually carry out experiments and research. They collect information, analyze data, and test different ideas before reaching conclusions." autocomplete="new-password" spellcheck="false"></textarea>
+            </label>
+          </div>
+          <div class="row">
+            <label><span class="qtext">5.3. What technical abilities do scientists need for their work? Mention at least two.</span>
+              <textarea data-answer-text="Scientists need technical abilities such as mathematics, data analysis, and the use of computers." autocomplete="new-password" spellcheck="false"></textarea>
+            </label>
+          </div>
+          <div class="row">
+            <label><span class="qtext">5.4. Besides technical knowledge, what personal skills are important for scientists?</span>
+              <textarea data-answer-text="Besides technical knowledge, scientists need critical thinking, creativity, communication, and teamwork." autocomplete="new-password" spellcheck="false"></textarea>
+            </label>
+          </div>
+          <div class="row">
+            <label><span class="qtext">5.5. What are some examples of how scientific research has improved people’s lives?</span>
+              <textarea data-answer-text="Scientific research has helped develop new medicines, improve technology, and find solutions to environmental problems." autocomplete="new-password" spellcheck="false"></textarea>
+            </label>
+          </div>
+        </div>
+        <p class="small">Estas respuestas abiertas no se califican automáticamente, pero sí puedes mostrar sugerencias modelo con el botón de abajo.</p>
+      </section>
+
+      <section class="card">
+        <h2>6. Answer the following questions about you. Use complete sentences.</h2>
+        <div class="list">
+          <div class="row">
+            <label><span class="qtext">6.1. What skill are you good at?</span>
+              <textarea autocomplete="new-password" spellcheck="false"></textarea>
+            </label>
+          </div>
+          <div class="row">
+            <label><span class="qtext">6.2. What skill would you like to improve?</span>
+              <textarea autocomplete="new-password" spellcheck="false"></textarea>
+            </label>
+          </div>
+          <div class="row">
+            <label><span class="qtext">6.3. How could your skills help society?</span>
+              <textarea autocomplete="new-password" spellcheck="false"></textarea>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <div id="result" class="result" aria-live="polite"></div>
+
+      <div class="actions">
+        <button type="button" class="primary" id="checkBtn">Revisar respuestas cerradas</button>
+        <button type="button" class="secondary" id="showBtn">Mostrar respuestas modelo de lectura</button>
+        <button type="button" class="secondary" id="clearBtn">Borrar todo</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById('worksheet');
+    const resultBox = document.getElementById('result');
+    const checkBtn = document.getElementById('checkBtn');
+    const showBtn = document.getElementById('showBtn');
+    const clearBtn = document.getElementById('clearBtn');
+
+    function normalize(text) {
+      return (text || '')
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[’']/g, "'")
+        .replace(/\s+/g, ' ')
+        .trim();
+    }
+
+    function setFeedback(node, ok, message) {
+      if (!node) return;
+      node.textContent = message;
+      node.classList.add('show');
+      node.classList.toggle('ok', ok);
+      node.classList.toggle('bad', !ok);
+    }
+
+    function clearFeedback() {
+      document.querySelectorAll('.feedback').forEach(el => {
+        el.textContent = '';
+        el.className = 'feedback';
+      });
+      resultBox.textContent = '';
+      resultBox.className = 'result';
+    }
+
+    function clearAll() {
+      form.reset();
+      document.querySelectorAll('textarea, input[type="text"]').forEach(el => el.value = '');
+      clearFeedback();
+    }
+
+    function gradeClosedQuestions() {
+      clearFeedback();
+      let correct = 0;
+      let total = 0;
+
+      document.querySelectorAll('select[data-answer]').forEach(select => {
+        total += 1;
+        const ok = normalize(select.value) === normalize(select.dataset.answer);
+        const feedback = select.parentElement.querySelector('.feedback');
+        if (ok) {
+          correct += 1;
+          setFeedback(feedback, true, 'Correct');
+        } else {
+          setFeedback(feedback, false, `Correct answer: ${select.dataset.answer}`);
+        }
+      });
+
+      document.querySelectorAll('input[type="text"][data-answer]').forEach(input => {
+        total += 1;
+        const ok = normalize(input.value) === normalize(input.dataset.answer);
+        const feedback = input.closest('.row').querySelector('.feedback');
+        if (ok) {
+          correct += 1;
+          setFeedback(feedback, true, 'Correct');
+        } else {
+          setFeedback(feedback, false, `Correct answer: ${input.dataset.answer}`);
+        }
+      });
+
+      document.querySelectorAll('.choices[data-answer]').forEach(group => {
+        total += 1;
+        const checked = group.querySelector('input[type="radio"]:checked');
+        const ok = checked && checked.value === group.dataset.answer;
+        const feedback = group.parentElement.querySelector('.feedback');
+        if (ok) {
+          correct += 1;
+          setFeedback(feedback, true, 'Correct');
+        } else {
+          setFeedback(feedback, false, `Correct answer: ${group.dataset.answer.toUpperCase()}`);
+        }
+      });
+
+      const percent = Math.round((correct / total) * 100);
+      resultBox.classList.add('show', percent >= 70 ? 'ok' : 'bad');
+      resultBox.textContent = `Resultado: ${correct} / ${total} (${percent}%) · No se guardó nada; esto solo vive en esta pestaña.`;
+    }
+
+    function toggleModelAnswers() {
+      document.querySelectorAll('textarea[data-answer-text]').forEach(area => {
+        const already = area.nextElementSibling && area.nextElementSibling.classList.contains('feedback');
+        if (already) return;
+        const tip = document.createElement('div');
+        tip.className = 'feedback show ok';
+        tip.textContent = `Modelo: ${area.dataset.answerText}`;
+        area.insertAdjacentElement('afterend', tip);
+      });
+    }
+
+    checkBtn.addEventListener('click', gradeClosedQuestions);
+    showBtn.addEventListener('click', toggleModelAnswers);
+    clearBtn.addEventListener('click', clearAll);
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+    });
+
+    window.addEventListener('load', clearAll);
+    window.addEventListener('pageshow', clearAll);
+    window.addEventListener('beforeunload', () => {
+      try { clearAll(); } catch (e) {}
+    });
+  </script>
+</body>
+</html>
