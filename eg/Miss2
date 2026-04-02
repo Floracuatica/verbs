@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hard Skills vs Soft Skills</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 2rem;
+    }
+
+    .subtitle {
+      text-align: center;
+      margin-bottom: 28px;
+      color: #4b5563;
+      line-height: 1.5;
+    }
+
+    .top-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 28px;
+    }
+
+    .score-box {
+      background: white;
+      border-radius: 14px;
+      padding: 12px 18px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+      font-weight: bold;
+    }
+
+    button {
+      border: none;
+      border-radius: 12px;
+      padding: 12px 18px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .btn-check {
+      background: #2563eb;
+      color: white;
+    }
+
+    .btn-reset {
+      background: #111827;
+      color: white;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.07);
+      border: 2px solid transparent;
+    }
+
+    .card.correct {
+      border-color: #16a34a;
+      background: #f0fdf4;
+    }
+
+    .card.incorrect {
+      border-color: #dc2626;
+      background: #fef2f2;
+    }
+
+    .skill-name {
+      font-size: 1.08rem;
+      font-weight: bold;
+      margin-bottom: 14px;
+      line-height: 1.35;
+    }
+
+    .options {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .option-btn {
+      flex: 1;
+      min-width: 110px;
+      background: #e5e7eb;
+      color: #111827;
+      border: 2px solid transparent;
+    }
+
+    .option-btn.selected {
+      background: #dbeafe;
+      border-color: #2563eb;
+      color: #1d4ed8;
+      font-weight: bold;
+    }
+
+    .feedback {
+      margin-top: 14px;
+      font-size: 0.95rem;
+      line-height: 1.4;
+      display: none;
+    }
+
+    .feedback.show {
+      display: block;
+    }
+
+    .feedback.correct-text {
+      color: #166534;
+      font-weight: bold;
+    }
+
+    .feedback.wrong-text {
+      color: #991b1b;
+      font-weight: bold;
+    }
+
+    .legend {
+      margin-top: 28px;
+      background: white;
+      border-radius: 16px;
+      padding: 16px 18px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+      color: #374151;
+      line-height: 1.6;
+    }
+
+    .final-message {
+      text-align: center;
+      margin-top: 22px;
+      font-size: 1.08rem;
+      font-weight: bold;
+      color: #1f2937;
+    }
+
+    @media (max-width: 640px) {
+      h1 {
+        font-size: 1.6rem;
+      }
+
+      .option-btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Hard Skills vs Soft Skills</h1>
+    <p class="subtitle">
+      Read each skill and choose whether it is a <strong>Hard Skill</strong> or a <strong>Soft Skill</strong>.
+      Then click <strong>Check Answers</strong>.
+    </p>
+
+    <div class="top-bar">
+      <div class="score-box" id="progress">Answered: 0 / 30</div>
+      <button class="btn-check" id="checkBtn">Check Answers</button>
+      <button class="btn-reset" id="resetBtn">Reset</button>
+    </div>
+
+    <div class="grid" id="exercise"></div>
+
+    <div class="final-message" id="finalMessage"></div>
+
+    <div class="legend">
+      <strong>Reminder:</strong><br>
+      <strong>Hard skills</strong> are technical or teachable abilities.<br>
+      <strong>Soft skills</strong> are personal, social, and communication abilities.
+    </div>
+  </div>
+
+  <script>
+    const skills = [
+      { name: "Advanced Excel", type: "hard" },
+      { name: "Python programming", type: "hard" },
+      { name: "Graphic design", type: "hard" },
+      { name: "Data analysis", type: "hard" },
+      { name: "Accounting", type: "hard" },
+      { name: "Technical report writing", type: "hard" },
+      { name: "Using AutoCAD", type: "hard" },
+      { name: "SQL database management", type: "hard" },
+      { name: "English-Spanish translation", type: "hard" },
+      { name: "Video editing", type: "hard" },
+      { name: "Digital marketing", type: "hard" },
+      { name: "Cybersecurity", type: "hard" },
+      { name: "Operating machinery", type: "hard" },
+      { name: "Reading blueprints", type: "hard" },
+      { name: "Using CRM software", type: "hard" },
+
+      { name: "Teamwork", type: "soft" },
+      { name: "Effective communication", type: "soft" },
+      { name: "Empathy", type: "soft" },
+      { name: "Conflict resolution", type: "soft" },
+      { name: "Adaptability", type: "soft" },
+      { name: "Leadership", type: "soft" },
+      { name: "Critical thinking", type: "soft" },
+      { name: "Time management", type: "soft" },
+      { name: "Creativity", type: "soft" },
+      { name: "Responsibility", type: "soft" },
+      { name: "Active listening", type: "soft" },
+      { name: "Negotiation", type: "soft" },
+      { name: "Patience", type: "soft" },
+      { name: "Decision-making", type: "soft" },
+      { name: "Resilience", type: "soft" }
+    ];
+
+    const exercise = document.getElementById("exercise");
+    const progress = document.getElementById("progress");
+    const checkBtn = document.getElementById("checkBtn");
+    const resetBtn = document.getElementById("resetBtn");
+    const finalMessage = document.getElementById("finalMessage");
+
+    function createCard(skill, index) {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.dataset.correct = skill.type;
+      card.dataset.index = index;
+      card.dataset.selected = "";
+
+      card.innerHTML = `
+        <div class="skill-name">${index + 1}. ${skill.name}</div>
+        <div class="options">
+          <button class="option-btn" data-value="hard" type="button">Hard Skill</button>
+          <button class="option-btn" data-value="soft" type="button">Soft Skill</button>
+        </div>
+        <div class="feedback"></div>
+      `;
+
+      const optionButtons = card.querySelectorAll(".option-btn");
+
+      optionButtons.forEach(button => {
+        button.addEventListener("click", () => {
+          if (checkBtn.dataset.checked === "true") return;
+
+          card.dataset.selected = button.dataset.value;
+
+          optionButtons.forEach(btn => btn.classList.remove("selected"));
+          button.classList.add("selected");
+
+          updateProgress();
+        });
+      });
+
+      return card;
+    }
+
+    function renderExercise() {
+      exercise.innerHTML = "";
+      skills.forEach((skill, index) => {
+        exercise.appendChild(createCard(skill, index));
+      });
+      updateProgress();
+      finalMessage.textContent = "";
+      checkBtn.dataset.checked = "false";
+    }
+
+    function updateProgress() {
+      const cards = document.querySelectorAll(".card");
+      let answered = 0;
+
+      cards.forEach(card => {
+        if (card.dataset.selected) answered++;
+      });
+
+      progress.textContent = `Answered: ${answered} / ${cards.length}`;
+    }
+
+    function checkAnswers() {
+      const cards = document.querySelectorAll(".card");
+      let correctCount = 0;
+
+      cards.forEach(card => {
+        const selected = card.dataset.selected;
+        const correct = card.dataset.correct;
+        const feedback = card.querySelector(".feedback");
+
+        card.classList.remove("correct", "incorrect");
+        feedback.classList.remove("show", "correct-text", "wrong-text");
+
+        if (!selected) {
+          feedback.textContent = "You did not answer this item.";
+          feedback.classList.add("show", "wrong-text");
+          card.classList.add("incorrect");
+          return;
+        }
+
+        if (selected === correct) {
+          correctCount++;
+          card.classList.add("correct");
+          feedback.textContent = `Correct: this is a ${correct === "hard" ? "Hard Skill" : "Soft Skill"}.`;
+          feedback.classList.add("show", "correct-text");
+        } else {
+          card.classList.add("incorrect");
+          feedback.textContent = `Incorrect. The correct answer is ${correct === "hard" ? "Hard Skill" : "Soft Skill"}.`;
+          feedback.classList.add("show", "wrong-text");
+        }
+      });
+
+      checkBtn.dataset.checked = "true";
+      finalMessage.textContent = `Score: ${correctCount} / ${cards.length}`;
+    }
+
+    function resetExercise() {
+      renderExercise();
+    }
+
+    checkBtn.addEventListener("click", checkAnswers);
+    resetBtn.addEventListener("click", resetExercise);
+
+    renderExercise();
+  </script>
+</body>
+</html>
