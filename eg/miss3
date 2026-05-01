@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>English Exercises - Jobs and Career Paths</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f6fb;
+      color: #222;
+      line-height: 1.5;
+    }
+
+    header {
+      background: #263859;
+      color: white;
+      padding: 28px 18px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    header p {
+      margin: 8px 0 0;
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 0 16px 40px;
+    }
+
+    section {
+      background: white;
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 28px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #263859;
+    }
+
+    .instructions {
+      background: #eef2ff;
+      padding: 12px 16px;
+      border-left: 5px solid #526dba;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    .word-bank {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 18px 0;
+    }
+
+    .word-bank span {
+      background: #e7ecff;
+      border: 1px solid #bcc8ff;
+      padding: 8px 12px;
+      border-radius: 20px;
+      font-weight: bold;
+    }
+
+    .exercise-item {
+      margin-bottom: 16px;
+      padding: 12px;
+      border-radius: 10px;
+      background: #fafafa;
+      border: 1px solid #e5e5e5;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    select,
+    input {
+      width: 100%;
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #bbb;
+      border-radius: 8px;
+      background: white;
+    }
+
+    input:focus,
+    select:focus {
+      outline: 2px solid #526dba;
+      border-color: #526dba;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    button {
+      border: none;
+      padding: 12px 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+
+    .check-btn {
+      background: #263859;
+      color: white;
+    }
+
+    .reset-btn {
+      background: #e5e5e5;
+      color: #222;
+    }
+
+    .feedback {
+      margin-top: 12px;
+      font-weight: bold;
+      min-height: 24px;
+    }
+
+    .correct {
+      border-color: #3ba55d !important;
+      background: #eefaf2 !important;
+    }
+
+    .incorrect {
+      border-color: #d64545 !important;
+      background: #fff0f0 !important;
+    }
+
+    .sentence {
+      font-weight: normal;
+    }
+
+    footer {
+      text-align: center;
+      color: #555;
+      padding: 20px;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>English Exercises</h1>
+    <p>Jobs, people and career paths</p>
+  </header>
+
+  <main>
+
+    <!-- EXERCISE 1 -->
+    <section>
+      <h2>Exercise 1: Career Paths</h2>
+
+      <div class="instructions">
+        Put the sentences about Mark's career into the correct order.
+      </div>
+
+      <div class="exercise-item">
+        <label>1.</label>
+        <select data-answer="After graduating from university, Mark decided to apply for a job as an engineer.">
+          <option value="">Choose a sentence</option>
+          <option>After a successful interview at Chemotech Inc., he was hired as a junior engineer.</option>
+          <option>After graduating from university, Mark decided to apply for a job as an engineer.</option>
+          <option>After nearly 20 years of running his own business, Mark decided to retire early.</option>
+          <option>Chemotech ran into financial difficulties during the economic crisis, and Mark was laid off.</option>
+          <option>He decided to become self-employed and start his own business.</option>
+          <option>Mark worked hard for seven years and was promoted to a better position.</option>
+        </select>
+      </div>
+
+      <div class="exercise-item">
+        <label>2.</label>
+        <select data-answer="After a successful interview at Chemotech Inc., he was hired as a junior engineer.">
+          <option value="">Choose a sentence</option>
+          <option>After a successful interview at Chemotech Inc., he was hired as a junior engineer.</option>
+          <option>After graduating from university, Mark decided to apply for a job as an engineer.</option>
+          <option>After nearly 20 years of running his own business, Mark decided to retire early.</option>
+          <option>Chemotech ran into financial difficulties during the economic crisis, and Mark was laid off.</option>
+          <option>He decided to become self-employed and start his own business.</option>
+          <option>Mark worked hard for seven years and was promoted to a better position.</option>
+        </select>
+      </div>
+
+      <div class="exercise-item">
+        <label>3.</label>
+        <select data-answer="Mark worked hard for seven years and was promoted to a better position.">
+          <option value="">Choose a sentence</option>
+          <option>After a successful interview at Chemotech Inc., he was hired as a junior engineer.</option>
+          <option>After graduating from university, Mark decided to apply for a job as an engineer.</option>
+          <option>After nearly 20 years of running his own business, Mark decided to retire early.</option>
+          <option>Chemotech ran into financial difficulties during the economic crisis, and Mark was laid off.</option>
+          <option>He decided to become self-employed and start his own business.</option>
+          <option>Mark worked hard for seven years and was promoted to a better position.</option>
+        </select>
+      </div>
+
+      <div class="exercise-item">
+        <label>4.</label>
+        <select data-answer="Chemotech ran into financial difficulties during the economic crisis, and Mark was laid off.">
+          <option value="">Choose a sentence</option>
+          <option>After a successful interview at Chemotech Inc., he was hired as a junior engineer.</option>
+          <option>After graduating from university, Mark decided to apply for a job as an engineer.</option>
+          <option>After nearly 20 years of running his own business, Mark decided to retire early.</option>
+          <option>Chemotech ran into financial difficulties during the economic crisis, and Mark was laid off.</option>
+          <option>He decided to become self-employed and start his own business.</option>
+          <option>Mark worked hard for seven years and was promoted to a better position.</option>
+        </select>
+      </div>
+
+      <div class="exercise-item">
+        <label>5.</label>
+        <select data-answer="He decided to become self-employed and start his own business.">
+          <option value="">Choose a sentence</option>
+          <option>After a successful interview at Chemotech Inc., he was hired as a junior engineer.</option>
+          <option>After graduating from university, Mark decided to apply for a job as an engineer.</option>
+          <option>After nearly 20 years of running his own business, Mark decided to retire early.</option>
+          <option>Chemotech ran into financial difficulties during the economic crisis, and Mark was laid off.</option>
+          <option>He decided to become self-employed and start his own business.</option>
+          <option>Mark worked hard for seven years and was promoted to a better position.</option>
+        </select>
+      </div>
+
+      <div class="exercise-item">
+        <label>6.</label>
+        <select data-answer="After nearly 20 years of running his own business, Mark decided to retire early.">
+          <option value="">Choose a sentence</option>
+          <option>After a successful interview at Chemotech Inc., he was hired as a junior engineer.</option>
+          <option>After graduating from university, Mark decided to apply for a job as an engineer.</option>
+          <option>After nearly 20 years of running his own business, Mark decided to retire early.</option>
+          <option>Chemotech ran into financial difficulties during the economic crisis, and Mark was laid off.</option>
+          <option>He decided to become self-employed and start his own business.</option>
+          <option>Mark worked hard for seven years and was promoted to a better position.</option>
+        </select>
+      </div>
+
+      <div class="buttons">
+        <button class="check-btn" onclick="checkExercise(this)">Check answers</button>
+        <button class="reset-btn" onclick="resetExercise(this)">Clear answers</button>
+      </div>
+
+      <div class="feedback"></div>
+    </section>
+
+
+    <!-- EXERCISE 2 -->
+    <section>
+      <h2>Exercise 2: Jobs and People</h2>
+
+      <div class="instructions">
+        Match the jobs below to the descriptions. Write the correct job.
+      </div>
+
+      <div class="word-bank">
+        <span>a chef</span>
+        <span>a firefighter</span>
+        <span>a mechanic</span>
+        <span>an accountant</span>
+        <span>an actor</span>
+        <span>a receptionist</span>
+        <span>a secretary</span>
+        <span>a vet</span>
+        <span>a waiter</span>
+        <span>a doctor</span>
+      </div>
+
+      <div class="exercise-item">
+        <label>1. “I help people when they have problems with their health.”</label>
+        <input type="text" autocomplete="off" data-answer="a doctor" />
+      </div>
+
+      <div class="exercise-item">
+        <label>2. “When people have problems with their cars, they call me. I try to fix the problem.”</label>
+        <input type="text" autocomplete="off" data-answer="a mechanic" />
+      </div>
+
+      <div class="exercise-item">
+        <label>3. “I serve food in a restaurant.”</label>
+        <input type="text" autocomplete="off" data-answer="a waiter" />
+      </div>
+
+      <div class="exercise-item">
+        <label>4. “I’m responsible for welcoming and helping people who visit our office.”</label>
+        <input type="text" autocomplete="off" data-answer="a secretary" />
+      </div>
+
+      <div class="exercise-item">
+        <label>5. “One of my duties is helping guests who arrive at our hotel.”</label>
+        <input type="text" autocomplete="off" data-answer="a receptionist" />
+      </div>
+
+      <div class="exercise-item">
+        <label>6. “It’s my job to help animals that are sick or injured.”</label>
+        <input type="text" autocomplete="off" data-answer="a vet" />
+      </div>
+
+      <div class="exercise-item">
+        <label>7. “I cook meals in a restaurant.”</label>
+        <input type="text" autocomplete="off" data-answer="a chef" />
+      </div>
+
+      <div class="exercise-item">
+        <label>8. “When there is a fire, people call us.”</label>
+        <input type="text" autocomplete="off" data-answer="a firefighter" />
+      </div>
+
+      <div class="exercise-item">
+        <label>9. “I am often on television. I play in a popular drama series.”</label>
+        <input type="text" autocomplete="off" data-answer="an actor" />
+      </div>
+
+      <div class="exercise-item">
+        <label>10. “I do a lot of financial paperwork in my work.”</label>
+        <input type="text" autocomplete="off" data-answer="an accountant" />
+      </div>
+
+      <div class="buttons">
+        <button class="check-btn" onclick="checkExercise(this)">Check answers</button>
+        <button class="reset-btn" onclick="resetExercise(this)">Clear answers</button>
+      </div>
+
+      <div class="feedback"></div>
+    </section>
+
+  </main>
+
+  <footer>
+    Practice page for English vocabulary exercises.
+  </footer>
+
+
+  <script>
+    function normalizeText(text) {
+      return text
+        .toLowerCase()
+        .trim()
+        .replace(/\s+/g, " ")
+        .replace(/[.,!?]/g, "");
+    }
+
+    function checkExercise(button) {
+      const section = button.closest("section");
+      const fields = section.querySelectorAll("input, select");
+      const feedback = section.querySelector(".feedback");
+
+      let correct = 0;
+
+      fields.forEach(field => {
+        const userAnswer = normalizeText(field.value);
+        const correctAnswer = normalizeText(field.dataset.answer);
+
+        field.classList.remove("correct", "incorrect");
+
+        if (userAnswer === correctAnswer) {
+          field.classList.add("correct");
+          correct++;
+        } else {
+          field.classList.add("incorrect");
+        }
+      });
+
+      feedback.textContent = `You got ${correct} out of ${fields.length} correct.`;
+    }
+
+    function resetExercise(button) {
+      const section = button.closest("section");
+      const fields = section.querySelectorAll("input, select");
+      const feedback = section.querySelector(".feedback");
+
+      fields.forEach(field => {
+        field.value = "";
+        field.classList.remove("correct", "incorrect");
+      });
+
+      feedback.textContent = "";
+    }
+  </script>
+
+</body>
+</html>
