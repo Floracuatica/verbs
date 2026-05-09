@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>English Class - Describing Jobs</title>
+  <title>English Exercise - Jobs</title>
 
   <style>
     body {
@@ -19,17 +19,6 @@
       color: white;
       text-align: center;
       padding: 30px 15px;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 2rem;
-    }
-
-    header p {
-      margin-top: 8px;
-      font-size: 1rem;
-      color: #d9e2e7;
     }
 
     main {
@@ -53,20 +42,16 @@
       padding-bottom: 8px;
     }
 
-    .question-box {
-      background: #eef3f6;
-      border-left: 5px solid #607d8b;
-      padding: 15px;
-      margin: 15px 0;
-      border-radius: 8px;
-    }
-
-    .dialogue {
-      margin-top: 20px;
+    select {
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #90a4ae;
+      min-width: 260px;
+      margin: 5px 0;
     }
 
     .dialogue p {
-      margin: 10px 0;
+      margin: 14px 0;
     }
 
     .speaker {
@@ -91,13 +76,35 @@
       color: white;
     }
 
-    tr:nth-child(even) {
-      background: #f7f9fa;
+    button {
+      background: #263238;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-top: 15px;
     }
 
-    .answer {
+    button:hover {
+      background: #37474f;
+    }
+
+    .correct {
+      background-color: #d8f5dd;
+      border: 2px solid #2e7d32;
+    }
+
+    .incorrect {
+      background-color: #ffdada;
+      border: 2px solid #c62828;
+    }
+
+    .result {
       font-weight: bold;
-      color: #00695c;
+      margin-top: 15px;
+      color: #263238;
     }
 
     footer {
@@ -112,51 +119,106 @@
 <body>
 
   <header>
-    <h1>English Class</h1>
+    <h1>English Exercise</h1>
     <p>Talking about work and describing jobs</p>
   </header>
 
   <main>
 
     <section>
-      <h2>Talking about Work</h2>
+      <h2>Exercise 1: Complete the Dialogue</h2>
 
       <p>
-        Complete the dialogue below with the correct questions.
+        Choose the correct question for each blank.
       </p>
 
-      <div class="question-box">
-        <p><strong>Possible questions:</strong></p>
-        <p>What’s your job title?</p>
-        <p>What are your responsibilities?</p>
-        <p>What qualifications do you need?</p>
-        <p>What skills do you need?</p>
-        <p>What do you like?</p>
-      </div>
-
       <div class="dialogue">
-        <p><span class="speaker">A:</span> <span class="answer">What’s your job title?</span></p>
+
+        <p>
+          <span class="speaker">A:</span>
+          <select id="q1">
+            <option value="">Choose an option</option>
+            <option value="job">What’s your job title?</option>
+            <option value="responsibilities">What are your responsibilities?</option>
+            <option value="qualifications">What qualifications do you need?</option>
+            <option value="skills">What skills do you need?</option>
+            <option value="like">What do you like?</option>
+          </select>
+        </p>
         <p><span class="speaker">B:</span> I work as a bank teller.</p>
 
-        <p><span class="speaker">A:</span> <span class="answer">What are your responsibilities?</span></p>
-        <p><span class="speaker">B:</span> I’m responsible for serving customers in a bank. For example, answering questions and exchanging money.</p>
+        <p>
+          <span class="speaker">A:</span>
+          <select id="q2">
+            <option value="">Choose an option</option>
+            <option value="job">What’s your job title?</option>
+            <option value="responsibilities">What are your responsibilities?</option>
+            <option value="qualifications">What qualifications do you need?</option>
+            <option value="skills">What skills do you need?</option>
+            <option value="like">What do you like?</option>
+          </select>
+        </p>
+        <p>
+          <span class="speaker">B:</span>
+          I’m responsible for serving customers in a bank. For example, answering questions and exchanging money.
+        </p>
 
-        <p><span class="speaker">A:</span> <span class="answer">What qualifications do you need?</span></p>
-        <p><span class="speaker">B:</span> For this job, you only need a high school diploma. You don’t need a university degree.</p>
+        <p>
+          <span class="speaker">A:</span>
+          <select id="q3">
+            <option value="">Choose an option</option>
+            <option value="job">What’s your job title?</option>
+            <option value="responsibilities">What are your responsibilities?</option>
+            <option value="qualifications">What qualifications do you need?</option>
+            <option value="skills">What skills do you need?</option>
+            <option value="like">What do you like?</option>
+          </select>
+        </p>
+        <p>
+          <span class="speaker">B:</span>
+          For this job, you only need a high school diploma. You don’t need a university degree.
+        </p>
 
-        <p><span class="speaker">A:</span> <span class="answer">What skills do you need?</span></p>
-        <p><span class="speaker">B:</span> You need to be good at counting money. Also, you must be friendly because you work with customers.</p>
+        <p>
+          <span class="speaker">A:</span>
+          <select id="q4">
+            <option value="">Choose an option</option>
+            <option value="job">What’s your job title?</option>
+            <option value="responsibilities">What are your responsibilities?</option>
+            <option value="qualifications">What qualifications do you need?</option>
+            <option value="skills">What skills do you need?</option>
+            <option value="like">What do you like?</option>
+          </select>
+        </p>
+        <p>
+          <span class="speaker">B:</span>
+          You need to be good at counting money. Also, you must be friendly because you work with customers.
+        </p>
 
-        <p><span class="speaker">A:</span> <span class="answer">What do you like?</span></p>
-        <p><span class="speaker">B:</span> My job is sometimes a little boring, but it’s secure.</p>
+        <p>
+          <span class="speaker">A:</span>
+          <select id="q5">
+            <option value="">Choose an option</option>
+            <option value="job">What’s your job title?</option>
+            <option value="responsibilities">What are your responsibilities?</option>
+            <option value="qualifications">What qualifications do you need?</option>
+            <option value="skills">What skills do you need?</option>
+            <option value="like">What do you like?</option>
+          </select>
+        </p>
+        <p>
+          <span class="speaker">B:</span>
+          My job is sometimes a little boring, but it’s secure.
+        </p>
+
       </div>
     </section>
 
     <section>
-      <h2>Describing Jobs</h2>
+      <h2>Exercise 2: Match the Opposites</h2>
 
       <p>
-        Match the adjectives with their opposites.
+        Choose the correct opposite for each adjective.
       </p>
 
       <table>
@@ -166,68 +228,104 @@
             <th>Opposite</th>
           </tr>
         </thead>
+
         <tbody>
           <tr>
             <td>Dangerous</td>
-            <td class="answer">Safe</td>
+            <td>
+              <select id="o1">
+                <option value="">Choose an option</option>
+                <option value="badly-paid">Badly-paid</option>
+                <option value="easy">Easy</option>
+                <option value="exciting">Exciting</option>
+                <option value="relaxing">Relaxing</option>
+                <option value="safe">Safe</option>
+                <option value="unstable">Unstable</option>
+              </select>
+            </td>
           </tr>
+
           <tr>
             <td>Stressful</td>
-            <td class="answer">Relaxing</td>
+            <td>
+              <select id="o2">
+                <option value="">Choose an option</option>
+                <option value="badly-paid">Badly-paid</option>
+                <option value="easy">Easy</option>
+                <option value="exciting">Exciting</option>
+                <option value="relaxing">Relaxing</option>
+                <option value="safe">Safe</option>
+                <option value="unstable">Unstable</option>
+              </select>
+            </td>
           </tr>
+
           <tr>
             <td>Well-paid</td>
-            <td class="answer">Badly-paid</td>
+            <td>
+              <select id="o3">
+                <option value="">Choose an option</option>
+                <option value="badly-paid">Badly-paid</option>
+                <option value="easy">Easy</option>
+                <option value="exciting">Exciting</option>
+                <option value="relaxing">Relaxing</option>
+                <option value="safe">Safe</option>
+                <option value="unstable">Unstable</option>
+              </select>
+            </td>
           </tr>
+
           <tr>
             <td>Boring</td>
-            <td class="answer">Exciting</td>
+            <td>
+              <select id="o4">
+                <option value="">Choose an option</option>
+                <option value="badly-paid">Badly-paid</option>
+                <option value="easy">Easy</option>
+                <option value="exciting">Exciting</option>
+                <option value="relaxing">Relaxing</option>
+                <option value="safe">Safe</option>
+                <option value="unstable">Unstable</option>
+              </select>
+            </td>
           </tr>
+
           <tr>
             <td>Hard</td>
-            <td class="answer">Easy</td>
+            <td>
+              <select id="o5">
+                <option value="">Choose an option</option>
+                <option value="badly-paid">Badly-paid</option>
+                <option value="easy">Easy</option>
+                <option value="exciting">Exciting</option>
+                <option value="relaxing">Relaxing</option>
+                <option value="safe">Safe</option>
+                <option value="unstable">Unstable</option>
+              </select>
+            </td>
           </tr>
+
           <tr>
             <td>Secure</td>
-            <td class="answer">Unstable</td>
+            <td>
+              <select id="o6">
+                <option value="">Choose an option</option>
+                <option value="badly-paid">Badly-paid</option>
+                <option value="easy">Easy</option>
+                <option value="exciting">Exciting</option>
+                <option value="relaxing">Relaxing</option>
+                <option value="safe">Safe</option>
+                <option value="unstable">Unstable</option>
+              </select>
+            </td>
           </tr>
         </tbody>
       </table>
-    </section>
 
-    <section>
-      <h2>Useful Vocabulary</h2>
+      <button onclick="checkAnswers()">Check Answers</button>
+      <button onclick="resetExercise()">Reset</button>
 
-      <table>
-        <thead>
-          <tr>
-            <th>English</th>
-            <th>Spanish</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Bank teller</td>
-            <td>Cajero/a de banco</td>
-          </tr>
-          <tr>
-            <td>Responsibilities</td>
-            <td>Responsabilidades</td>
-          </tr>
-          <tr>
-            <td>Qualifications</td>
-            <td>Requisitos / estudios</td>
-          </tr>
-          <tr>
-            <td>Skills</td>
-            <td>Habilidades</td>
-          </tr>
-          <tr>
-            <td>Secure job</td>
-            <td>Trabajo estable / seguro</td>
-          </tr>
-        </tbody>
-      </table>
+      <p id="result" class="result"></p>
     </section>
 
   </main>
@@ -235,6 +333,54 @@
   <footer>
     English practice - Describing jobs
   </footer>
+
+  <script>
+    function checkAnswers() {
+      const answers = {
+        q1: "job",
+        q2: "responsibilities",
+        q3: "qualifications",
+        q4: "skills",
+        q5: "like",
+        o1: "safe",
+        o2: "relaxing",
+        o3: "badly-paid",
+        o4: "exciting",
+        o5: "easy",
+        o6: "unstable"
+      };
+
+      let score = 0;
+      let total = Object.keys(answers).length;
+
+      for (let id in answers) {
+        const select = document.getElementById(id);
+
+        select.classList.remove("correct", "incorrect");
+
+        if (select.value === answers[id]) {
+          select.classList.add("correct");
+          score++;
+        } else {
+          select.classList.add("incorrect");
+        }
+      }
+
+      document.getElementById("result").textContent =
+        "Your score: " + score + " / " + total;
+    }
+
+    function resetExercise() {
+      const selects = document.querySelectorAll("select");
+
+      selects.forEach(select => {
+        select.value = "";
+        select.classList.remove("correct", "incorrect");
+      });
+
+      document.getElementById("result").textContent = "";
+    }
+  </script>
 
 </body>
 </html>
