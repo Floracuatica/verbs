@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>English Practice: Work and Jobs</title>
+  <style>
+    :root{
+      --bg:#f7f4ef;
+      --paper:#ffffff;
+      --ink:#222;
+      --muted:#6b7280;
+      --line:#cbd5e1;
+      --accent:#7c3aed;
+      --accent-soft:#ede9fe;
+      --ok:#166534;
+      --bad:#991b1b;
+      --warn:#92400e;
+      --shadow: 0 12px 35px rgba(15, 23, 42, .12);
+      --radius: 20px;
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color:var(--ink);
+      background:linear-gradient(135deg,#f7f4ef 0%,#eef2ff 100%);
+      line-height:1.55;
+    }
+    header{
+      max-width:980px;
+      margin:28px auto 18px;
+      padding:26px 24px;
+      background:var(--paper);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      border:1px solid rgba(124,58,237,.12);
+    }
+    h1{
+      margin:0 0 8px;
+      font-size:clamp(1.8rem, 3vw, 2.6rem);
+      letter-spacing:-.03em;
+    }
+    h2{ margin:0 0 14px; font-size:1.35rem; }
+    h3{ margin:20px 0 8px; font-size:1.05rem; }
+    .subtitle{ margin:0; color:var(--muted); }
+    main{ max-width:980px; margin:0 auto 48px; padding:0 16px; }
+    section{
+      background:rgba(255,255,255,.92);
+      margin:18px 0;
+      padding:22px;
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      border:1px solid rgba(15,23,42,.08);
+    }
+    .instructions{
+      color:#374151;
+      background:#f8fafc;
+      border-left:5px solid var(--accent);
+      padding:10px 14px;
+      border-radius:12px;
+      margin:0 0 16px;
+    }
+    .word-bank{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin:12px 0 18px;
+      padding:12px;
+      border-radius:16px;
+      background:var(--accent-soft);
+    }
+    .word-bank span{
+      background:#fff;
+      border:1px solid #ddd6fe;
+      color:#312e81;
+      padding:7px 10px;
+      border-radius:999px;
+      font-weight:650;
+      font-size:.95rem;
+    }
+    ol{ padding-left:22px; }
+    li{ margin:12px 0; }
+    .sentence{ display:block; }
+    input.answer{
+      width:min(260px, 100%);
+      border:0;
+      border-bottom:2px solid var(--line);
+      padding:7px 8px 5px;
+      margin:0 4px;
+      background:transparent;
+      font-size:1rem;
+      font-family:inherit;
+      outline:none;
+      color:var(--ink);
+    }
+    input.answer:focus{
+      border-bottom-color:var(--accent);
+      background:#faf5ff;
+      border-radius:8px 8px 0 0;
+    }
+    .short{ width:180px !important; }
+    .medium{ width:230px !important; }
+    .long{ width:330px !important; }
+    .grid-two{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:12px 18px;
+    }
+    .match-row{
+      display:grid;
+      grid-template-columns:1fr minmax(160px,220px);
+      gap:12px;
+      align-items:center;
+      padding:10px 0;
+      border-bottom:1px dashed #e5e7eb;
+    }
+    select{
+      width:100%;
+      padding:9px 10px;
+      border-radius:12px;
+      border:1px solid #d1d5db;
+      background:white;
+      font:inherit;
+    }
+    .dialogue{
+      display:grid;
+      gap:10px;
+    }
+    .line{
+      display:grid;
+      grid-template-columns:34px 1fr;
+      gap:8px;
+      align-items:start;
+    }
+    .speaker{
+      font-weight:800;
+      color:var(--accent);
+    }
+    .buttons{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:18px;
+      position:sticky;
+      bottom:0;
+      background:rgba(247,244,239,.94);
+      padding:14px 0;
+      backdrop-filter: blur(6px);
+    }
+    button{
+      border:none;
+      border-radius:999px;
+      padding:11px 16px;
+      font-weight:800;
+      cursor:pointer;
+      font-size:.98rem;
+    }
+    .primary{ background:var(--accent); color:white; }
+    .secondary{ background:white; color:#111827; border:1px solid #d1d5db; }
+    .result{
+      margin-top:12px;
+      padding:12px 14px;
+      border-radius:14px;
+      background:#f8fafc;
+      color:#334155;
+      display:none;
+    }
+    .correct{ border-bottom-color:var(--ok) !important; background:#f0fdf4 !important; }
+    .incorrect{ border-bottom-color:var(--bad) !important; background:#fef2f2 !important; }
+    .select-correct{ border-color:var(--ok) !important; background:#f0fdf4 !important; }
+    .select-incorrect{ border-color:var(--bad) !important; background:#fef2f2 !important; }
+    details{
+      margin-top:14px;
+      padding:12px 14px;
+      border-radius:14px;
+      background:#fff7ed;
+      border:1px solid #fed7aa;
+    }
+    details summary{ cursor:pointer; font-weight:800; color:var(--warn); }
+    .note{
+      font-size:.92rem;
+      color:var(--muted);
+      margin-top:8px;
+    }
+    @media print{
+      body{ background:white; }
+      header, section{ box-shadow:none; border:1px solid #ddd; }
+      .buttons, .result, details{ display:none !important; }
+      input.answer{ border-bottom:2px solid #111; }
+      select{ border:1px solid #111; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>English Practice: Work and Jobs</h1>
+    <p class="subtitle">Exercises for estudiante. Write the answers, check them, and clear everything when you finish.</p>
+    <p class="note">This page does not use localStorage, cookies, or autocomplete. The answers are not saved in the browser.</p>
+  </header>
+
+  <main>
+    <form id="practiceForm" autocomplete="off" autocapitalize="none" spellcheck="false">
+      <section>
+        <h2>Exercise A: Jobs</h2>
+        <p class="instructions">Complete the sentences below with the following jobs.</p>
+        <div class="word-bank" aria-label="Word bank">
+          <span>bellhop</span><span>chef</span><span>flight attendant</span><span>manager</span><span>nurse</span>
+          <span>plumber</span><span>private detective</span><span>psychologist</span><span>surgeon</span><span>vet</span>
+        </div>
+        <ol>
+          <li><span class="sentence">Janet has been extremely depressed lately. I think she needs to see a <input class="answer medium" data-answer="psychologist" autocomplete="off" />.</span></li>
+          <li><span class="sentence">My dog has been coughing a lot. I must take him to the <input class="answer medium" data-answer="vet" autocomplete="off" />.</span></li>
+          <li><span class="sentence">Laura loves taking care of other people. I think she’ll be a <input class="answer medium" data-answer="nurse" autocomplete="off" /> when she grows up.</span></li>
+          <li><span class="sentence">One of the pipes in my bathroom has burst, and there’s water all over the place. I need to call a <input class="answer medium" data-answer="plumber" autocomplete="off" />.</span></li>
+          <li><span class="sentence">Alan was very suspicious of his wife, so he hired a <input class="answer long" data-answer="private detective" autocomplete="off" /> to find out if she had been seeing another man.</span></li>
+          <li><span class="sentence">The <input class="answer medium" data-answer="surgeon" autocomplete="off" /> told me that I needed at least one month to recover from the knee operation.</span></li>
+          <li><span class="sentence">Leave your bags here. The <input class="answer medium" data-answer="bellhop" autocomplete="off" /> will take them to your room.</span></li>
+          <li><span class="sentence">Alison loves traveling, so she decided to become a <input class="answer medium" data-answer="flight attendant" autocomplete="off" />.</span></li>
+          <li><span class="sentence">Can I speak to the <input class="answer medium" data-answer="manager" autocomplete="off" /> please? I would like to complain about the service here.</span></li>
+          <li><span class="sentence">The food at this restaurant is excellent. Congratulations to the <input class="answer medium" data-answer="chef" autocomplete="off" />.</span></li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>Exercise B: Talking about work</h2>
+        <p class="instructions">Complete the dialogue with the questions from the box.</p>
+        <div class="word-bank">
+          <span>What’s your job like?</span><span>What skills do you need?</span><span>What are your responsibilities?</span><span>What qualifications do you need?</span><span>What do you do?</span>
+        </div>
+        <div class="dialogue">
+          <div class="line"><span class="speaker">A:</span><span><input class="answer long" data-answer="What do you do?" autocomplete="off" /></span></div>
+          <div class="line"><span class="speaker">B:</span><span>I work as a bank teller.</span></div>
+          <div class="line"><span class="speaker">A:</span><span><input class="answer long" data-answer="What are your responsibilities?" autocomplete="off" /></span></div>
+          <div class="line"><span class="speaker">B:</span><span>I’m responsible for serving customers in a bank. For example, answering questions and exchanging money.</span></div>
+          <div class="line"><span class="speaker">A:</span><span><input class="answer long" data-answer="What qualifications do you need?" autocomplete="off" /></span></div>
+          <div class="line"><span class="speaker">B:</span><span>For this job, you only need a high school diploma. You don’t need a university degree.</span></div>
+          <div class="line"><span class="speaker">A:</span><span><input class="answer long" data-answer="What skills do you need?" autocomplete="off" /></span></div>
+          <div class="line"><span class="speaker">B:</span><span>You need to be good at counting money. And you must be friendly because you work with customers.</span></div>
+          <div class="line"><span class="speaker">A:</span><span><input class="answer long" data-answer="What’s your job like?|What's your job like?" autocomplete="off" /></span></div>
+          <div class="line"><span class="speaker">B:</span><span>My job is not very well-paid, and it’s sometimes a little boring. But it’s secure.</span></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Exercise C: Types of work</h2>
+        <p class="instructions">Write the type of work next to the correct situation.</p>
+        <div class="word-bank">
+          <span>night work</span><span>full-time work</span><span>part-time work</span><span>self-employment</span><span>volunteer work</span><span>internship</span>
+        </div>
+        <ol>
+          <li>Allie prefers to work at the supermarket during the night because the pay is better. <input class="answer medium" data-answer="night work" autocomplete="off" /></li>
+          <li>Christine works only in the evenings because she goes to school in the mornings. <input class="answer medium" data-answer="part-time work" autocomplete="off" /></li>
+          <li>Every day, John starts work at 9:00 am and gets off work at 5:00 pm. <input class="answer medium" data-answer="full-time work" autocomplete="off" /></li>
+          <li>Alannah helps out at the beach picking up trash. She doesn’t get paid. <input class="answer medium" data-answer="volunteer work" autocomplete="off" /></li>
+          <li>Ian has his own delivery company. <input class="answer medium" data-answer="self-employment" autocomplete="off" /></li>
+          <li>Rona is working in ANTEL. She doesn’t get paid, but she’ll get experience to put in her CV. <input class="answer medium" data-answer="internship" autocomplete="off" /></li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>Exercise D: Describing jobs</h2>
+        <p class="instructions">Study the adjectives in the left column and match them to their opposites.</p>
+        <div class="grid-two">
+          <div>
+            <ol>
+              <li>dangerous</li>
+              <li>stressful</li>
+              <li>well-paid</li>
+              <li>boring</li>
+              <li>hard</li>
+              <li>secure</li>
+            </ol>
+          </div>
+          <div>
+            <p><strong>Options:</strong></p>
+            <p>a. badly paid<br>b. easy<br>c. exciting<br>d. relaxing<br>e. safe<br>f. unstable</p>
+          </div>
+        </div>
+        <div class="match-row"><span>1. dangerous</span><select data-answer="e"><option value="">Choose…</option><option value="a">a. badly paid</option><option value="b">b. easy</option><option value="c">c. exciting</option><option value="d">d. relaxing</option><option value="e">e. safe</option><option value="f">f. unstable</option></select></div>
+        <div class="match-row"><span>2. stressful</span><select data-answer="d"><option value="">Choose…</option><option value="a">a. badly paid</option><option value="b">b. easy</option><option value="c">c. exciting</option><option value="d">d. relaxing</option><option value="e">e. safe</option><option value="f">f. unstable</option></select></div>
+        <div class="match-row"><span>3. well-paid</span><select data-answer="a"><option value="">Choose…</option><option value="a">a. badly paid</option><option value="b">b. easy</option><option value="c">c. exciting</option><option value="d">d. relaxing</option><option value="e">e. safe</option><option value="f">f. unstable</option></select></div>
+        <div class="match-row"><span>4. boring</span><select data-answer="c"><option value="">Choose…</option><option value="a">a. badly paid</option><option value="b">b. easy</option><option value="c">c. exciting</option><option value="d">d. relaxing</option><option value="e">e. safe</option><option value="f">f. unstable</option></select></div>
+        <div class="match-row"><span>5. hard</span><select data-answer="b"><option value="">Choose…</option><option value="a">a. badly paid</option><option value="b">b. easy</option><option value="c">c. exciting</option><option value="d">d. relaxing</option><option value="e">e. safe</option><option value="f">f. unstable</option></select></div>
+        <div class="match-row"><span>6. secure</span><select data-answer="f"><option value="">Choose…</option><option value="a">a. badly paid</option><option value="b">b. easy</option><option value="c">c. exciting</option><option value="d">d. relaxing</option><option value="e">e. safe</option><option value="f">f. unstable</option></select></div>
+      </section>
+
+      <section>
+        <h2>Exercise E: A job interview</h2>
+        <p class="instructions">Complete the sentences with the phrases from the box.</p>
+        <div class="word-bank">
+          <span>questions</span><span>yourself</span><span>do you want</span><span>skills</span><span>salary</span>
+          <span>spell</span><span>did you leave</span><span>name</span><span>company</span><span>languages</span>
+        </div>
+        <ol>
+          <li>What is your first <input class="answer short" data-answer="name" autocomplete="off" />?</li>
+          <li>How do you <input class="answer short" data-answer="spell" autocomplete="off" /> your last name?</li>
+          <li>Tell me about <input class="answer short" data-answer="yourself" autocomplete="off" />.</li>
+          <li>Why <input class="answer short" data-answer="do you want" autocomplete="off" /> this job?</li>
+          <li>Why <input class="answer short" data-answer="did you leave" autocomplete="off" /> your last job?</li>
+          <li>What do you know about our <input class="answer short" data-answer="company" autocomplete="off" />?</li>
+          <li>What kind of <input class="answer short" data-answer="salary" autocomplete="off" /> are you thinking about?</li>
+          <li>How many <input class="answer short" data-answer="languages" autocomplete="off" /> can you speak?</li>
+          <li>What special <input class="answer short" data-answer="skills" autocomplete="off" /> do you have?</li>
+          <li>Do you have any <input class="answer short" data-answer="questions" autocomplete="off" /> to ask?</li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>Review</h2>
+        <p class="instructions">Use the buttons to check or clear the page. Nothing is saved.</p>
+        <div class="buttons">
+          <button class="primary" type="button" id="checkBtn">Check answers</button>
+          <button class="secondary" type="button" id="clearBtn">Clear answers</button>
+          <button class="secondary" type="button" onclick="window.print()">Print</button>
+        </div>
+        <div class="result" id="resultBox"></div>
+        <details>
+          <summary>Teacher note</summary>
+          <p>The check button compares answers in the browser only. It does not send, record, or store estudiante’s answers.</p>
+        </details>
+      </section>
+    </form>
+  </main>
+
+  <script>
+    (function(){
+      const normalize = value => value
+        .trim()
+        .toLowerCase()
+        .replace(/[’]/g, "'")
+        .replace(/\s+/g, " ");
+
+      function isCorrectInput(input){
+        const possible = input.dataset.answer.split('|').map(normalize);
+        return possible.includes(normalize(input.value));
+      }
+
+      document.getElementById('checkBtn').addEventListener('click', () => {
+        const inputs = [...document.querySelectorAll('input.answer')];
+        const selects = [...document.querySelectorAll('select[data-answer]')];
+        let correct = 0;
+        let total = inputs.length + selects.length;
+
+        inputs.forEach(input => {
+          input.classList.remove('correct','incorrect');
+          if(!input.value.trim()) return;
+          if(isCorrectInput(input)){
+            input.classList.add('correct');
+            correct++;
+          }else{
+            input.classList.add('incorrect');
+          }
+        });
+
+        selects.forEach(select => {
+          select.classList.remove('select-correct','select-incorrect');
+          if(!select.value) return;
+          if(select.value === select.dataset.answer){
+            select.classList.add('select-correct');
+            correct++;
+          }else{
+            select.classList.add('select-incorrect');
+          }
+        });
+
+        const completed = inputs.filter(i => i.value.trim()).length + selects.filter(s => s.value).length;
+        const resultBox = document.getElementById('resultBox');
+        resultBox.style.display = 'block';
+        resultBox.textContent = `Completed: ${completed}/${total}. Correct: ${correct}/${total}. Empty answers are not marked wrong.`;
+      });
+
+      document.getElementById('clearBtn').addEventListener('click', () => {
+        document.querySelectorAll('input.answer').forEach(input => {
+          input.value = '';
+          input.classList.remove('correct','incorrect');
+        });
+        document.querySelectorAll('select[data-answer]').forEach(select => {
+          select.value = '';
+          select.classList.remove('select-correct','select-incorrect');
+        });
+        const resultBox = document.getElementById('resultBox');
+        resultBox.style.display = 'none';
+        resultBox.textContent = '';
+      });
+    })();
+  </script>
+</body>
+</html>
